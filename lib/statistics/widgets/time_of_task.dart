@@ -19,11 +19,12 @@ class TimeOfTaskWidget extends StatelessWidget {
         borderRadius: const BorderRadius.all(Radius.circular(10)),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 20),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              height: 50,
+              height: 20,
               decoration: const BoxDecoration(
                 color: Color.fromARGB(255, 7, 7, 7),
                 shape: BoxShape.circle,
@@ -32,7 +33,7 @@ class TimeOfTaskWidget extends StatelessWidget {
             Text(
               durationString,
               style: const TextStyle(
-                fontSize: 20,
+                fontSize: 10,
                 fontWeight: FontWeight.bold,
               ),
             ),
