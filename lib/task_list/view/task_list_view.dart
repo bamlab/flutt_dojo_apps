@@ -1,17 +1,17 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_dojo_apps/widgets/task_list_header.dart';
-import 'package:flutter_dojo_apps/widgets/task_list_switcher.dart';
+import 'package:flutter_dojo_apps/task_list/widgets/task_list_header.dart';
+import 'package:flutter_dojo_apps/task_list/widgets/task_list_switcher.dart';
 
-class TaskListScreen extends StatefulWidget {
-  const TaskListScreen({super.key});
+class TaskListView extends StatefulWidget {
+  const TaskListView({super.key});
 
   @override
-  State<TaskListScreen> createState() => _TaskListScreenState();
+  State<TaskListView> createState() => _TaskListViewState();
 }
 
-class _TaskListScreenState extends State<TaskListScreen> {
+class _TaskListViewState extends State<TaskListView> {
   TodoState todoState = TodoState.todo;
 
   @override
