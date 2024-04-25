@@ -23,7 +23,7 @@ class _TaskListViewState extends State<TaskListView> {
             decoration: const BoxDecoration(
               color: Color(0xFF623CEA),
               image: DecorationImage(
-                image: AssetImage('assets/logo.png'),
+                image: AssetImage('assets/Background.png'),
               ),
             ),
           ),
@@ -55,13 +55,16 @@ class _TaskListViewState extends State<TaskListView> {
                     const SizedBox(
                       height: 24,
                     ),
-                    TaskListSwitcher(
-                      selectedState: todoState,
-                      onSelectedState: (selectedState) {
-                        setState(() {
-                          todoState = selectedState.first;
-                        });
-                      },
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: TaskListSwitcher(
+                        selectedState: todoState,
+                        onSelectedState: (selectedState) {
+                          setState(() {
+                            todoState = selectedState.first;
+                          });
+                        },
+                      ),
                     ),
                   ],
                 ),
