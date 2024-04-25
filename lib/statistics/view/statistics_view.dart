@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dojo_apps/statistics/widgets/time_of_task.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class StatisticsView extends StatelessWidget {
   const StatisticsView({super.key});
@@ -19,10 +20,10 @@ class StatisticsView extends StatelessWidget {
 
     const timeOfTasks = [
       Duration(hours: 17, minutes: 47),
-      Duration(hours: 1, minutes: 30),
       Duration(hours: 9, minutes: 23),
       Duration(hours: 8, minutes: 12),
       Duration(hours: 2, minutes: 36),
+      Duration(hours: 1, minutes: 30),
     ];
 
     print(timeOfTasks[1].inMinutes * 100 ~/ totalTime.inMinutes);
@@ -64,19 +65,26 @@ class StatisticsView extends StatelessWidget {
           SliverPadding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             sliver: SliverToBoxAdapter(
-                child: Row(
-              children: [
-                Flexible(
-                  flex: timeOfTasks[0].inMinutes * 100 ~/ totalTime.inMinutes,
-                  child: TimeOfTaskWidget(timeOfTask: timeOfTasks[0]),
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxHeight: 800),
+                child: MasonryGridView.count(
+                  crossAxisCount: 2,
+                  primary: true,
+                  mainAxisSpacing: 8,
+                  crossAxisSpacing: 8,
+                  scrollDirection: Axis.vertical,
+                  itemCount: timeOfTasks.length,
+                  itemBuilder: (context, index) {
+                    return SizedBox(
+                        height: MediaQuery.of(context).size.height *
+                            timeOfTasks[index].inMinutes /
+                            totalTime.inMinutes,
+                        child:
+                            TimeOfTaskWidget(timeOfTask: timeOfTasks[index]));
+                  },
                 ),
-                const SizedBox(width: 8),
-                Flexible(
-                  flex: timeOfTasks[0].inMinutes * 100 ~/ totalTime.inMinutes,
-                  child: TimeOfTaskWidget(timeOfTask: timeOfTasks[1]),
-                ),
-              ],
-            )),
+              ),
+            ),
           ),
         ],
       ),
