@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key, required this.title});
@@ -38,24 +40,29 @@ class _HomeViewState extends State<HomeView> {
       body: Stack(
         children: [
           Image.asset(
-            "Background.png",
+            "assets/Background.png",
             fit: BoxFit.cover,
             height: double.infinity,
             width: double.infinity,
             alignment: Alignment.center,
           ),
-          Center(
+          Padding(
+            padding: const EdgeInsets.all(24),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              // crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 Text(
-                  '${_timer.inHours.toString().padLeft(2, '0')}:${_timer.inMinutes.remainder(60).toString().padLeft(2, '0')}:${_timer.inSeconds.remainder(60).toString().padLeft(2, '0')}',
+                  _timer.asPrettyString,
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 80,
                     fontFamily: "Roboto",
                     fontWeight: FontWeight.w600,
                   ),
+                ),
+                const SizedBox(
+                  height: 16,
                 ),
                 ElevatedButton(
                   onPressed: () => {},
@@ -71,6 +78,40 @@ class _HomeViewState extends State<HomeView> {
                     color: Colors.white,
                   ),
                 ),
+                const Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(top: 48, bottom: 16),
+                      child: Text(
+                        "Mes dernières tâches",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 26,
+                          fontFamily: "Roboto",
+                          fontWeight: FontWeight.w700,
+                        ),
+                        textAlign: TextAlign.start,
+                      ),
+                    ),
+                    DayView(
+                      duration: const Duration(minutes: 45, seconds: 30),
+                      title: "TF1+",
+                      icon: Icons.check_circle,
+                      date: "Lundi 20/03",
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    DayView(
+                      duration:
+                          const Duration(hours: 1, minutes: 32, seconds: 15),
+                      title: "Decathlon",
+                      icon: Icons.check_circle,
+                      date: "Lundi 18/03",
+                    ),
+                  ],
+                )
               ],
             ),
           ),
@@ -78,4 +119,88 @@ class _HomeViewState extends State<HomeView> {
       ),
     );
   }
+}
+
+class DayView extends StatelessWidget {
+  const DayView({
+    super.key,
+    required this.duration,
+    required this.title,
+    required this.icon,
+    required this.date,
+  });
+
+  final Duration duration;
+  final String title;
+  final IconData icon;
+  final String date;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Text(
+          date,
+          style: TextStyle(
+            color: theme.primaryColor,
+            fontSize: 16,
+            fontFamily: "Roboto",
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+        const SizedBox(
+          height: 8,
+        ),
+        DecoratedBox(
+          decoration: BoxDecoration(
+            color: const Color(0x33FFFFFF),
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Padding(
+            padding:
+                const EdgeInsets.only(top: 12, bottom: 12, left: 16, right: 16),
+            child: Row(
+              children: [
+                Icon(
+                  icon,
+                  color: Colors.white,
+                  size: 40,
+                ),
+                const SizedBox(
+                  width: 16,
+                ),
+                Text(
+                  title,
+                  style: TextStyle(
+                    color: theme.primaryColor,
+                    fontSize: 16,
+                    fontFamily: "Roboto",
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+                const Spacer(),
+                Text(
+                  duration.asPrettyString,
+                  style: TextStyle(
+                    color: theme.primaryColor,
+                    fontSize: 20,
+                    fontFamily: "Roboto",
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        )
+      ],
+    );
+  }
+}
+
+extension on Duration {
+  String get asPrettyString =>
+      '${inHours.toString().padLeft(2, '0')}:${inMinutes.remainder(60).toString().padLeft(2, '0')}:${inSeconds.remainder(60).toString().padLeft(2, '0')}';
 }
