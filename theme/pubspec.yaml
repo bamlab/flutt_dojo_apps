@@ -1,0 +1,38 @@
+name: flutter_bam_theme
+description: A new Flutter package project.
+version: 0.0.1
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: ">=3.13.6"
+
+dependencies:
+  cached_network_image: ^3.2.3
+  equatable: ^2.0.5
+  fast_immutable_collections: ^9.1.5
+  flutter:
+    sdk: flutter
+  flutter_cache_manager: ^3.3.1
+
+dev_dependencies:
+  adaptive_test: ^0.4.0
+  ci: ^0.1.0
+  custom_lint: ^0.5.3
+  flutter_test:
+    sdk: flutter
+  mocktail: ^0.3.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/default_photo.jpg
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: fonts/Poppins-Regular.ttf
+          weight: 400
+        - asset: fonts/Poppins-Bold.ttf
+          weight: 700
+    - family: theme_icons
+      fonts:
+        - asset: fonts/theme_icons.otf
