@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bam_theme/cdapp_theme.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key, required this.title});
@@ -64,6 +65,8 @@ class _HomeViewState extends State<HomeView> {
                 const SizedBox(
                   height: 16,
                 ),
+                AppButton.primary(
+                    onPressed: () {}, icon: Icons.play_arrow_outlined),
                 ElevatedButton(
                   onPressed: () => {},
                   style: ElevatedButton.styleFrom(
@@ -95,17 +98,16 @@ class _HomeViewState extends State<HomeView> {
                       ),
                     ),
                     DayView(
-                      duration: const Duration(minutes: 45, seconds: 30),
+                      duration: Duration(minutes: 45, seconds: 30),
                       title: "TF1+",
                       icon: Icons.check_circle,
                       date: "Lundi 20/03",
                     ),
-                    const SizedBox(
+                    SizedBox(
                       height: 16,
                     ),
                     DayView(
-                      duration:
-                          const Duration(hours: 1, minutes: 32, seconds: 15),
+                      duration: Duration(hours: 1, minutes: 32, seconds: 15),
                       title: "Decathlon",
                       icon: Icons.check_circle,
                       date: "Lundi 18/03",
