@@ -65,8 +65,6 @@ class _HomeViewState extends State<HomeView> {
                 const SizedBox(
                   height: 16,
                 ),
-                AppButton.primary(
-                    onPressed: () {}, icon: Icons.play_arrow_outlined),
                 ElevatedButton(
                   onPressed: () => {},
                   style: ElevatedButton.styleFrom(
