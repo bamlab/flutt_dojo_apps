@@ -1,137 +1,179 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bam_theme/src/theme/data/box_shadow.dart';
+import 'package:flutter_bam_theme/src/theme/data/round_slider_thumb_shape.dart';
 
-import '../../flutter_bam_theme.dart';
+import '../../cdapp_theme.dart';
 import 'data/breakpoints.dart';
 import 'data/colors.dart';
+import 'data/cupertino_navigation_bar_theme.dart';
+import 'data/durations.dart';
 import 'data/radius.dart';
 import 'data/sizes.dart';
 
-/// Flutter Bam custom [ThemeData]. `ThemeMode.light` version.
-ThemeData get lightTheme {
+/// CDApp custom [ThemeData]. `ThemeMode.valIsere` version.
+ThemeData get dojo {
   const colors = ThemeColorsData.light();
-  return _getThemeDataFromColors(colors);
-}
-
-/// Flutter Bam custom [ThemeData]. `ThemeMode.dark` version.
-ThemeData get darkTheme {
-  const colors = ThemeColorsData.dark();
   return _getThemeDataFromColors(colors);
 }
 
 ThemeData _getThemeDataFromColors(ThemeColorsData colors) {
   final fallbackTheme = ThemeData.fallback();
-
   final textTheme = ThemeTypographyData.fromColors(colors);
-  const sizes = ThemeSizeData.regular();
-  const radius = ThemeRadiusData.regular();
-  const borderRadius = ThemeBorderRadiusData(radius);
-
-  const buttonMinimumSize = Size(64, kMinInteractiveDimensionCupertino);
+  const borderRadiusTheme = ThemeRadiusData.regular();
+  const sizesTheme = ThemeSizeData.regular();
 
   return fallbackTheme.copyWith(
+    bottomSheetTheme: BottomSheetThemeData(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(borderRadiusTheme.s),
+      ),
+    ),
+    highlightColor: colors.secondary.withOpacity(0.1),
+    splashColor: colors.secondary.withOpacity(0.3),
+    snackBarTheme: const SnackBarThemeData(elevation: 0),
     appBarTheme: AppBarTheme(
-      backgroundColor: colors.primary,
-      titleTextStyle: textTheme.titleLarge!.copyWith(color: colors.onPrimary),
+      backgroundColor: colors.background,
+      elevation: 0,
+      // The height of the Material app bar to match the height of the
+      // Cupertino navigation bar.
+      toolbarHeight: kMinInteractiveDimensionCupertino,
+      titleTextStyle: textTheme.headlineSmall!.copyWith(
+        color: colors.onPrimary,
+      ),
+    ),
+    iconTheme: IconThemeData(
+      color: colors.text,
+      size: sizesTheme.l,
+    ),
+    dividerTheme: fallbackTheme.dividerTheme.copyWith(
+      space: 1,
+      thickness: 1,
+      color: colors.grey50,
+    ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: colors.background,
+      selectedLabelStyle:
+          textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w600),
+      unselectedLabelStyle:
+          textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w600),
+    ),
+    tabBarTheme: TabBarTheme(
+      indicator: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+            color: colors.primary,
+            width: sizesTheme.xxxs,
+          ),
+        ),
+      ),
+      indicatorSize: TabBarIndicatorSize.label,
+      labelPadding: sizesTheme.asInsets.m.horizontalOnly,
+      labelStyle: textTheme.bodyMedium!.copyWith(height: 1),
+      labelColor: colors.primary,
+      unselectedLabelColor: colors.primaryLight,
+      unselectedLabelStyle: textTheme.bodyMedium!.copyWith(height: 1),
+    ),
+    cupertinoOverrideTheme: CupertinoThemeData(
+      barBackgroundColor: colors.background,
+      textTheme: CupertinoTextThemeData(
+        navActionTextStyle: textTheme.bodyMedium,
+        navLargeTitleTextStyle: textTheme.titleMedium,
+        navTitleTextStyle: textTheme.titleSmall,
+        dateTimePickerTextStyle: textTheme.bodyMedium,
+      ),
     ),
     scaffoldBackgroundColor: colors.background,
     textTheme: textTheme,
     colorScheme: colors.colorsScheme,
-    elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ButtonStyle(
-        minimumSize: MaterialStateProperty.all(buttonMinimumSize),
-        elevation: MaterialStateProperty.all(0),
-        textStyle: MaterialStateProperty.all(
-          textTheme.labelLarge?.copyWith(color: colors.onPrimary),
-        ),
-        padding: MaterialStateProperty.all(
-          EdgeInsets.symmetric(
-            vertical: sizes.s,
-            horizontal: sizes.xl,
-          ),
-        ),
-        shape: MaterialStateProperty.all(
-          RoundedRectangleBorder(borderRadius: borderRadius.m),
-        ),
-        backgroundColor: MaterialStateProperty.resolveWith((states) {
-          if (states.contains(MaterialState.disabled)) {
-            return colors.disable;
-          }
-          return colors.primary;
-        }),
-        foregroundColor: MaterialStateProperty.all(colors.onPrimary),
+    chipTheme: fallbackTheme.chipTheme.copyWith(
+      backgroundColor: colors.grey50,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(borderRadiusTheme.m),
+      ),
+      side: BorderSide.none,
+      elevation: 0,
+      padding: EdgeInsets.symmetric(
+        horizontal: sizesTheme.s,
+        vertical: sizesTheme.xxxs,
+      ),
+      labelPadding: EdgeInsets.zero,
+    ),
+    cardTheme: fallbackTheme.cardTheme.copyWith(
+      color: colors.colorsScheme.surface,
+      shadowColor: colors.colorsScheme.shadow,
+      surfaceTintColor: colors.colorsScheme.surfaceTint,
+      elevation: 0,
+      margin: EdgeInsets.zero,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(borderRadiusTheme.s),
+        side: BorderSide(color: colors.colorsScheme.onSurface),
       ),
     ),
-    outlinedButtonTheme: OutlinedButtonThemeData(
-      style: ButtonStyle(
-        minimumSize: MaterialStateProperty.all(buttonMinimumSize),
-        elevation: MaterialStateProperty.all(0),
-        side: MaterialStateProperty.resolveWith((states) {
-          Color borderColor;
-
-          if (states.contains(MaterialState.disabled)) {
-            borderColor = colors.disable;
-          } else {
-            borderColor = colors.primary;
-          }
-
-          return BorderSide(
-            color: borderColor,
-            width: 2,
-          );
-        }),
-        textStyle: MaterialStateProperty.all(
-          textTheme.labelLarge?.copyWith(color: colors.onPrimary),
-        ),
-        padding: MaterialStateProperty.all(
-          EdgeInsets.symmetric(
-            vertical: sizes.s,
-            horizontal: sizes.xl,
-          ),
-        ),
-        shape: MaterialStateProperty.all(
-          RoundedRectangleBorder(borderRadius: borderRadius.m),
-        ),
-        backgroundColor: MaterialStateProperty.all(colors.background),
-        foregroundColor: MaterialStateProperty.resolveWith((states) {
-          if (states.contains(MaterialState.disabled)) {
-            return colors.disable;
-          }
-          return colors.primary;
-        }),
-      ),
+    listTileTheme: fallbackTheme.listTileTheme.copyWith(
+      contentPadding: sizesTheme.asInsets.m.horizontalOnly,
+      horizontalTitleGap: sizesTheme.xxs,
+      minLeadingWidth: sizesTheme.xl,
+      iconColor: colors.colorsScheme.onSurface,
     ),
-    textButtonTheme: TextButtonThemeData(
-      style: ButtonStyle(
-        minimumSize: MaterialStateProperty.all(buttonMinimumSize),
-        elevation: MaterialStateProperty.all(0),
-        textStyle: MaterialStateProperty.all(
-          textTheme.labelLarge?.copyWith(color: colors.onBackground),
+    inputDecorationTheme: fallbackTheme.inputDecorationTheme.copyWith(
+      errorStyle: textTheme.bodyMedium!.copyWith(color: colors.onError),
+      errorMaxLines: 1,
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: colors.grey100,
+          width: 2,
         ),
-        padding: MaterialStateProperty.all(
-          EdgeInsets.symmetric(
-            vertical: sizes.s,
-            horizontal: sizes.xl,
-          ),
+        gapPadding: sizesTheme.xs,
+      ),
+      border: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: colors.grey100,
+          width: 2,
         ),
-        shape: MaterialStateProperty.all(
-          RoundedRectangleBorder(borderRadius: borderRadius.m),
+        gapPadding: sizesTheme.xs,
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: colors.primary,
+          width: 2,
         ),
-        backgroundColor: MaterialStateProperty.all(colors.transparent),
-        foregroundColor: MaterialStateProperty.resolveWith((states) {
-          if (states.contains(MaterialState.disabled)) {
-            return colors.disable;
-          }
-          return colors.onBackground;
-        }),
+        gapPadding: sizesTheme.xs,
+      ),
+      errorBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: colors.onError,
+          width: 2,
+        ),
+        gapPadding: sizesTheme.xs,
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: colors.onError,
+          width: 2,
+        ),
+        gapPadding: sizesTheme.xs,
+      ),
+      contentPadding: EdgeInsets.symmetric(
+        horizontal: sizesTheme.m,
+        vertical: sizesTheme.s,
       ),
     ),
     extensions: [
-      const ThemeRadiusDataExtension(radius: ThemeRadiusData.regular()),
-      const ThemeSizeDataExtension(sizes: ThemeSizeData.regular()),
+      const ThemeRadiusDataExtension(radius: borderRadiusTheme),
+      const ThemeSizeDataExtension(sizes: sizesTheme),
       ThemeColorsDataExtension(colors: colors),
       const ThemeBreakpointsDataExtension(
         breakpoints: ThemeBreakpointsData.regular(),
+      ),
+      const ThemeDurationsDataExtension(
+        durations: ThemeDurationsData.regular(),
+      ),
+      ThemeBoxShadowDataExtension(shadows: ThemeBoxShadowData.regular()),
+      CupertinoNavigationBarThemeExtension(
+        cupertinoNavigationBarTheme: CupertinoNavigationBarTheme.regular(
+          sizes: sizesTheme,
+        ),
       ),
     ],
   );
@@ -161,21 +203,40 @@ extension ThemeDataX on ThemeData {
   ThemeBreakpointsData get breakpoints =>
       extension<ThemeBreakpointsDataExtension>()!.breakpoints;
 
+  /// Returns [ThemeBreakpointsData].
+  ///
+  /// Must be call in a sub-tree of a [Theme] widget, with the
+  /// [ThemeBreakpointsDataExtension] registered.
+  ThemeDurationsData get durations =>
+      extension<ThemeDurationsDataExtension>()!.durations;
+
+  /// Returns [ThemeBoxShadowData].
+  ///
+  /// Must be call in a sub-tree of a [Theme] widget, with the
+  /// [ThemeBoxShadowDataExtension] registered.
+  ThemeBoxShadowData get shadows =>
+      extension<ThemeBoxShadowDataExtension>()!.shadows;
+
   /// Returns [ThemeColorsData].
   ///
   /// Must be call in a sub-tree of a [Theme] widget, with the
   /// [ThemeColorsDataExtension] registered.
   ThemeColorsData get colors => extension<ThemeColorsDataExtension>()!.colors;
+
+  /// Returns [CupertinoNavigationBarTheme].
+  ///
+  /// Must be call in a sub-tree of a [Theme] widget, with the
+  /// [CupertinoNavigationBarThemeExtension] registered.
+  CupertinoNavigationBarTheme get cupertinoNavigationBarTheme =>
+      extension<CupertinoNavigationBarThemeExtension>()!
+          .cupertinoNavigationBarTheme;
 }
 
 /// An intermediary class that holds the [BuildContext].
 /// It allows us to group every theme related [ThemeExtension] in one getter,
 /// avoiding having to much context extensions in the app.
 class ThemeState {
-  /// default constructor.
   const ThemeState(this.context);
-
-  /// [BuildContext] field to be accessed in others extensions
   final BuildContext context;
 }
 

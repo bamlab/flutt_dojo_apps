@@ -1,0 +1,725 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - lcov.info - theme/data/colors.dart</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">theme/data</a> - colors.dart<span style="font-size: 80%;"> (source / <a href="colors.dart.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">lcov.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">202</td>
+            <td class="headerCovTableEntry">202</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2024-02-12 17:42:06</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntryHi">-</td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : import 'package:equatable/equatable.dart';</a>
+<a name="2"><span class="lineNum">       2 </span>            : import 'package:flutter/material.dart';</a>
+<a name="3"><span class="lineNum">       3 </span>            : </a>
+<a name="4"><span class="lineNum">       4 </span>            : import '../../../cdapp_theme.dart';</a>
+<a name="5"><span class="lineNum">       5 </span>            : import '../../utils/named.dart';</a>
+<a name="6"><span class="lineNum">       6 </span>            : </a>
+<a name="7"><span class="lineNum">       7 </span>            : // Colors are named with this website:</a>
+<a name="8"><span class="lineNum">       8 </span>            : // https://colornamer.robertcooper.me</a>
+<a name="9"><span class="lineNum">       9 </span>            : const _white = Colors.white;</a>
+<a name="10"><span class="lineNum">      10 </span>            : const _black = Colors.black;</a>
+<a name="11"><span class="lineNum">      11 </span>            : const _salute = Color(0xFF292D32);</a>
+<a name="12"><span class="lineNum">      12 </span>            : const _greyCloud = Color(0xFF727982);</a>
+<a name="13"><span class="lineNum">      13 </span>            : const _salonBleu = Color(0xFF7D8896);</a>
+<a name="14"><span class="lineNum">      14 </span>            : const _silverSprings = Color(0xFFB5BCC3);</a>
+<a name="15"><span class="lineNum">      15 </span>            : const _grainOfSalt = Color(0xFFD8DCE0);</a>
+<a name="16"><span class="lineNum">      16 </span>            : const _gramsHair = Color(0xFFF6F6F8);</a>
+<a name="17"><span class="lineNum">      17 </span>            : const _waterNymph = Color(0xFF83CDDD);</a>
+<a name="18"><span class="lineNum">      18 </span>            : const _pinkishRed = Color(0xFFF50A42);</a>
+<a name="19"><span class="lineNum">      19 </span>            : const _earlyBlossom = Color(0xFFFDE6EE);</a>
+<a name="20"><span class="lineNum">      20 </span>            : const _darkJade = Color(0xFFEBFBF1);</a>
+<a name="21"><span class="lineNum">      21 </span>            : const _leadGlass = Color(0xFFFFFAE5);</a>
+<a name="22"><span class="lineNum">      22 </span>            : const _rainforest = Color(0xFF00966D);</a>
+<a name="23"><span class="lineNum">      23 </span>            : const _goldenKey = Color(0xFFDD960D);</a>
+<a name="24"><span class="lineNum">      24 </span>            : const _darkShamrock = Color(0xFF30D7AA);</a>
+<a name="25"><span class="lineNum">      25 </span>            : const _munchOnMelon = Color(0xFFF2416B);</a>
+<a name="26"><span class="lineNum">      26 </span>            : const _dairyMade = Color(0xFFF4B740);</a>
+<a name="27"><span class="lineNum">      27 </span>            : const _greenRevolution = Color(0xFF009640);</a>
+<a name="28"><span class="lineNum">      28 </span>            : const _vanadylBlue = Color(0xFF009FE3);</a>
+<a name="29"><span class="lineNum">      29 </span>            : const _myamotoRed = Color(0xFFE30613);</a>
+<a name="30"><span class="lineNum">      30 </span>            : const _siyahBlack = Color(0xFF1D1D1B);</a>
+<a name="31"><span class="lineNum">      31 </span>            : const _realmOfTheUnderwood = Color(0xFF00BA88);</a>
+<a name="32"><span class="lineNum">      32 </span>            : const _emeraldSucculent = Color(0xFF54AEA6);</a>
+<a name="33"><span class="lineNum">      33 </span>            : const _quillTip = Color(0xFF2C3555);</a>
+<a name="34"><span class="lineNum">      34 </span>            : const _bondiBlue = Color(0xFF0095BA);</a>
+<a name="35"><span class="lineNum">      35 </span>            : const _mykonos = Color(0xFF387EB7);</a>
+<a name="36"><span class="lineNum">      36 </span>            : const _caribbean = Color(0xFFCCF1E7);</a>
+<a name="37"><span class="lineNum">      37 </span>            : const _silkenTofu = Color(0xFFFDF7D9);</a>
+<a name="38"><span class="lineNum">      38 </span>            : const _scallopedPotato = Color(0xFFFDE2CE);</a>
+<a name="39"><span class="lineNum">      39 </span>            : const _bolognaSausage = Color(0xFFFDCED9);</a>
+<a name="40"><span class="lineNum">      40 </span>            : const _annaBanana = Color(0xFFF4D840);</a>
+<a name="41"><span class="lineNum">      41 </span>            : const _fireDragonBright = Color(0xFFF56D0A);</a>
+<a name="42"><span class="lineNum">      42 </span>            : const _allPorts = Color(0xFF226E7E);</a>
+<a name="43"><span class="lineNum">      43 </span>            : const _jamaicanDream = Color(0xFF046178);</a>
+<a name="44"><span class="lineNum">      44 </span>            : const _royalPine = Color(0xFF34635F);</a>
+<a name="45"><span class="lineNum">      45 </span>            : const _blissfulBerry = Color(0xFFAC1480);</a>
+<a name="46"><span class="lineNum">      46 </span>            : const _transparent = Colors.transparent;</a>
+<a name="47"><span class="lineNum">      47 </span>            : const _krasnyiRed = Color(0xFFE62D2A);</a>
+<a name="48"><span class="lineNum">      48 </span>            : const _hawthornBerry = Color(0xFFCB0F13);</a>
+<a name="49"><span class="lineNum">      49 </span>            : const _chocolateCosmos = Color(0xFF521618);</a>
+<a name="50"><span class="lineNum">      50 </span>            : const _infinity = Color(0xFF202B32);</a>
+<a name="51"><span class="lineNum">      51 </span>            : const _clumsyCaramel = Color(0x80FFD5B7);</a>
+<a name="52"><span class="lineNum">      52 </span>            : const _toffeeCrunch = Color(0xFF996037);</a>
+<a name="53"><span class="lineNum">      53 </span>            : const _summerMist = Color(0xFFCCEAF1);</a>
+<a name="54"><span class="lineNum">      54 </span>            : const _frostyWhiteBlue = Color(0xFFCCE7E4);</a>
+<a name="55"><span class="lineNum">      55 </span>            : const _fairyPrincess = Color(0xFFF7DBDC);</a>
+<a name="56"><span class="lineNum">      56 </span>            : const _letItSnow = Color(0xFFDAF0F5);</a>
+<a name="57"><span class="lineNum">      57 </span>            : const _freshWater = Color(0xFF4AA4B3);</a>
+<a name="58"><span class="lineNum">      58 </span>            : const _wetPotteryClay = Color(0xFFE07E6D);</a>
+<a name="59"><span class="lineNum">      59 </span>            : const _darkTyrianBlue = Color(0xFF0E2A54);</a>
+<a name="60"><span class="lineNum">      60 </span>            : </a>
+<a name="61"><span class="lineNum">      61 </span>            : /// Data class that holds every theme colors.</a>
+<a name="62"><span class="lineNum">      62 </span>            : class ThemeColorsData extends Equatable {</a>
+<a name="63"><span class="lineNum">      63 </span>            :   /// default constructor.</a>
+<a name="64"><span class="lineNum">      64 </span><span class="lineCov">          1 :   const ThemeColorsData({</span></a>
+<a name="65"><span class="lineNum">      65 </span>            :     required this.brightness,</a>
+<a name="66"><span class="lineNum">      66 </span>            :     required this.primaryDefault,</a>
+<a name="67"><span class="lineNum">      67 </span>            :     required this.onPrimaryDefault,</a>
+<a name="68"><span class="lineNum">      68 </span>            :     required this.primaryLight,</a>
+<a name="69"><span class="lineNum">      69 </span>            :     required this.onPrimaryLight,</a>
+<a name="70"><span class="lineNum">      70 </span>            :     required this.stationAccent,</a>
+<a name="71"><span class="lineNum">      71 </span>            :     required this.stationFieldAccent,</a>
+<a name="72"><span class="lineNum">      72 </span>            :     required this.onStationAccent2,</a>
+<a name="73"><span class="lineNum">      73 </span>            :     required this.onStationAccent,</a>
+<a name="74"><span class="lineNum">      74 </span>            :     required this.background,</a>
+<a name="75"><span class="lineNum">      75 </span>            :     required this.onBackground,</a>
+<a name="76"><span class="lineNum">      76 </span>            :     required this.grey300,</a>
+<a name="77"><span class="lineNum">      77 </span>            :     required this.grey200,</a>
+<a name="78"><span class="lineNum">      78 </span>            :     required this.grey100,</a>
+<a name="79"><span class="lineNum">      79 </span>            :     required this.grey50,</a>
+<a name="80"><span class="lineNum">      80 </span>            :     required this.statusError,</a>
+<a name="81"><span class="lineNum">      81 </span>            :     required this.onStatusError,</a>
+<a name="82"><span class="lineNum">      82 </span>            :     required this.statusWarning,</a>
+<a name="83"><span class="lineNum">      83 </span>            :     required this.onStatusWarning,</a>
+<a name="84"><span class="lineNum">      84 </span>            :     required this.statusSuccess,</a>
+<a name="85"><span class="lineNum">      85 </span>            :     required this.onStatusSuccess,</a>
+<a name="86"><span class="lineNum">      86 </span>            :     required this.openStatus,</a>
+<a name="87"><span class="lineNum">      87 </span>            :     required this.closedStatus,</a>
+<a name="88"><span class="lineNum">      88 </span>            :     required this.onCustomStatus,</a>
+<a name="89"><span class="lineNum">      89 </span>            :     required this.mapBackground,</a>
+<a name="90"><span class="lineNum">      90 </span>            :     required this.downhillSkiingActivity,</a>
+<a name="91"><span class="lineNum">      91 </span>            :     required this.heroRed,</a>
+<a name="92"><span class="lineNum">      92 </span>            :     required this.offerCardBackground,</a>
+<a name="93"><span class="lineNum">      93 </span>            :   }) : transparent = _transparent;</a>
+<a name="94"><span class="lineNum">      94 </span>            : </a>
+<a name="95"><span class="lineNum">      95 </span>            :   /// Instantiate ThemeColorsData for [ThemeDatas.paradisKi].</a>
+<a name="96"><span class="lineNum">      96 </span><span class="lineCov">         57 :   const ThemeColorsData.paradisKi()</span></a>
+<a name="97"><span class="lineNum">      97 </span>            :       : brightness = Brightness.light,</a>
+<a name="98"><span class="lineNum">      98 </span>            :         primaryDefault = _salute,</a>
+<a name="99"><span class="lineNum">      99 </span>            :         onPrimaryDefault = _white,</a>
+<a name="100"><span class="lineNum">     100 </span>            :         primaryLight = _greyCloud,</a>
+<a name="101"><span class="lineNum">     101 </span>            :         onPrimaryLight = _white,</a>
+<a name="102"><span class="lineNum">     102 </span>            :         stationAccent = _waterNymph,</a>
+<a name="103"><span class="lineNum">     103 </span>            :         stationFieldAccent = _waterNymph,</a>
+<a name="104"><span class="lineNum">     104 </span>            :         onStationAccent2 = _allPorts,</a>
+<a name="105"><span class="lineNum">     105 </span>            :         onStationAccent = _white,</a>
+<a name="106"><span class="lineNum">     106 </span>            :         background = _white,</a>
+<a name="107"><span class="lineNum">     107 </span>            :         onBackground = _salute,</a>
+<a name="108"><span class="lineNum">     108 </span>            :         grey300 = _salonBleu,</a>
+<a name="109"><span class="lineNum">     109 </span>            :         grey200 = _silverSprings,</a>
+<a name="110"><span class="lineNum">     110 </span>            :         grey100 = _grainOfSalt,</a>
+<a name="111"><span class="lineNum">     111 </span>            :         grey50 = _gramsHair,</a>
+<a name="112"><span class="lineNum">     112 </span>            :         statusError = _earlyBlossom,</a>
+<a name="113"><span class="lineNum">     113 </span>            :         onStatusError = _pinkishRed,</a>
+<a name="114"><span class="lineNum">     114 </span>            :         statusWarning = _leadGlass,</a>
+<a name="115"><span class="lineNum">     115 </span>            :         onStatusWarning = _goldenKey,</a>
+<a name="116"><span class="lineNum">     116 </span>            :         statusSuccess = _darkJade,</a>
+<a name="117"><span class="lineNum">     117 </span>            :         onStatusSuccess = _rainforest,</a>
+<a name="118"><span class="lineNum">     118 </span>            :         openStatus = _darkShamrock,</a>
+<a name="119"><span class="lineNum">     119 </span>            :         closedStatus = _munchOnMelon,</a>
+<a name="120"><span class="lineNum">     120 </span>            :         onCustomStatus = _white,</a>
+<a name="121"><span class="lineNum">     121 </span>            :         mapBackground = _mykonos,</a>
+<a name="122"><span class="lineNum">     122 </span>            :         downhillSkiingActivity = _dairyMade,</a>
+<a name="123"><span class="lineNum">     123 </span>            :         transparent = _transparent,</a>
+<a name="124"><span class="lineNum">     124 </span>            :         heroRed = _krasnyiRed,</a>
+<a name="125"><span class="lineNum">     125 </span>            :         offerCardBackground = _letItSnow;</a>
+<a name="126"><span class="lineNum">     126 </span>            : </a>
+<a name="127"><span class="lineNum">     127 </span>            :   /// Instantiate ThemeColorsData for [ThemeDatas.grandMassif].</a>
+<a name="128"><span class="lineNum">     128 </span><span class="lineCov">         58 :   const ThemeColorsData.grandMassif()</span></a>
+<a name="129"><span class="lineNum">     129 </span>            :       : brightness = Brightness.light,</a>
+<a name="130"><span class="lineNum">     130 </span>            :         primaryDefault = _salute,</a>
+<a name="131"><span class="lineNum">     131 </span>            :         onPrimaryDefault = _white,</a>
+<a name="132"><span class="lineNum">     132 </span>            :         primaryLight = _greyCloud,</a>
+<a name="133"><span class="lineNum">     133 </span>            :         onPrimaryLight = _white,</a>
+<a name="134"><span class="lineNum">     134 </span>            :         stationAccent = _emeraldSucculent,</a>
+<a name="135"><span class="lineNum">     135 </span>            :         stationFieldAccent = _emeraldSucculent,</a>
+<a name="136"><span class="lineNum">     136 </span>            :         onStationAccent2 = _royalPine,</a>
+<a name="137"><span class="lineNum">     137 </span>            :         onStationAccent = _white,</a>
+<a name="138"><span class="lineNum">     138 </span>            :         background = _white,</a>
+<a name="139"><span class="lineNum">     139 </span>            :         onBackground = _salute,</a>
+<a name="140"><span class="lineNum">     140 </span>            :         grey300 = _salonBleu,</a>
+<a name="141"><span class="lineNum">     141 </span>            :         grey200 = _silverSprings,</a>
+<a name="142"><span class="lineNum">     142 </span>            :         grey100 = _grainOfSalt,</a>
+<a name="143"><span class="lineNum">     143 </span>            :         grey50 = _gramsHair,</a>
+<a name="144"><span class="lineNum">     144 </span>            :         statusError = _earlyBlossom,</a>
+<a name="145"><span class="lineNum">     145 </span>            :         onStatusError = _pinkishRed,</a>
+<a name="146"><span class="lineNum">     146 </span>            :         statusWarning = _leadGlass,</a>
+<a name="147"><span class="lineNum">     147 </span>            :         onStatusWarning = _goldenKey,</a>
+<a name="148"><span class="lineNum">     148 </span>            :         statusSuccess = _darkJade,</a>
+<a name="149"><span class="lineNum">     149 </span>            :         onStatusSuccess = _rainforest,</a>
+<a name="150"><span class="lineNum">     150 </span>            :         openStatus = _darkShamrock,</a>
+<a name="151"><span class="lineNum">     151 </span>            :         closedStatus = _munchOnMelon,</a>
+<a name="152"><span class="lineNum">     152 </span>            :         onCustomStatus = _white,</a>
+<a name="153"><span class="lineNum">     153 </span>            :         mapBackground = _mykonos,</a>
+<a name="154"><span class="lineNum">     154 </span>            :         downhillSkiingActivity = _blissfulBerry,</a>
+<a name="155"><span class="lineNum">     155 </span>            :         transparent = _transparent,</a>
+<a name="156"><span class="lineNum">     156 </span>            :         heroRed = _krasnyiRed,</a>
+<a name="157"><span class="lineNum">     157 </span>            :         offerCardBackground = _frostyWhiteBlue;</a>
+<a name="158"><span class="lineNum">     158 </span>            : </a>
+<a name="159"><span class="lineNum">     159 </span>            :   /// Instantiate ThemeColorsData for [ThemeDatas.serreChevalier].</a>
+<a name="160"><span class="lineNum">     160 </span><span class="lineCov">         57 :   const ThemeColorsData.serreChevalier()</span></a>
+<a name="161"><span class="lineNum">     161 </span>            :       : brightness = Brightness.light,</a>
+<a name="162"><span class="lineNum">     162 </span>            :         primaryDefault = _quillTip,</a>
+<a name="163"><span class="lineNum">     163 </span>            :         onPrimaryDefault = _white,</a>
+<a name="164"><span class="lineNum">     164 </span>            :         primaryLight = _greyCloud,</a>
+<a name="165"><span class="lineNum">     165 </span>            :         onPrimaryLight = _white,</a>
+<a name="166"><span class="lineNum">     166 </span>            :         stationAccent = _bondiBlue,</a>
+<a name="167"><span class="lineNum">     167 </span>            :         stationFieldAccent = _bondiBlue,</a>
+<a name="168"><span class="lineNum">     168 </span>            :         onStationAccent2 = _jamaicanDream,</a>
+<a name="169"><span class="lineNum">     169 </span>            :         onStationAccent = _white,</a>
+<a name="170"><span class="lineNum">     170 </span>            :         background = _white,</a>
+<a name="171"><span class="lineNum">     171 </span>            :         onBackground = _quillTip,</a>
+<a name="172"><span class="lineNum">     172 </span>            :         grey300 = _salonBleu,</a>
+<a name="173"><span class="lineNum">     173 </span>            :         grey200 = _silverSprings,</a>
+<a name="174"><span class="lineNum">     174 </span>            :         grey100 = _grainOfSalt,</a>
+<a name="175"><span class="lineNum">     175 </span>            :         grey50 = _gramsHair,</a>
+<a name="176"><span class="lineNum">     176 </span>            :         statusError = _earlyBlossom,</a>
+<a name="177"><span class="lineNum">     177 </span>            :         onStatusError = _pinkishRed,</a>
+<a name="178"><span class="lineNum">     178 </span>            :         statusWarning = _leadGlass,</a>
+<a name="179"><span class="lineNum">     179 </span>            :         onStatusWarning = _goldenKey,</a>
+<a name="180"><span class="lineNum">     180 </span>            :         statusSuccess = _darkJade,</a>
+<a name="181"><span class="lineNum">     181 </span>            :         onStatusSuccess = _rainforest,</a>
+<a name="182"><span class="lineNum">     182 </span>            :         openStatus = _darkShamrock,</a>
+<a name="183"><span class="lineNum">     183 </span>            :         closedStatus = _munchOnMelon,</a>
+<a name="184"><span class="lineNum">     184 </span>            :         onCustomStatus = _white,</a>
+<a name="185"><span class="lineNum">     185 </span>            :         mapBackground = _mykonos,</a>
+<a name="186"><span class="lineNum">     186 </span>            :         downhillSkiingActivity = _dairyMade,</a>
+<a name="187"><span class="lineNum">     187 </span>            :         transparent = _transparent,</a>
+<a name="188"><span class="lineNum">     188 </span>            :         heroRed = _krasnyiRed,</a>
+<a name="189"><span class="lineNum">     189 </span>            :         offerCardBackground = _summerMist;</a>
+<a name="190"><span class="lineNum">     190 </span>            : </a>
+<a name="191"><span class="lineNum">     191 </span>            :   /// Instantiate ThemeColorsData for [ThemeDatas.valIsere].</a>
+<a name="192"><span class="lineNum">     192 </span><span class="lineCov">         57 :   const ThemeColorsData.valIsere()</span></a>
+<a name="193"><span class="lineNum">     193 </span>            :       : brightness = Brightness.light,</a>
+<a name="194"><span class="lineNum">     194 </span>            :         primaryDefault = _infinity,</a>
+<a name="195"><span class="lineNum">     195 </span>            :         onPrimaryDefault = _white,</a>
+<a name="196"><span class="lineNum">     196 </span>            :         primaryLight = _greyCloud,</a>
+<a name="197"><span class="lineNum">     197 </span>            :         onPrimaryLight = _white,</a>
+<a name="198"><span class="lineNum">     198 </span>            :         stationAccent = _hawthornBerry,</a>
+<a name="199"><span class="lineNum">     199 </span>            :         stationFieldAccent = _infinity,</a>
+<a name="200"><span class="lineNum">     200 </span>            :         onStationAccent2 = _chocolateCosmos,</a>
+<a name="201"><span class="lineNum">     201 </span>            :         onStationAccent = _white,</a>
+<a name="202"><span class="lineNum">     202 </span>            :         background = _white,</a>
+<a name="203"><span class="lineNum">     203 </span>            :         onBackground = _salute,</a>
+<a name="204"><span class="lineNum">     204 </span>            :         grey300 = _salonBleu,</a>
+<a name="205"><span class="lineNum">     205 </span>            :         grey200 = _silverSprings,</a>
+<a name="206"><span class="lineNum">     206 </span>            :         grey100 = _grainOfSalt,</a>
+<a name="207"><span class="lineNum">     207 </span>            :         grey50 = _gramsHair,</a>
+<a name="208"><span class="lineNum">     208 </span>            :         statusError = _earlyBlossom,</a>
+<a name="209"><span class="lineNum">     209 </span>            :         onStatusError = _pinkishRed,</a>
+<a name="210"><span class="lineNum">     210 </span>            :         statusWarning = _leadGlass,</a>
+<a name="211"><span class="lineNum">     211 </span>            :         onStatusWarning = _goldenKey,</a>
+<a name="212"><span class="lineNum">     212 </span>            :         statusSuccess = _darkJade,</a>
+<a name="213"><span class="lineNum">     213 </span>            :         onStatusSuccess = _rainforest,</a>
+<a name="214"><span class="lineNum">     214 </span>            :         openStatus = _darkShamrock,</a>
+<a name="215"><span class="lineNum">     215 </span>            :         closedStatus = _munchOnMelon,</a>
+<a name="216"><span class="lineNum">     216 </span>            :         onCustomStatus = _white,</a>
+<a name="217"><span class="lineNum">     217 </span>            :         mapBackground = _mykonos,</a>
+<a name="218"><span class="lineNum">     218 </span>            :         downhillSkiingActivity = _dairyMade,</a>
+<a name="219"><span class="lineNum">     219 </span>            :         transparent = _transparent,</a>
+<a name="220"><span class="lineNum">     220 </span>            :         heroRed = _krasnyiRed,</a>
+<a name="221"><span class="lineNum">     221 </span>            :         offerCardBackground = _fairyPrincess;</a>
+<a name="222"><span class="lineNum">     222 </span>            : </a>
+<a name="223"><span class="lineNum">     223 </span>            :   /// The overall brightness of this color scheme.</a>
+<a name="224"><span class="lineNum">     224 </span>            :   final Brightness brightness;</a>
+<a name="225"><span class="lineNum">     225 </span>            : </a>
+<a name="226"><span class="lineNum">     226 </span>            :   /// The color displayed most frequently across your app’s screens</a>
+<a name="227"><span class="lineNum">     227 </span>            :   /// and components.</a>
+<a name="228"><span class="lineNum">     228 </span>            :   final Color primaryDefault;</a>
+<a name="229"><span class="lineNum">     229 </span>            : </a>
+<a name="230"><span class="lineNum">     230 </span>            :   /// A color that's clearly legible when drawn on [primaryDefault].</a>
+<a name="231"><span class="lineNum">     231 </span>            :   final Color onPrimaryDefault;</a>
+<a name="232"><span class="lineNum">     232 </span>            : </a>
+<a name="233"><span class="lineNum">     233 </span>            :   /// Placeholders et disabled states.</a>
+<a name="234"><span class="lineNum">     234 </span>            :   final Color primaryLight;</a>
+<a name="235"><span class="lineNum">     235 </span>            : </a>
+<a name="236"><span class="lineNum">     236 </span>            :   /// A color that's clearly legible when drawn on [primaryLight].</a>
+<a name="237"><span class="lineNum">     237 </span>            :   final Color onPrimaryLight;</a>
+<a name="238"><span class="lineNum">     238 </span>            : </a>
+<a name="239"><span class="lineNum">     239 </span>            :   /// A color that typically appears behind scrollable content.</a>
+<a name="240"><span class="lineNum">     240 </span>            :   final Color background;</a>
+<a name="241"><span class="lineNum">     241 </span>            : </a>
+<a name="242"><span class="lineNum">     242 </span>            :   /// A color that's clearly legible when drawn on [background].</a>
+<a name="243"><span class="lineNum">     243 </span>            :   final Color onBackground;</a>
+<a name="244"><span class="lineNum">     244 </span>            : </a>
+<a name="245"><span class="lineNum">     245 </span>            :   /// Placeholders et disabled states.</a>
+<a name="246"><span class="lineNum">     246 </span>            :   final Color grey300;</a>
+<a name="247"><span class="lineNum">     247 </span>            : </a>
+<a name="248"><span class="lineNum">     248 </span>            :   /// Disabled texts.</a>
+<a name="249"><span class="lineNum">     249 </span>            :   final Color grey200;</a>
+<a name="250"><span class="lineNum">     250 </span>            : </a>
+<a name="251"><span class="lineNum">     251 </span>            :   /// Background disabled.</a>
+<a name="252"><span class="lineNum">     252 </span>            :   final Color grey100;</a>
+<a name="253"><span class="lineNum">     253 </span>            : </a>
+<a name="254"><span class="lineNum">     254 </span>            :   /// Background of fields, dividers.</a>
+<a name="255"><span class="lineNum">     255 </span>            :   final Color grey50;</a>
+<a name="256"><span class="lineNum">     256 </span>            : </a>
+<a name="257"><span class="lineNum">     257 </span>            :   /// A color used as a contrasting accent that can balance [primaryDefault]</a>
+<a name="258"><span class="lineNum">     258 </span>            :   /// and [primaryLight] colors or bring heightened attention to an element,</a>
+<a name="259"><span class="lineNum">     259 </span>            :   /// such as an input field.</a>
+<a name="260"><span class="lineNum">     260 </span>            :   final Color stationAccent;</a>
+<a name="261"><span class="lineNum">     261 </span>            : </a>
+<a name="262"><span class="lineNum">     262 </span>            :   /// A color that's can be used in replacement of [stationAccent] for</a>
+<a name="263"><span class="lineNum">     263 </span>            :   /// lisibiliy purpose.</a>
+<a name="264"><span class="lineNum">     264 </span>            :   final Color stationFieldAccent;</a>
+<a name="265"><span class="lineNum">     265 </span>            : </a>
+<a name="266"><span class="lineNum">     266 </span>            :   /// A color that's can be used in replacement of [onStationAccent] for</a>
+<a name="267"><span class="lineNum">     267 </span>            :   /// lisibiliy purpose.</a>
+<a name="268"><span class="lineNum">     268 </span>            :   final Color onStationAccent2;</a>
+<a name="269"><span class="lineNum">     269 </span>            : </a>
+<a name="270"><span class="lineNum">     270 </span>            :   /// A color that's clearly legible when drawn on [stationAccent].</a>
+<a name="271"><span class="lineNum">     271 </span>            :   final Color onStationAccent;</a>
+<a name="272"><span class="lineNum">     272 </span>            : </a>
+<a name="273"><span class="lineNum">     273 </span>            :   /// The color to use for input validation errors, e.g. for</a>
+<a name="274"><span class="lineNum">     274 </span>            :   /// [InputDecoration.errorText].</a>
+<a name="275"><span class="lineNum">     275 </span>            :   final Color statusError;</a>
+<a name="276"><span class="lineNum">     276 </span>            : </a>
+<a name="277"><span class="lineNum">     277 </span>            :   /// A color that's clearly legible when drawn on [statusError].</a>
+<a name="278"><span class="lineNum">     278 </span>            :   final Color onStatusError;</a>
+<a name="279"><span class="lineNum">     279 </span>            : </a>
+<a name="280"><span class="lineNum">     280 </span>            :   /// The color to use to express warning</a>
+<a name="281"><span class="lineNum">     281 </span>            :   final Color statusWarning;</a>
+<a name="282"><span class="lineNum">     282 </span>            : </a>
+<a name="283"><span class="lineNum">     283 </span>            :   /// A color that's clearly legible when drawn on [statusWarning].</a>
+<a name="284"><span class="lineNum">     284 </span>            :   final Color onStatusWarning;</a>
+<a name="285"><span class="lineNum">     285 </span>            : </a>
+<a name="286"><span class="lineNum">     286 </span>            :   /// The color to use to express success</a>
+<a name="287"><span class="lineNum">     287 </span>            :   final Color statusSuccess;</a>
+<a name="288"><span class="lineNum">     288 </span>            : </a>
+<a name="289"><span class="lineNum">     289 </span>            :   /// A color that's clearly legible when drawn on [statusSuccess].</a>
+<a name="290"><span class="lineNum">     290 </span>            :   final Color onStatusSuccess;</a>
+<a name="291"><span class="lineNum">     291 </span>            : </a>
+<a name="292"><span class="lineNum">     292 </span>            :   /// The color to use for open states.</a>
+<a name="293"><span class="lineNum">     293 </span>            :   final Color openStatus;</a>
+<a name="294"><span class="lineNum">     294 </span>            : </a>
+<a name="295"><span class="lineNum">     295 </span>            :   /// The color to use for closed states.</a>
+<a name="296"><span class="lineNum">     296 </span>            :   final Color closedStatus;</a>
+<a name="297"><span class="lineNum">     297 </span>            : </a>
+<a name="298"><span class="lineNum">     298 </span>            :   /// A color that's clearly legible when drawn on [openStatus],</a>
+<a name="299"><span class="lineNum">     299 </span>            :   /// [closedStatus].</a>
+<a name="300"><span class="lineNum">     300 </span>            :   final Color onCustomStatus;</a>
+<a name="301"><span class="lineNum">     301 </span>            : </a>
+<a name="302"><span class="lineNum">     302 </span>            :   /// The color to use for downhill skiing activities on the map.</a>
+<a name="303"><span class="lineNum">     303 </span>            :   final Color downhillSkiingActivity;</a>
+<a name="304"><span class="lineNum">     304 </span>            : </a>
+<a name="305"><span class="lineNum">     305 </span>            :   /// The color to use for offer card background.</a>
+<a name="306"><span class="lineNum">     306 </span>            :   final Color offerCardBackground;</a>
+<a name="307"><span class="lineNum">     307 </span>            : </a>
+<a name="308"><span class="lineNum">     308 </span>            :   /// The color to use for green slope.</a>
+<a name="309"><span class="lineNum">     309 </span><span class="lineCov">          1 :   Color get greenSlope =&gt; _greenRevolution;</span></a>
+<a name="310"><span class="lineNum">     310 </span>            : </a>
+<a name="311"><span class="lineNum">     311 </span>            :   /// The color to use for blue slope.</a>
+<a name="312"><span class="lineNum">     312 </span><span class="lineCov">          1 :   Color get blueSlope =&gt; _vanadylBlue;</span></a>
+<a name="313"><span class="lineNum">     313 </span>            : </a>
+<a name="314"><span class="lineNum">     314 </span>            :   /// The color to use for red slope.</a>
+<a name="315"><span class="lineNum">     315 </span><span class="lineCov">          1 :   Color get redSlope =&gt; _myamotoRed;</span></a>
+<a name="316"><span class="lineNum">     316 </span>            : </a>
+<a name="317"><span class="lineNum">     317 </span>            :   /// The color to use for black slope.</a>
+<a name="318"><span class="lineNum">     318 </span><span class="lineCov">          1 :   Color get blackSlope =&gt; _siyahBlack;</span></a>
+<a name="319"><span class="lineNum">     319 </span>            : </a>
+<a name="320"><span class="lineNum">     320 </span>            :   /// The color to use to express ease.</a>
+<a name="321"><span class="lineNum">     321 </span><span class="lineCov">          1 :   Color get easy =&gt; _realmOfTheUnderwood;</span></a>
+<a name="322"><span class="lineNum">     322 </span>            : </a>
+<a name="323"><span class="lineNum">     323 </span>            :   /// The color to use to express mediumness.</a>
+<a name="324"><span class="lineNum">     324 </span><span class="lineCov">          1 :   Color get medium =&gt; _dairyMade;</span></a>
+<a name="325"><span class="lineNum">     325 </span>            : </a>
+<a name="326"><span class="lineNum">     326 </span>            :   /// The color to use to express hardness.</a>
+<a name="327"><span class="lineNum">     327 </span><span class="lineCov">          1 :   Color get hard =&gt; _pinkishRed;</span></a>
+<a name="328"><span class="lineNum">     328 </span>            : </a>
+<a name="329"><span class="lineNum">     329 </span>            :   /// The color to use to express low avalanche risk in background.</a>
+<a name="330"><span class="lineNum">     330 </span><span class="lineCov">          1 :   Color get lowAvalancheRiskBackground =&gt; _caribbean;</span></a>
+<a name="331"><span class="lineNum">     331 </span>            : </a>
+<a name="332"><span class="lineNum">     332 </span>            :   /// The color to use to express moderate avalanche risk in background.</a>
+<a name="333"><span class="lineNum">     333 </span><span class="lineCov">          1 :   Color get moderateAvalancheRiskBackground =&gt; _silkenTofu;</span></a>
+<a name="334"><span class="lineNum">     334 </span>            : </a>
+<a name="335"><span class="lineNum">     335 </span>            :   /// The color to use to express considerable avalanche risk in background.</a>
+<a name="336"><span class="lineNum">     336 </span><span class="lineCov">          1 :   Color get considerableAvalancheRiskBackground =&gt; _scallopedPotato;</span></a>
+<a name="337"><span class="lineNum">     337 </span>            : </a>
+<a name="338"><span class="lineNum">     338 </span>            :   /// The color to use to express high avalanche risk in background.</a>
+<a name="339"><span class="lineNum">     339 </span><span class="lineCov">          1 :   Color get highAvalancheRiskBackground =&gt; _bolognaSausage;</span></a>
+<a name="340"><span class="lineNum">     340 </span>            : </a>
+<a name="341"><span class="lineNum">     341 </span>            :   /// The color to use to express very high avalanche risk in background.</a>
+<a name="342"><span class="lineNum">     342 </span><span class="lineCov">          1 :   Color get veryHighAvalancheRiskBackground =&gt; _bolognaSausage;</span></a>
+<a name="343"><span class="lineNum">     343 </span>            : </a>
+<a name="344"><span class="lineNum">     344 </span>            :   /// The color to use to express low avalanche risk in foreground.</a>
+<a name="345"><span class="lineNum">     345 </span><span class="lineCov">          1 :   Color get lowAvalancheRiskForeground =&gt; _realmOfTheUnderwood;</span></a>
+<a name="346"><span class="lineNum">     346 </span>            : </a>
+<a name="347"><span class="lineNum">     347 </span>            :   /// The color to use to express moderate avalanche risk in foreground.</a>
+<a name="348"><span class="lineNum">     348 </span><span class="lineCov">          1 :   Color get moderateAvalancheRiskForeground =&gt; _annaBanana;</span></a>
+<a name="349"><span class="lineNum">     349 </span>            : </a>
+<a name="350"><span class="lineNum">     350 </span>            :   /// The color to use to express considerable avalanche risk in foreground.</a>
+<a name="351"><span class="lineNum">     351 </span><span class="lineCov">          1 :   Color get considerableAvalancheRiskForeground =&gt; _fireDragonBright;</span></a>
+<a name="352"><span class="lineNum">     352 </span>            : </a>
+<a name="353"><span class="lineNum">     353 </span>            :   /// The color to use to express high avalanche risk in foreground.</a>
+<a name="354"><span class="lineNum">     354 </span><span class="lineCov">          1 :   Color get highAvalancheRiskForeground =&gt; _pinkishRed;</span></a>
+<a name="355"><span class="lineNum">     355 </span>            : </a>
+<a name="356"><span class="lineNum">     356 </span>            :   /// The color to use to express very high avalanche risk in foreground.</a>
+<a name="357"><span class="lineNum">     357 </span><span class="lineCov">          1 :   Color get veryHighAvalancheRiskForeground =&gt; _pinkishRed;</span></a>
+<a name="358"><span class="lineNum">     358 </span>            : </a>
+<a name="359"><span class="lineNum">     359 </span>            :   /// The color to use for gold medal background.</a>
+<a name="360"><span class="lineNum">     360 </span><span class="lineCov">          1 :   Color get goldMedalBackground =&gt; _leadGlass;</span></a>
+<a name="361"><span class="lineNum">     361 </span>            : </a>
+<a name="362"><span class="lineNum">     362 </span>            :   /// The color to use for gold medal text.</a>
+<a name="363"><span class="lineNum">     363 </span><span class="lineCov">          1 :   Color get goldMedalText =&gt; _goldenKey;</span></a>
+<a name="364"><span class="lineNum">     364 </span>            : </a>
+<a name="365"><span class="lineNum">     365 </span>            :   /// The color to use for silver medal background.</a>
+<a name="366"><span class="lineNum">     366 </span><span class="lineCov">          1 :   Color get silverMedalBackground =&gt; _gramsHair;</span></a>
+<a name="367"><span class="lineNum">     367 </span>            : </a>
+<a name="368"><span class="lineNum">     368 </span>            :   /// The color to use for silver medal text.</a>
+<a name="369"><span class="lineNum">     369 </span><span class="lineCov">          1 :   Color get silverMedalText =&gt; _greyCloud;</span></a>
+<a name="370"><span class="lineNum">     370 </span>            : </a>
+<a name="371"><span class="lineNum">     371 </span>            :   /// The color to use for bronze medal background.</a>
+<a name="372"><span class="lineNum">     372 </span><span class="lineCov">          1 :   Color get bronzeMedalBackground =&gt; _clumsyCaramel;</span></a>
+<a name="373"><span class="lineNum">     373 </span>            : </a>
+<a name="374"><span class="lineNum">     374 </span>            :   /// The color to use for bronze medal text.</a>
+<a name="375"><span class="lineNum">     375 </span><span class="lineCov">          1 :   Color get bronzeMedalText =&gt; _toffeeCrunch;</span></a>
+<a name="376"><span class="lineNum">     376 </span>            : </a>
+<a name="377"><span class="lineNum">     377 </span>            :   /// The color of the map background.</a>
+<a name="378"><span class="lineNum">     378 </span>            :   final Color mapBackground;</a>
+<a name="379"><span class="lineNum">     379 </span>            : </a>
+<a name="380"><span class="lineNum">     380 </span>            :   /// The color used for the name of the items in the map.</a>
+<a name="381"><span class="lineNum">     381 </span><span class="lineCov">          1 :   Color get itemNameOnMap =&gt; _black;</span></a>
+<a name="382"><span class="lineNum">     382 </span><span class="lineCov">          1 :   Color get itemNameBackgroundOnMap =&gt; _white;</span></a>
+<a name="383"><span class="lineNum">     383 </span>            : </a>
+<a name="384"><span class="lineNum">     384 </span>            :   /// Completely invisible.</a>
+<a name="385"><span class="lineNum">     385 </span>            :   final Color transparent;</a>
+<a name="386"><span class="lineNum">     386 </span>            : </a>
+<a name="387"><span class="lineNum">     387 </span>            :   /// Color to use for [Text] over a background.</a>
+<a name="388"><span class="lineNum">     388 </span><span class="lineCov">        104 :   Color get text =&gt; onBackground;</span></a>
+<a name="389"><span class="lineNum">     389 </span>            : </a>
+<a name="390"><span class="lineNum">     390 </span>            :   /// Color to use for home web shop on ads</a>
+<a name="391"><span class="lineNum">     391 </span>            :   final Color heroRed;</a>
+<a name="392"><span class="lineNum">     392 </span>            : </a>
+<a name="393"><span class="lineNum">     393 </span>            :   /// Color to use for classic pack</a>
+<a name="394"><span class="lineNum">     394 </span><span class="lineCov">          1 :   Color get packClassic =&gt; _freshWater;</span></a>
+<a name="395"><span class="lineNum">     395 </span>            : </a>
+<a name="396"><span class="lineNum">     396 </span>            :   /// Color to use for essential pack</a>
+<a name="397"><span class="lineNum">     397 </span><span class="lineCov">          1 :   Color get packEssential =&gt; _wetPotteryClay;</span></a>
+<a name="398"><span class="lineNum">     398 </span>            : </a>
+<a name="399"><span class="lineNum">     399 </span>            :   /// Color to use for premium pack</a>
+<a name="400"><span class="lineNum">     400 </span><span class="lineCov">          1 :   Color get packPremium =&gt; _darkTyrianBlue;</span></a>
+<a name="401"><span class="lineNum">     401 </span>            : </a>
+<a name="402"><span class="lineNum">     402 </span>            :   /// [ColorScheme] generated from [ThemeColorsData].</a>
+<a name="403"><span class="lineNum">     403 </span><span class="lineCov">        104 :   ColorScheme get colorsScheme =&gt; ColorScheme(</span></a>
+<a name="404"><span class="lineNum">     404 </span><span class="lineCov">         52 :         brightness: brightness,</span></a>
+<a name="405"><span class="lineNum">     405 </span><span class="lineCov">         52 :         primary: primaryDefault,</span></a>
+<a name="406"><span class="lineNum">     406 </span><span class="lineCov">         52 :         onPrimary: onPrimaryDefault,</span></a>
+<a name="407"><span class="lineNum">     407 </span><span class="lineCov">         52 :         secondary: primaryLight,</span></a>
+<a name="408"><span class="lineNum">     408 </span><span class="lineCov">         52 :         onSecondary: onPrimaryLight,</span></a>
+<a name="409"><span class="lineNum">     409 </span><span class="lineCov">         52 :         tertiary: stationAccent,</span></a>
+<a name="410"><span class="lineNum">     410 </span><span class="lineCov">         52 :         onTertiary: onStationAccent,</span></a>
+<a name="411"><span class="lineNum">     411 </span><span class="lineCov">         52 :         background: background,</span></a>
+<a name="412"><span class="lineNum">     412 </span><span class="lineCov">         52 :         onBackground: onBackground,</span></a>
+<a name="413"><span class="lineNum">     413 </span><span class="lineCov">         52 :         surface: background,</span></a>
+<a name="414"><span class="lineNum">     414 </span><span class="lineCov">         52 :         onSurface: onBackground,</span></a>
+<a name="415"><span class="lineNum">     415 </span><span class="lineCov">         52 :         error: statusError,</span></a>
+<a name="416"><span class="lineNum">     416 </span><span class="lineCov">         52 :         onError: onStatusError,</span></a>
+<a name="417"><span class="lineNum">     417 </span>            :       );</a>
+<a name="418"><span class="lineNum">     418 </span>            : </a>
+<a name="419"><span class="lineNum">     419 </span><span class="lineCov">          1 :   @override</span></a>
+<a name="420"><span class="lineNum">     420 </span><span class="lineCov">          1 :   List&lt;Named&lt;Color&gt;&gt; get props =&gt; [</span></a>
+<a name="421"><span class="lineNum">     421 </span><span class="lineCov">          2 :         primaryDefault.named('primaryDefault'),</span></a>
+<a name="422"><span class="lineNum">     422 </span><span class="lineCov">          2 :         onPrimaryDefault.named('onPrimaryDefault'),</span></a>
+<a name="423"><span class="lineNum">     423 </span><span class="lineCov">          2 :         primaryLight.named('primaryLight'),</span></a>
+<a name="424"><span class="lineNum">     424 </span><span class="lineCov">          2 :         onPrimaryLight.named('onPrimaryLight'),</span></a>
+<a name="425"><span class="lineNum">     425 </span><span class="lineCov">          2 :         stationAccent.named('stationAccent'),</span></a>
+<a name="426"><span class="lineNum">     426 </span><span class="lineCov">          2 :         stationFieldAccent.named('stationFieldAccent'),</span></a>
+<a name="427"><span class="lineNum">     427 </span><span class="lineCov">          2 :         onStationAccent2.named('onStationAccent2'),</span></a>
+<a name="428"><span class="lineNum">     428 </span><span class="lineCov">          2 :         onStationAccent.named('onStationAccent'),</span></a>
+<a name="429"><span class="lineNum">     429 </span><span class="lineCov">          2 :         background.named('background'),</span></a>
+<a name="430"><span class="lineNum">     430 </span><span class="lineCov">          2 :         onBackground.named('onBackground'),</span></a>
+<a name="431"><span class="lineNum">     431 </span><span class="lineCov">          2 :         grey300.named('grey300'),</span></a>
+<a name="432"><span class="lineNum">     432 </span><span class="lineCov">          2 :         grey200.named('grey200'),</span></a>
+<a name="433"><span class="lineNum">     433 </span><span class="lineCov">          2 :         grey100.named('grey100'),</span></a>
+<a name="434"><span class="lineNum">     434 </span><span class="lineCov">          2 :         grey50.named('grey50'),</span></a>
+<a name="435"><span class="lineNum">     435 </span><span class="lineCov">          2 :         statusError.named('statusError'),</span></a>
+<a name="436"><span class="lineNum">     436 </span><span class="lineCov">          2 :         onStatusError.named('onStatusError'),</span></a>
+<a name="437"><span class="lineNum">     437 </span><span class="lineCov">          2 :         statusWarning.named('statusWarning'),</span></a>
+<a name="438"><span class="lineNum">     438 </span><span class="lineCov">          2 :         onStatusWarning.named('onStatusWarning'),</span></a>
+<a name="439"><span class="lineNum">     439 </span><span class="lineCov">          2 :         statusSuccess.named('statusSuccess'),</span></a>
+<a name="440"><span class="lineNum">     440 </span><span class="lineCov">          2 :         onStatusSuccess.named('onStatusSuccess'),</span></a>
+<a name="441"><span class="lineNum">     441 </span><span class="lineCov">          2 :         openStatus.named('openStatus'),</span></a>
+<a name="442"><span class="lineNum">     442 </span><span class="lineCov">          2 :         closedStatus.named('closedStatus'),</span></a>
+<a name="443"><span class="lineNum">     443 </span><span class="lineCov">          2 :         onCustomStatus.named('onCustomStatus'),</span></a>
+<a name="444"><span class="lineNum">     444 </span><span class="lineCov">          2 :         greenSlope.named('greenSlope'),</span></a>
+<a name="445"><span class="lineNum">     445 </span><span class="lineCov">          2 :         blueSlope.named('blueSlope'),</span></a>
+<a name="446"><span class="lineNum">     446 </span><span class="lineCov">          2 :         redSlope.named('redSlope'),</span></a>
+<a name="447"><span class="lineNum">     447 </span><span class="lineCov">          2 :         blackSlope.named('blackSlope'),</span></a>
+<a name="448"><span class="lineNum">     448 </span><span class="lineCov">          2 :         easy.named('easy'),</span></a>
+<a name="449"><span class="lineNum">     449 </span><span class="lineCov">          2 :         medium.named('medium'),</span></a>
+<a name="450"><span class="lineNum">     450 </span><span class="lineCov">          2 :         hard.named('hard'),</span></a>
+<a name="451"><span class="lineNum">     451 </span><span class="lineCov">          2 :         mapBackground.named('mapBackground'),</span></a>
+<a name="452"><span class="lineNum">     452 </span><span class="lineCov">          2 :         downhillSkiingActivity.named('downhillSkiingActivity'),</span></a>
+<a name="453"><span class="lineNum">     453 </span><span class="lineCov">          2 :         offerCardBackground.named('offerCardBackground'),</span></a>
+<a name="454"><span class="lineNum">     454 </span><span class="lineCov">          2 :         itemNameOnMap.named('itemNameOnMap'),</span></a>
+<a name="455"><span class="lineNum">     455 </span><span class="lineCov">          2 :         itemNameBackgroundOnMap.named('itemNameBackgroundOnMap'),</span></a>
+<a name="456"><span class="lineNum">     456 </span><span class="lineCov">          2 :         lowAvalancheRiskBackground.named('lowAvalancheRiskBackground'),</span></a>
+<a name="457"><span class="lineNum">     457 </span><span class="lineCov">          1 :         moderateAvalancheRiskBackground</span></a>
+<a name="458"><span class="lineNum">     458 </span><span class="lineCov">          1 :             .named('moderateAvalancheRiskBackground'),</span></a>
+<a name="459"><span class="lineNum">     459 </span><span class="lineCov">          1 :         considerableAvalancheRiskBackground</span></a>
+<a name="460"><span class="lineNum">     460 </span><span class="lineCov">          1 :             .named('considerableAvalancheRiskBackground'),</span></a>
+<a name="461"><span class="lineNum">     461 </span><span class="lineCov">          2 :         highAvalancheRiskBackground.named('highAvalancheRiskBackground'),</span></a>
+<a name="462"><span class="lineNum">     462 </span><span class="lineCov">          1 :         veryHighAvalancheRiskBackground</span></a>
+<a name="463"><span class="lineNum">     463 </span><span class="lineCov">          1 :             .named('veryHighAvalancheRiskBackground'),</span></a>
+<a name="464"><span class="lineNum">     464 </span><span class="lineCov">          2 :         lowAvalancheRiskForeground.named('lowAvalancheRiskForeground'),</span></a>
+<a name="465"><span class="lineNum">     465 </span><span class="lineCov">          1 :         moderateAvalancheRiskForeground</span></a>
+<a name="466"><span class="lineNum">     466 </span><span class="lineCov">          1 :             .named('moderateAvalancheRiskForeground'),</span></a>
+<a name="467"><span class="lineNum">     467 </span><span class="lineCov">          1 :         considerableAvalancheRiskForeground</span></a>
+<a name="468"><span class="lineNum">     468 </span><span class="lineCov">          1 :             .named('considerableAvalancheRiskForeground'),</span></a>
+<a name="469"><span class="lineNum">     469 </span><span class="lineCov">          2 :         highAvalancheRiskForeground.named('highAvalancheRiskForeground'),</span></a>
+<a name="470"><span class="lineNum">     470 </span><span class="lineCov">          1 :         veryHighAvalancheRiskForeground</span></a>
+<a name="471"><span class="lineNum">     471 </span><span class="lineCov">          1 :             .named('veryHighAvalancheRiskForeground'),</span></a>
+<a name="472"><span class="lineNum">     472 </span><span class="lineCov">          2 :         goldMedalBackground.named('goldMedalBackground'),</span></a>
+<a name="473"><span class="lineNum">     473 </span><span class="lineCov">          2 :         goldMedalText.named('goldMedalText'),</span></a>
+<a name="474"><span class="lineNum">     474 </span><span class="lineCov">          2 :         silverMedalBackground.named('silverMedalBackground'),</span></a>
+<a name="475"><span class="lineNum">     475 </span><span class="lineCov">          2 :         silverMedalText.named('silverMedalText'),</span></a>
+<a name="476"><span class="lineNum">     476 </span><span class="lineCov">          2 :         bronzeMedalBackground.named('bronzeMedalBackground'),</span></a>
+<a name="477"><span class="lineNum">     477 </span><span class="lineCov">          2 :         bronzeMedalText.named('bronzeMedalText'),</span></a>
+<a name="478"><span class="lineNum">     478 </span><span class="lineCov">          2 :         transparent.named('transparent'),</span></a>
+<a name="479"><span class="lineNum">     479 </span><span class="lineCov">          2 :         packClassic.named('packClassic'),</span></a>
+<a name="480"><span class="lineNum">     480 </span><span class="lineCov">          2 :         packEssential.named('packEssential'),</span></a>
+<a name="481"><span class="lineNum">     481 </span><span class="lineCov">          2 :         packPremium.named('packPremium'),</span></a>
+<a name="482"><span class="lineNum">     482 </span>            :       ];</a>
+<a name="483"><span class="lineNum">     483 </span>            : }</a>
+<a name="484"><span class="lineNum">     484 </span>            : </a>
+<a name="485"><span class="lineNum">     485 </span>            : class ThemeColorsDataExtension</a>
+<a name="486"><span class="lineNum">     486 </span>            :     extends ThemeExtension&lt;ThemeColorsDataExtension&gt; {</a>
+<a name="487"><span class="lineNum">     487 </span><span class="lineCov">         52 :   const ThemeColorsDataExtension({</span></a>
+<a name="488"><span class="lineNum">     488 </span>            :     required this.colors,</a>
+<a name="489"><span class="lineNum">     489 </span>            :   });</a>
+<a name="490"><span class="lineNum">     490 </span>            : </a>
+<a name="491"><span class="lineNum">     491 </span>            :   final ThemeColorsData colors;</a>
+<a name="492"><span class="lineNum">     492 </span>            : </a>
+<a name="493"><span class="lineNum">     493 </span><span class="lineCov">          1 :   @override</span></a>
+<a name="494"><span class="lineNum">     494 </span>            :   ThemeColorsDataExtension copyWith({ThemeColorsData? colors}) {</a>
+<a name="495"><span class="lineNum">     495 </span><span class="lineCov">          1 :     return ThemeColorsDataExtension(</span></a>
+<a name="496"><span class="lineNum">     496 </span><span class="lineCov">          1 :       colors: colors ?? this.colors,</span></a>
+<a name="497"><span class="lineNum">     497 </span>            :     );</a>
+<a name="498"><span class="lineNum">     498 </span>            :   }</a>
+<a name="499"><span class="lineNum">     499 </span>            : </a>
+<a name="500"><span class="lineNum">     500 </span><span class="lineCov">          1 :   @override</span></a>
+<a name="501"><span class="lineNum">     501 </span>            :   ThemeColorsDataExtension lerp(</a>
+<a name="502"><span class="lineNum">     502 </span>            :     ThemeExtension&lt;ThemeColorsDataExtension&gt;? other,</a>
+<a name="503"><span class="lineNum">     503 </span>            :     double t,</a>
+<a name="504"><span class="lineNum">     504 </span>            :   ) {</a>
+<a name="505"><span class="lineNum">     505 </span>            :     final scopedOther = other as ThemeColorsDataExtension?;</a>
+<a name="506"><span class="lineNum">     506 </span><span class="lineCov">          1 :     return ThemeColorsDataExtension(</span></a>
+<a name="507"><span class="lineNum">     507 </span><span class="lineCov">          1 :       colors: ThemeColorsData(</span></a>
+<a name="508"><span class="lineNum">     508 </span><span class="lineCov">          1 :         brightness: t &lt; 0.5</span></a>
+<a name="509"><span class="lineNum">     509 </span><span class="lineCov">          2 :             ? colors.brightness</span></a>
+<a name="510"><span class="lineNum">     510 </span><span class="lineCov">          2 :             : scopedOther?.colors.brightness ?? colors.brightness,</span></a>
+<a name="511"><span class="lineNum">     511 </span><span class="lineCov">          1 :         primaryDefault: Color.lerp(</span></a>
+<a name="512"><span class="lineNum">     512 </span><span class="lineCov">          2 :           colors.primaryDefault,</span></a>
+<a name="513"><span class="lineNum">     513 </span><span class="lineCov">          2 :           scopedOther?.colors.primaryDefault,</span></a>
+<a name="514"><span class="lineNum">     514 </span>            :           t,</a>
+<a name="515"><span class="lineNum">     515 </span>            :         )!,</a>
+<a name="516"><span class="lineNum">     516 </span><span class="lineCov">          1 :         onPrimaryDefault: Color.lerp(</span></a>
+<a name="517"><span class="lineNum">     517 </span><span class="lineCov">          2 :           colors.onPrimaryDefault,</span></a>
+<a name="518"><span class="lineNum">     518 </span><span class="lineCov">          2 :           scopedOther?.colors.onPrimaryDefault,</span></a>
+<a name="519"><span class="lineNum">     519 </span>            :           t,</a>
+<a name="520"><span class="lineNum">     520 </span>            :         )!,</a>
+<a name="521"><span class="lineNum">     521 </span><span class="lineCov">          1 :         primaryLight: Color.lerp(</span></a>
+<a name="522"><span class="lineNum">     522 </span><span class="lineCov">          2 :           colors.primaryLight,</span></a>
+<a name="523"><span class="lineNum">     523 </span><span class="lineCov">          2 :           scopedOther?.colors.primaryLight,</span></a>
+<a name="524"><span class="lineNum">     524 </span>            :           t,</a>
+<a name="525"><span class="lineNum">     525 </span>            :         )!,</a>
+<a name="526"><span class="lineNum">     526 </span><span class="lineCov">          1 :         onPrimaryLight: Color.lerp(</span></a>
+<a name="527"><span class="lineNum">     527 </span><span class="lineCov">          2 :           colors.onPrimaryLight,</span></a>
+<a name="528"><span class="lineNum">     528 </span><span class="lineCov">          2 :           scopedOther?.colors.onPrimaryLight,</span></a>
+<a name="529"><span class="lineNum">     529 </span>            :           t,</a>
+<a name="530"><span class="lineNum">     530 </span>            :         )!,</a>
+<a name="531"><span class="lineNum">     531 </span><span class="lineCov">          1 :         stationAccent: Color.lerp(</span></a>
+<a name="532"><span class="lineNum">     532 </span><span class="lineCov">          2 :           colors.stationAccent,</span></a>
+<a name="533"><span class="lineNum">     533 </span><span class="lineCov">          2 :           scopedOther?.colors.stationAccent,</span></a>
+<a name="534"><span class="lineNum">     534 </span>            :           t,</a>
+<a name="535"><span class="lineNum">     535 </span>            :         )!,</a>
+<a name="536"><span class="lineNum">     536 </span><span class="lineCov">          1 :         stationFieldAccent: Color.lerp(</span></a>
+<a name="537"><span class="lineNum">     537 </span><span class="lineCov">          2 :           colors.stationFieldAccent,</span></a>
+<a name="538"><span class="lineNum">     538 </span><span class="lineCov">          2 :           scopedOther?.colors.stationFieldAccent,</span></a>
+<a name="539"><span class="lineNum">     539 </span>            :           t,</a>
+<a name="540"><span class="lineNum">     540 </span>            :         )!,</a>
+<a name="541"><span class="lineNum">     541 </span><span class="lineCov">          1 :         onStationAccent2: Color.lerp(</span></a>
+<a name="542"><span class="lineNum">     542 </span><span class="lineCov">          2 :           colors.onStationAccent2,</span></a>
+<a name="543"><span class="lineNum">     543 </span><span class="lineCov">          2 :           scopedOther?.colors.onStationAccent2,</span></a>
+<a name="544"><span class="lineNum">     544 </span>            :           t,</a>
+<a name="545"><span class="lineNum">     545 </span>            :         )!,</a>
+<a name="546"><span class="lineNum">     546 </span><span class="lineCov">          1 :         onStationAccent: Color.lerp(</span></a>
+<a name="547"><span class="lineNum">     547 </span><span class="lineCov">          2 :           colors.onStationAccent,</span></a>
+<a name="548"><span class="lineNum">     548 </span><span class="lineCov">          2 :           scopedOther?.colors.onStationAccent,</span></a>
+<a name="549"><span class="lineNum">     549 </span>            :           t,</a>
+<a name="550"><span class="lineNum">     550 </span>            :         )!,</a>
+<a name="551"><span class="lineNum">     551 </span><span class="lineCov">          1 :         background: Color.lerp(</span></a>
+<a name="552"><span class="lineNum">     552 </span><span class="lineCov">          2 :           colors.background,</span></a>
+<a name="553"><span class="lineNum">     553 </span><span class="lineCov">          2 :           scopedOther?.colors.background,</span></a>
+<a name="554"><span class="lineNum">     554 </span>            :           t,</a>
+<a name="555"><span class="lineNum">     555 </span>            :         )!,</a>
+<a name="556"><span class="lineNum">     556 </span><span class="lineCov">          1 :         onBackground: Color.lerp(</span></a>
+<a name="557"><span class="lineNum">     557 </span><span class="lineCov">          2 :           colors.onBackground,</span></a>
+<a name="558"><span class="lineNum">     558 </span><span class="lineCov">          2 :           scopedOther?.colors.onBackground,</span></a>
+<a name="559"><span class="lineNum">     559 </span>            :           t,</a>
+<a name="560"><span class="lineNum">     560 </span>            :         )!,</a>
+<a name="561"><span class="lineNum">     561 </span><span class="lineCov">          1 :         grey300: Color.lerp(</span></a>
+<a name="562"><span class="lineNum">     562 </span><span class="lineCov">          2 :           colors.grey300,</span></a>
+<a name="563"><span class="lineNum">     563 </span><span class="lineCov">          2 :           scopedOther?.colors.grey300,</span></a>
+<a name="564"><span class="lineNum">     564 </span>            :           t,</a>
+<a name="565"><span class="lineNum">     565 </span>            :         )!,</a>
+<a name="566"><span class="lineNum">     566 </span><span class="lineCov">          1 :         grey200: Color.lerp(</span></a>
+<a name="567"><span class="lineNum">     567 </span><span class="lineCov">          2 :           colors.grey200,</span></a>
+<a name="568"><span class="lineNum">     568 </span><span class="lineCov">          2 :           scopedOther?.colors.grey200,</span></a>
+<a name="569"><span class="lineNum">     569 </span>            :           t,</a>
+<a name="570"><span class="lineNum">     570 </span>            :         )!,</a>
+<a name="571"><span class="lineNum">     571 </span><span class="lineCov">          1 :         grey100: Color.lerp(</span></a>
+<a name="572"><span class="lineNum">     572 </span><span class="lineCov">          2 :           colors.grey100,</span></a>
+<a name="573"><span class="lineNum">     573 </span><span class="lineCov">          2 :           scopedOther?.colors.grey100,</span></a>
+<a name="574"><span class="lineNum">     574 </span>            :           t,</a>
+<a name="575"><span class="lineNum">     575 </span>            :         )!,</a>
+<a name="576"><span class="lineNum">     576 </span><span class="lineCov">          1 :         grey50: Color.lerp(</span></a>
+<a name="577"><span class="lineNum">     577 </span><span class="lineCov">          2 :           colors.grey50,</span></a>
+<a name="578"><span class="lineNum">     578 </span><span class="lineCov">          2 :           scopedOther?.colors.grey50,</span></a>
+<a name="579"><span class="lineNum">     579 </span>            :           t,</a>
+<a name="580"><span class="lineNum">     580 </span>            :         )!,</a>
+<a name="581"><span class="lineNum">     581 </span><span class="lineCov">          1 :         statusError: Color.lerp(</span></a>
+<a name="582"><span class="lineNum">     582 </span><span class="lineCov">          2 :           colors.statusError,</span></a>
+<a name="583"><span class="lineNum">     583 </span><span class="lineCov">          2 :           scopedOther?.colors.statusError,</span></a>
+<a name="584"><span class="lineNum">     584 </span>            :           t,</a>
+<a name="585"><span class="lineNum">     585 </span>            :         )!,</a>
+<a name="586"><span class="lineNum">     586 </span><span class="lineCov">          1 :         onStatusError: Color.lerp(</span></a>
+<a name="587"><span class="lineNum">     587 </span><span class="lineCov">          2 :           colors.onStatusError,</span></a>
+<a name="588"><span class="lineNum">     588 </span><span class="lineCov">          2 :           scopedOther?.colors.onStatusError,</span></a>
+<a name="589"><span class="lineNum">     589 </span>            :           t,</a>
+<a name="590"><span class="lineNum">     590 </span>            :         )!,</a>
+<a name="591"><span class="lineNum">     591 </span><span class="lineCov">          1 :         statusWarning: Color.lerp(</span></a>
+<a name="592"><span class="lineNum">     592 </span><span class="lineCov">          2 :           colors.statusWarning,</span></a>
+<a name="593"><span class="lineNum">     593 </span><span class="lineCov">          2 :           scopedOther?.colors.statusWarning,</span></a>
+<a name="594"><span class="lineNum">     594 </span>            :           t,</a>
+<a name="595"><span class="lineNum">     595 </span>            :         )!,</a>
+<a name="596"><span class="lineNum">     596 </span><span class="lineCov">          1 :         onStatusWarning: Color.lerp(</span></a>
+<a name="597"><span class="lineNum">     597 </span><span class="lineCov">          2 :           colors.onStatusWarning,</span></a>
+<a name="598"><span class="lineNum">     598 </span><span class="lineCov">          2 :           scopedOther?.colors.onStatusWarning,</span></a>
+<a name="599"><span class="lineNum">     599 </span>            :           t,</a>
+<a name="600"><span class="lineNum">     600 </span>            :         )!,</a>
+<a name="601"><span class="lineNum">     601 </span><span class="lineCov">          1 :         statusSuccess: Color.lerp(</span></a>
+<a name="602"><span class="lineNum">     602 </span><span class="lineCov">          2 :           colors.statusSuccess,</span></a>
+<a name="603"><span class="lineNum">     603 </span><span class="lineCov">          2 :           scopedOther?.colors.statusSuccess,</span></a>
+<a name="604"><span class="lineNum">     604 </span>            :           t,</a>
+<a name="605"><span class="lineNum">     605 </span>            :         )!,</a>
+<a name="606"><span class="lineNum">     606 </span><span class="lineCov">          1 :         onStatusSuccess: Color.lerp(</span></a>
+<a name="607"><span class="lineNum">     607 </span><span class="lineCov">          2 :           colors.onStatusSuccess,</span></a>
+<a name="608"><span class="lineNum">     608 </span><span class="lineCov">          2 :           scopedOther?.colors.onStatusSuccess,</span></a>
+<a name="609"><span class="lineNum">     609 </span>            :           t,</a>
+<a name="610"><span class="lineNum">     610 </span>            :         )!,</a>
+<a name="611"><span class="lineNum">     611 </span><span class="lineCov">          1 :         openStatus: Color.lerp(</span></a>
+<a name="612"><span class="lineNum">     612 </span><span class="lineCov">          2 :           colors.openStatus,</span></a>
+<a name="613"><span class="lineNum">     613 </span><span class="lineCov">          2 :           scopedOther?.colors.openStatus,</span></a>
+<a name="614"><span class="lineNum">     614 </span>            :           t,</a>
+<a name="615"><span class="lineNum">     615 </span>            :         )!,</a>
+<a name="616"><span class="lineNum">     616 </span><span class="lineCov">          1 :         closedStatus: Color.lerp(</span></a>
+<a name="617"><span class="lineNum">     617 </span><span class="lineCov">          2 :           colors.closedStatus,</span></a>
+<a name="618"><span class="lineNum">     618 </span><span class="lineCov">          2 :           scopedOther?.colors.closedStatus,</span></a>
+<a name="619"><span class="lineNum">     619 </span>            :           t,</a>
+<a name="620"><span class="lineNum">     620 </span>            :         )!,</a>
+<a name="621"><span class="lineNum">     621 </span><span class="lineCov">          1 :         onCustomStatus: Color.lerp(</span></a>
+<a name="622"><span class="lineNum">     622 </span><span class="lineCov">          2 :           colors.onCustomStatus,</span></a>
+<a name="623"><span class="lineNum">     623 </span><span class="lineCov">          2 :           scopedOther?.colors.onCustomStatus,</span></a>
+<a name="624"><span class="lineNum">     624 </span>            :           t,</a>
+<a name="625"><span class="lineNum">     625 </span>            :         )!,</a>
+<a name="626"><span class="lineNum">     626 </span><span class="lineCov">          1 :         mapBackground: Color.lerp(</span></a>
+<a name="627"><span class="lineNum">     627 </span><span class="lineCov">          2 :           colors.mapBackground,</span></a>
+<a name="628"><span class="lineNum">     628 </span><span class="lineCov">          2 :           scopedOther?.colors.mapBackground,</span></a>
+<a name="629"><span class="lineNum">     629 </span>            :           t,</a>
+<a name="630"><span class="lineNum">     630 </span>            :         )!,</a>
+<a name="631"><span class="lineNum">     631 </span><span class="lineCov">          1 :         downhillSkiingActivity: Color.lerp(</span></a>
+<a name="632"><span class="lineNum">     632 </span><span class="lineCov">          2 :           colors.downhillSkiingActivity,</span></a>
+<a name="633"><span class="lineNum">     633 </span><span class="lineCov">          2 :           scopedOther?.colors.downhillSkiingActivity,</span></a>
+<a name="634"><span class="lineNum">     634 </span>            :           t,</a>
+<a name="635"><span class="lineNum">     635 </span>            :         )!,</a>
+<a name="636"><span class="lineNum">     636 </span><span class="lineCov">          1 :         heroRed: Color.lerp(</span></a>
+<a name="637"><span class="lineNum">     637 </span><span class="lineCov">          2 :           colors.heroRed,</span></a>
+<a name="638"><span class="lineNum">     638 </span><span class="lineCov">          2 :           scopedOther?.colors.heroRed,</span></a>
+<a name="639"><span class="lineNum">     639 </span>            :           t,</a>
+<a name="640"><span class="lineNum">     640 </span>            :         )!,</a>
+<a name="641"><span class="lineNum">     641 </span><span class="lineCov">          1 :         offerCardBackground: Color.lerp(</span></a>
+<a name="642"><span class="lineNum">     642 </span><span class="lineCov">          2 :           colors.offerCardBackground,</span></a>
+<a name="643"><span class="lineNum">     643 </span><span class="lineCov">          2 :           scopedOther?.colors.offerCardBackground,</span></a>
+<a name="644"><span class="lineNum">     644 </span>            :           t,</a>
+<a name="645"><span class="lineNum">     645 </span>            :         )!,</a>
+<a name="646"><span class="lineNum">     646 </span>            :       ),</a>
+<a name="647"><span class="lineNum">     647 </span>            :     );</a>
+<a name="648"><span class="lineNum">     648 </span>            :   }</a>
+<a name="649"><span class="lineNum">     649 </span>            : }</a>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="https://github.com/linux-test-project/lcov" target="_parent">LCOV version 1.16</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

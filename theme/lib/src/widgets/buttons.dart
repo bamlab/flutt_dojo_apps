@@ -1,96 +1,210 @@
-import 'package:fast_immutable_collections/fast_immutable_collections.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../flutter_bam_theme.dart';
+import '../../cdapp_theme.dart';
 
-/// buttonType used to get the correct style for the button
-enum _ButtonType {
-  /// Elevated button type matching [ElevatedButton] style
-  elevated,
-
-  /// Outlined button type matching [OutlinedButton] style
-  outlined,
-
-  /// Text button type matching [TextButton] style
-  text,
+enum ButtonType {
+  primary,
+  secondary,
+  tertiary,
+  danger,
+  primaryLight,
+  primaryCustomColor,
 }
 
-/// Position of the icon in the button enum
-enum IconPosition {
-  /// left to the button label if there is one
-  left,
+enum IconPosition { left, right }
 
-  /// right to the button label if there is one
-  right
-}
+const kButtonMinimumSize = Size(64, kMinInteractiveDimensionCupertino);
+const kSmallButtonMinimumSize = Size(64, 32);
 
-/// Button with the Theme
-class ThemeButton extends StatelessWidget {
-  /// Button primary constructor
-  const ThemeButton.primary({
+/// Button with the AppTheme
+class AppButton extends StatelessWidget {
+  const AppButton({
     super.key,
-    this.label,
     this.icon,
-    this.iconPosition = IconPosition.left,
-    this.onPressed,
+    this.iconLabelGap,
+    this.iconColor,
+    this.assetImage,
+    this.label,
+    this.color,
+    this.textDecoration,
+    required this.onPressed,
     this.isLoading = false,
+    this.iconPosition = IconPosition.left,
     this.isFullWidth = false,
-  }) : _buttonType = _ButtonType.elevated;
+    this.isSmall = false,
+    this.alignment = MainAxisAlignment.center,
+    required this.buttonType,
+    this.backgroundColor,
+  }) : assert(
+          !(icon != null && assetImage != null),
+          'You should only give an icon or an image',
+        );
 
-  /// Button secondary constructor
-  const ThemeButton.secondary({
+  const AppButton.primary({
     super.key,
-    this.label,
     this.icon,
-    this.iconPosition = IconPosition.left,
-    this.onPressed,
+    this.iconLabelGap,
+    this.iconColor,
+    this.assetImage,
+    this.label,
+    this.color,
+    this.textDecoration,
+    required this.onPressed,
     this.isLoading = false,
+    this.iconPosition = IconPosition.left,
     this.isFullWidth = false,
-  }) : _buttonType = _ButtonType.outlined;
+    this.isSmall = false,
+    this.alignment = MainAxisAlignment.center,
+  })  : buttonType = ButtonType.primary,
+        backgroundColor = null,
+        assert(
+          !(icon != null && assetImage != null),
+          'You should only give an icon or an image',
+        );
 
-  /// Button tertiary constructor
-  const ThemeButton.tertiary({
+  const AppButton.primaryCustomColor({
     super.key,
-    this.label,
     this.icon,
-    this.iconPosition = IconPosition.left,
-    this.onPressed,
+    this.iconLabelGap,
+    this.iconColor,
+    this.assetImage,
+    this.label,
+    this.color,
+    this.textDecoration,
+    required this.onPressed,
     this.isLoading = false,
+    this.iconPosition = IconPosition.left,
     this.isFullWidth = false,
-  }) : _buttonType = _ButtonType.text;
+    this.isSmall = false,
+    this.alignment = MainAxisAlignment.center,
+    this.backgroundColor,
+  })  : buttonType = ButtonType.primaryCustomColor,
+        assert(
+          !(icon != null && assetImage != null),
+          'You should only give an icon or an image',
+        );
 
-  /// Label given to the button
-  final String? label;
+  const AppButton.secondary({
+    super.key,
+    this.icon,
+    this.iconLabelGap,
+    this.iconColor,
+    this.assetImage,
+    this.label,
+    this.color,
+    this.textDecoration,
+    required this.onPressed,
+    this.isLoading = false,
+    this.iconPosition = IconPosition.left,
+    this.isFullWidth = false,
+    this.isSmall = false,
+    this.alignment = MainAxisAlignment.center,
+  })  : buttonType = ButtonType.secondary,
+        backgroundColor = null,
+        assert(
+          !(icon != null && assetImage != null),
+          'You should only give an icon or an image',
+        );
 
-  /// Icon given to the button
+  const AppButton.tertiary({
+    super.key,
+    this.icon,
+    this.iconLabelGap,
+    this.iconColor,
+    this.color,
+    this.textDecoration,
+    this.assetImage,
+    this.label,
+    required this.onPressed,
+    this.isLoading = false,
+    this.iconPosition = IconPosition.left,
+    this.isFullWidth = false,
+    this.isSmall = false,
+    this.alignment = MainAxisAlignment.center,
+  })  : buttonType = ButtonType.tertiary,
+        backgroundColor = null,
+        assert(
+          !(icon != null && assetImage != null),
+          'You should only give an icon or an image',
+        );
+
+  const AppButton.danger({
+    super.key,
+    this.icon,
+    this.iconLabelGap,
+    this.iconColor,
+    this.assetImage,
+    this.label,
+    this.color,
+    this.textDecoration,
+    required this.onPressed,
+    this.isLoading = false,
+    this.iconPosition = IconPosition.left,
+    this.isFullWidth = false,
+    this.isSmall = false,
+    this.alignment = MainAxisAlignment.center,
+  })  : buttonType = ButtonType.danger,
+        backgroundColor = null,
+        assert(
+          !(icon != null && assetImage != null),
+          'You should only give an icon or an image',
+        );
+
+  const AppButton.primaryLight({
+    super.key,
+    this.icon,
+    this.iconLabelGap,
+    this.iconColor,
+    this.assetImage,
+    this.label,
+    this.color,
+    this.textDecoration,
+    required this.onPressed,
+    this.isLoading = false,
+    this.iconPosition = IconPosition.left,
+    this.isFullWidth = false,
+    this.isSmall = false,
+    this.alignment = MainAxisAlignment.center,
+  })  : buttonType = ButtonType.primaryLight,
+        backgroundColor = null,
+        assert(
+          !(icon != null && assetImage != null),
+          'You should only give an icon or an image',
+        );
+
   final IconData? icon;
 
-  /// IconPosition used if there is a label and an icon
+  /// The space between the icon and the label.
   ///
-  /// Default to left
-  final IconPosition iconPosition;
-
-  /// Button onPressed callback
-  ///
-  /// Should be null to disabke the button
+  /// If null, [AppGap.xs] will be used.
+  final AppGap? iconLabelGap;
+  final AssetImage? assetImage;
+  final String? label;
   final void Function()? onPressed;
-
-  /// Whether the button is in loading state
+  final ButtonType buttonType;
   final bool isLoading;
-
-  /// Whether the button takes the full width available
+  final IconPosition iconPosition;
   final bool isFullWidth;
+  final bool isSmall;
+  final Color? color;
+  final Color? iconColor;
+  final TextDecoration? textDecoration;
+  final Color? backgroundColor;
 
-  /// The [_ButtonType] of the button allowing to choose the style of the button
-  final _ButtonType _buttonType;
+  /// The alignment of the [icon] and [label] within the button if button is
+  /// in full width mode.
+  ///
+  /// Defaults to [MainAxisAlignment.center].
+  final MainAxisAlignment alignment;
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     final label = this.label;
     final isDisabled = onPressed == null || isLoading;
     final onButtonPress = isDisabled ? null : onPressed;
+    final iconLabelGap = this.iconLabelGap;
+    final maybeIconColor = iconColor;
 
     // Currently we use TextDirection and Directionality to place the icon
     // There is no proper prop to use to do it
@@ -105,104 +219,209 @@ class ThemeButton extends StatelessWidget {
       return TextDirection.rtl;
     }();
 
-    ButtonStyle? getButtonStyle(BuildContext context) {
-      ButtonStyle? buttonStyle;
+    final theme = Theme.of(context);
 
-      switch (_buttonType) {
-        case _ButtonType.elevated:
-          buttonStyle = ElevatedButtonTheme.of(context).style;
-        case _ButtonType.outlined:
-          buttonStyle = OutlinedButtonTheme.of(context).style;
-        case _ButtonType.text:
-          buttonStyle = TextButtonTheme.of(context).style;
+    final padding = EdgeInsets.symmetric(
+      vertical: isSmall ? 0 : theme.sizes.s,
+      horizontal: isSmall ? theme.sizes.m : theme.sizes.xl,
+    );
+
+    final backgroundColor = () {
+      switch (buttonType) {
+        case ButtonType.primary:
+          return theme.colors.primary;
+        case ButtonType.primaryCustomColor:
+          return this.backgroundColor ?? theme.colors.primary;
+        case ButtonType.secondary:
+          return theme.colors.background;
+        case ButtonType.tertiary:
+        case ButtonType.danger:
+          return theme.colors.transparent;
+        case ButtonType.primaryLight:
+          return theme.colors.onPrimary;
       }
+    }();
 
-      return buttonStyle?.copyWith(
-        side: MaterialStateProperty.resolveWith((state) {
-          final iState = state.toISet();
-
-          if (isLoading && isDisabled) {
-            // We don't want the loading button to look disabled even though
-            // it is
-            return buttonStyle?.side
-                ?.resolve(iState.remove(MaterialState.disabled).toSet());
+    final disabledBackgroundColor = () {
+      switch (buttonType) {
+        case ButtonType.primaryCustomColor:
+          if (isLoading) {
+            return backgroundColor;
           }
-
-          return buttonStyle?.side?.resolve(iState.toSet());
-        }),
-        foregroundColor: MaterialStateProperty.resolveWith((state) {
-          final iState = state.toISet();
-
-          if (isLoading && isDisabled) {
-            // We don't want the loading button to look disabled even though
-            // it is
-            return buttonStyle?.foregroundColor
-                ?.resolve(iState.remove(MaterialState.disabled).toSet());
+          return theme.colors.grey50;
+        case ButtonType.primary:
+          if (isLoading) {
+            return theme.colors.primaryLight;
           }
-
-          return buttonStyle?.foregroundColor?.resolve(iState.toSet());
-        }),
-        backgroundColor: MaterialStateProperty.resolveWith((state) {
-          final iState = state.toISet();
-
-          if (isLoading && isDisabled) {
-            // We don't want the loading button to look disabled even though
-            // it is
-            return buttonStyle?.backgroundColor
-                ?.resolve(iState.remove(MaterialState.disabled).toSet());
+          return theme.colors.grey50;
+        case ButtonType.primaryLight:
+          return theme.colors.grey50;
+        case ButtonType.secondary:
+          if (isLoading) {
+            return theme.colors.transparent;
           }
+          return theme.colors.grey50;
+        case ButtonType.tertiary:
+        case ButtonType.danger:
+          return theme.colors.transparent;
+      }
+    }();
 
-          return buttonStyle?.backgroundColor?.resolve(iState.toSet());
-        }),
-      );
-    }
+    final foregroundColor = () {
+      switch (buttonType) {
+        case ButtonType.primary:
+        case ButtonType.primaryCustomColor:
+          return theme.colors.onPrimary;
+        case ButtonType.secondary:
+        case ButtonType.tertiary:
+          return color ?? theme.colors.primary;
+        case ButtonType.danger:
+          return theme.colors.onError;
+        case ButtonType.primaryLight:
+          return theme.colors.primary;
+      }
+    }();
 
-    Color? getButtonForegroundColor(BuildContext context) {
-      return getButtonStyle(context)
-          ?.foregroundColor
-          ?.resolve(isDisabled ? {MaterialState.disabled} : {});
-    }
+    final disabledForegroundColor = () {
+      switch (buttonType) {
+        case ButtonType.primary:
+        case ButtonType.primaryCustomColor:
+          return theme.colors.grey300;
+        case ButtonType.secondary:
+          if (isLoading) {
+            return theme.colors.primary;
+          }
+          return theme.colors.grey300;
+        case ButtonType.tertiary:
+          return theme.colors.grey300;
+        case ButtonType.danger:
+          return theme.colors.onError;
+        case ButtonType.primaryLight:
+          return theme.colors.grey300;
+      }
+    }();
+
+    final buttonRadius = theme.radius.asBorderRadius.xs;
+
+    final style = () {
+      switch (buttonType) {
+        case ButtonType.primary:
+        case ButtonType.primaryCustomColor:
+          return ElevatedButton.styleFrom(
+            minimumSize: isSmall ? kSmallButtonMinimumSize : kButtonMinimumSize,
+            backgroundColor: backgroundColor,
+            elevation: 0,
+            disabledBackgroundColor: disabledBackgroundColor,
+            padding: padding,
+            shape: RoundedRectangleBorder(
+              borderRadius: buttonRadius,
+            ),
+          );
+        case ButtonType.primaryLight:
+          return ElevatedButton.styleFrom(
+            minimumSize: isSmall ? kSmallButtonMinimumSize : kButtonMinimumSize,
+            backgroundColor: backgroundColor,
+            elevation: 0,
+            disabledBackgroundColor: disabledBackgroundColor,
+            padding: padding,
+            shape: RoundedRectangleBorder(
+              borderRadius: buttonRadius,
+            ),
+          );
+        case ButtonType.secondary:
+          return OutlinedButton.styleFrom(
+            minimumSize: isSmall ? kSmallButtonMinimumSize : kButtonMinimumSize,
+            backgroundColor: backgroundColor,
+            disabledBackgroundColor: disabledBackgroundColor,
+            foregroundColor: theme.colors.secondary,
+            elevation: 0,
+            padding: padding,
+            side: BorderSide(
+              color: isDisabled ? disabledForegroundColor : foregroundColor,
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: buttonRadius,
+            ),
+          );
+        case ButtonType.danger:
+        case ButtonType.tertiary:
+          return TextButton.styleFrom(
+            minimumSize: isSmall ? kSmallButtonMinimumSize : kButtonMinimumSize,
+            backgroundColor: backgroundColor,
+            disabledForegroundColor: disabledForegroundColor,
+            elevation: 0,
+            padding: padding,
+            shape: RoundedRectangleBorder(
+              borderRadius: buttonRadius,
+            ),
+          );
+      }
+    }();
 
     final buttonSymbol = () {
       if (icon != null) {
-        return Builder(
-          builder: (context) {
-            return Icon(
-              icon,
-              color: getButtonForegroundColor(context),
-            );
-          },
+        return Icon(
+          icon,
+          color: maybeIconColor ??
+              (isDisabled ? disabledForegroundColor : foregroundColor),
+        );
+      } else if (assetImage != null) {
+        return Opacity(
+          opacity: isDisabled ? 0.5 : 1,
+          child: Image(
+            image: assetImage!,
+            height: theme.iconTheme.size,
+            width: theme.iconTheme.size,
+          ),
         );
       }
       return null;
     }();
 
     final buttonChild = () {
+      // _ConditionalFittedBox has to be above _FullWidthWrapper
+      // to make 'resizeTextOneLine' work when 'isFullWidth' is true
+
+      const fontWeight = FontWeight.w600;
+
+      final textColor = isDisabled ? disabledForegroundColor : foregroundColor;
+
+      final finalTextDecoration = buttonType == ButtonType.tertiary
+          ? textDecoration ?? TextDecoration.underline
+          : null;
+
       return _FullWidthWrapper(
         isFullWidth: isFullWidth,
+        alignment: alignment,
         child: Stack(
           // We use a Stack with an Opacity widgets
           // to avoid button to shrink when loading
           alignment: Alignment.center,
           children: [
-            if (isLoading)
-              Builder(
-                builder: (context) {
-                  return ThemeLoader(
-                    color: getButtonForegroundColor(context),
-                  );
-                },
-              ),
+            if (isLoading) AppLoader.regular(color: foregroundColor),
             Opacity(
               opacity: isLoading ? 0 : 1,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: alignment,
                 children: <Widget>[
                   if (buttonSymbol != null) buttonSymbol,
                   if (buttonSymbol != null && label != null)
-                    SizedBox(width: theme.sizes.s),
-                  if (label != null) Flexible(child: Text(label, maxLines: 1)),
+                    iconLabelGap ?? const AppGap.xs(),
+                  if (label != null)
+                    Flexible(
+                      // Using a FittedBox to avoid the label to be shrinked
+                      child: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: AppText.labelLarge(
+                          label,
+                          maxLines: 1,
+                          fontWeight: fontWeight,
+                          color: textColor,
+                          textDecoration: finalTextDecoration,
+                        ),
+                      ),
+                    ),
                 ],
               ),
             ),
@@ -211,38 +430,35 @@ class ThemeButton extends StatelessWidget {
       );
     }();
 
-    return Builder(
-      builder: (context) {
-        return Directionality(
-          textDirection: direction,
-          child: () {
-            final buttonStyle = getButtonStyle(context);
+    return Directionality(
+      textDirection: direction,
+      child: () {
+        switch (buttonType) {
+          case ButtonType.primaryLight:
+          case ButtonType.primary:
+          case ButtonType.primaryCustomColor:
+            return ElevatedButton(
+              style: style,
+              onPressed: onButtonPress,
+              child: buttonChild,
+            );
 
-            switch (_buttonType) {
-              case _ButtonType.elevated:
-                return ElevatedButton(
-                  onPressed: onButtonPress,
-                  style: buttonStyle,
-                  child: buttonChild,
-                );
+          case ButtonType.secondary:
+            return OutlinedButton(
+              style: style,
+              onPressed: onButtonPress,
+              child: buttonChild,
+            );
 
-              case _ButtonType.outlined:
-                return OutlinedButton(
-                  onPressed: onButtonPress,
-                  style: buttonStyle,
-                  child: buttonChild,
-                );
-
-              case _ButtonType.text:
-                return TextButton(
-                  onPressed: onButtonPress,
-                  style: buttonStyle,
-                  child: buttonChild,
-                );
-            }
-          }(),
-        );
-      },
+          case ButtonType.danger:
+          case ButtonType.tertiary:
+            return TextButton(
+              style: style,
+              onPressed: onButtonPress,
+              child: buttonChild,
+            );
+        }
+      }(),
     );
   }
 }
@@ -251,17 +467,21 @@ class _FullWidthWrapper extends StatelessWidget {
   const _FullWidthWrapper({
     required this.child,
     required this.isFullWidth,
+    required this.alignment,
   });
 
   final Widget child;
   final bool isFullWidth;
+  final MainAxisAlignment alignment;
 
   @override
   Widget build(BuildContext context) {
     if (isFullWidth) {
+      // return child;
       return Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: alignment,
         children: [
+          if (alignment == MainAxisAlignment.start) const AppGap.m(),
           Flexible(
             child: child,
           ),

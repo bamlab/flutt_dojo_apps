@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// Breakpoints data for the FlutterBamTheme
+/// Breakpoints data for the CDAppTheme
 class ThemeBreakpointsData {
   /// Default constructor
   ThemeBreakpointsData({
@@ -20,19 +20,12 @@ class ThemeBreakpointsData {
   final double horizontalBreakpoint;
 }
 
-/// [ThemeExtension] for theme breakpoints providing the capability to
-/// smoothly transition from a [ThemeBreakpointsData] to another
-///
-/// Leveraging Flutter 3's [ThemeExtension] system
 class ThemeBreakpointsDataExtension
     extends ThemeExtension<ThemeBreakpointsDataExtension> {
-  /// default constructor.
   const ThemeBreakpointsDataExtension({
     required this.breakpoints,
   });
 
-  /// [ThemeBreakpointsData] which will be accessible through this theme
-  /// extension
   final ThemeBreakpointsData breakpoints;
 
   @override

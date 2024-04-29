@@ -6,6 +6,19 @@ import '../../utils/named.dart';
 // Colors are named with this website:
 // https://colornamer.robertcooper.me
 const _white = Colors.white;
+const _pinkishRed = Color(0xFFF50A42);
+const _transparent = Colors.transparent;
+const _violetDojo = Color(0xFF241263);
+const _violetDojoLight = Color(0xFF623CEA);
+const _orangeDojo = Color(0xFFFFBA9D);
+const _pinkDojo = Color(0xFF660D55);
+const _salonBleu = Color(0xFF7D8896);
+const _silverSprings = Color(0xFFB5BCC3);
+const _grainOfSalt = Color(0xFFD8DCE0);
+const _gramsHair = Color(0xFFF6F6F8);
+
+// Colors are named with this website:
+// https://colornamer.robertcooper.me
 const _brownChocolate = Color(0xFF651D32);
 const _whiteSmoke = Color(0xFFF5F5F5);
 const _blackMetal = Color(0xFF050505);
@@ -14,7 +27,6 @@ const _skyCaptain = Color(0xFF252B34);
 const _cruelRuby = Color(0xFFE12E40);
 const _yuzuMarmalade = Color(0xFFFFD764);
 const _benzolGreen = Color(0xFF00D967);
-const _transparent = Colors.transparent;
 const _blackBeauty = Color(0xFF25282A);
 const _canonBlue = Color(0xFFA2E5FB);
 const _grey = Colors.grey;
@@ -25,6 +37,11 @@ class ThemeColorsData extends Equatable {
   const ThemeColorsData({
     required this.brightness,
     required this.primary,
+    required this.primaryLight,
+    required this.grey50,
+    required this.grey100,
+    required this.grey200,
+    required this.grey300,
     required this.onPrimary,
     required this.background,
     required this.onBackground,
@@ -42,18 +59,23 @@ class ThemeColorsData extends Equatable {
   /// Instantiate ThemeColorsData with [ThemeMode.light] data.
   const ThemeColorsData.light()
       : brightness = Brightness.light,
-        primary = _brownChocolate,
+        primary = _violetDojo,
+        primaryLight = _violetDojoLight,
+        grey300 = _salonBleu,
+        grey200 = _silverSprings,
+        grey100 = _grainOfSalt,
+        grey50 = _gramsHair,
         onPrimary = _white,
         background = _whiteSmoke,
-        onBackground = _blackMetal,
+        onBackground = _white,
         error = _cruelRuby,
         onError = _white,
         statusWarning = _yuzuMarmalade,
         statusSuccess = _benzolGreen,
         transparent = _transparent,
-        secondary = _blackBeauty,
-        onSecondary = _whiteSmoke,
-        surface = _whiteSmoke,
+        secondary = _orangeDojo,
+        onSecondary = _white,
+        surface = _white,
         onSurface = _blackMetal,
         disable = _grey;
 
@@ -61,6 +83,11 @@ class ThemeColorsData extends Equatable {
   const ThemeColorsData.dark()
       : brightness = Brightness.light,
         primary = _canonBlue,
+        primaryLight = _canonBlue,
+        grey300 = _salonBleu,
+        grey200 = _silverSprings,
+        grey100 = _grainOfSalt,
+        grey50 = _gramsHair,
         onPrimary = _blackIsBack,
         background = _blackIsBack,
         onBackground = _whiteSmoke,
@@ -81,6 +108,21 @@ class ThemeColorsData extends Equatable {
   /// The color displayed most frequently across your app’s screens and
   /// components.
   final Color primary;
+
+  /// A lighter version of the primary color.
+  final Color primaryLight;
+
+  /// Placeholders et disabled states.
+  final Color grey300;
+
+  /// Disabled texts.
+  final Color grey200;
+
+  /// Background disabled.
+  final Color grey100;
+
+  /// Background of fields, dividers.
+  final Color grey50;
 
   /// A color that's clearly legible when drawn on [primary].
   final Color onPrimary;
@@ -146,6 +188,11 @@ class ThemeColorsData extends Equatable {
   List<Named<Object?>> get namedProps => [
         brightness.named('brightness'),
         primary.named('primary'),
+        primaryLight.named('primaryLight'),
+        grey50.named('grey50'),
+        grey100.named('grey100'),
+        grey200.named('grey200'),
+        grey300.named('grey300'),
         onPrimary.named('onPrimary'),
         background.named('background'),
         onBackground.named('onBackground'),
@@ -165,6 +212,11 @@ class ThemeColorsData extends Equatable {
   List<Object?> get props => [
         brightness,
         primary,
+        primaryLight,
+        grey50,
+        grey100,
+        grey200,
+        grey300,
         onPrimary,
         background,
         onBackground,
@@ -218,6 +270,31 @@ class ThemeColorsDataExtension
         primary: Color.lerp(
           colors.primary,
           scopedOther?.colors.primary,
+          t,
+        )!,
+        primaryLight: Color.lerp(
+          colors.primaryLight,
+          scopedOther?.colors.primaryLight,
+          t,
+        )!,
+        grey50: Color.lerp(
+          colors.grey50,
+          scopedOther?.colors.grey50,
+          t,
+        )!,
+        grey100: Color.lerp(
+          colors.grey100,
+          scopedOther?.colors.grey100,
+          t,
+        )!,
+        grey200: Color.lerp(
+          colors.grey200,
+          scopedOther?.colors.grey200,
+          t,
+        )!,
+        grey300: Color.lerp(
+          colors.grey300,
+          scopedOther?.colors.grey300,
           t,
         )!,
         onPrimary: Color.lerp(

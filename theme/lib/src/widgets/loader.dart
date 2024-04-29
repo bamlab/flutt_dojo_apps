@@ -1,36 +1,57 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
-import '../../flutter_bam_theme.dart';
-/// ThemeLoader widget used whenever you need to display a loader in your app
-class ThemeLoader extends StatelessWidget {
-  /// Default constructor
-  const ThemeLoader({
+import '../theme/themes_data.dart';
+
+@visibleForTesting
+enum AppLoaderSize {
+  small,
+  regular,
+  big,
+}
+
+class AppLoader extends StatelessWidget {
+  const AppLoader.small({
     super.key,
     this.color,
-    this.size,
-  });
+  }) : size = AppLoaderSize.small;
 
-  /// Size to give to your [ThemeLoader]
-  ///
-  /// Default to square size [ThemeSizeData.m]
-  final Size? size;
+  const AppLoader.regular({
+    super.key,
+    this.color,
+  }) : size = AppLoaderSize.regular;
 
-  /// Color to give to your [ThemeLoader]
-  ///
-  /// Default to [ThemeColorsData.onBackground]
+  const AppLoader.big({
+    super.key,
+    this.color,
+  }) : size = AppLoaderSize.big;
+
+  final AppLoaderSize size;
   final Color? color;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final color = this.color ?? theme.colors.secondary;
 
-    final size = this.size ?? Size.square(theme.sizes.m);
-    final color = this.color ?? theme.colors.onBackground;
+    final dimension = () {
+      switch (size) {
+        case AppLoaderSize.small:
+          return theme.sizes.s;
+        case AppLoaderSize.regular:
+          return theme.sizes.xl;
+        case AppLoaderSize.big:
+          return theme.sizes.xxxl;
+      }
+    }();
 
-    return SizedBox.fromSize(
-      size: size,
-      child: CircularProgressIndicator(
+    return SizedBox(
+      height: dimension,
+      width: 2 * dimension,
+      child: SpinKitRing(
         color: color,
+        lineWidth: 2,
+        size: dimension,
       ),
     );
   }
