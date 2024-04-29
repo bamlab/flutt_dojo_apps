@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 import '../../cdapp_theme.dart';
@@ -9,6 +11,7 @@ class AppCard extends StatelessWidget {
     super.key,
     required this.child,
     required this.bottom,
+    this.isBlured = false,
     this.trailing,
     this.leading,
     this.onTap,
@@ -28,6 +31,7 @@ class AppCard extends StatelessWidget {
   final Color? backgroundColor;
   final VoidCallback? onTap;
   final DividerType dividerType;
+  final bool isBlured;
 
   /// Default to [ThemeData.sizes.asInsets.m]
   final EdgeInsetsGeometry? padding;
@@ -90,28 +94,32 @@ class AppCard extends StatelessWidget {
       child: AppTap(
         onTap: onTap,
         borderRadius: theme.radius.asBorderRadius.s,
-        child: Padding(
-          padding: padding ?? theme.sizes.asInsets.m,
-          child: trailing != null || leading != null
-              ? Row(
-                  crossAxisAlignment: leadingAxisAlignment ??
-                      crossAxisAlignment ??
-                      CrossAxisAlignment.start,
-                  children: [
-                    if (leading != null) leading,
-                    Expanded(
-                      child: Row(
-                        crossAxisAlignment:
-                            crossAxisAlignment ?? CrossAxisAlignment.start,
-                        children: [
-                          Expanded(child: content),
-                          if (trailing != null) trailing,
-                        ],
+        child: BackdropFilter(
+          filter: ImageFilter.blur(
+              sigmaX: isBlured ? 20 : 0, sigmaY: isBlured ? 20 : 0),
+          child: Padding(
+            padding: padding ?? theme.sizes.asInsets.m,
+            child: trailing != null || leading != null
+                ? Row(
+                    crossAxisAlignment: leadingAxisAlignment ??
+                        crossAxisAlignment ??
+                        CrossAxisAlignment.start,
+                    children: [
+                      if (leading != null) leading,
+                      Expanded(
+                        child: Row(
+                          crossAxisAlignment:
+                              crossAxisAlignment ?? CrossAxisAlignment.start,
+                          children: [
+                            Expanded(child: content),
+                            if (trailing != null) trailing,
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                )
-              : content,
+                    ],
+                  )
+                : content,
+          ),
         ),
       ),
     );
