@@ -22,9 +22,11 @@ class AppButton extends StatelessWidget {
   const AppButton({
     super.key,
     this.icon,
+    this.iconSize,
     this.iconLabelGap,
     this.iconColor,
     this.assetImage,
+    this.buttonRadius,
     this.label,
     this.color,
     this.textDecoration,
@@ -44,9 +46,11 @@ class AppButton extends StatelessWidget {
   const AppButton.primary({
     super.key,
     this.icon,
+    this.iconSize,
     this.iconLabelGap,
     this.iconColor,
     this.assetImage,
+    this.buttonRadius,
     this.label,
     this.color,
     this.textDecoration,
@@ -66,9 +70,11 @@ class AppButton extends StatelessWidget {
   const AppButton.primaryCustomColor({
     super.key,
     this.icon,
+    this.iconSize,
     this.iconLabelGap,
     this.iconColor,
     this.assetImage,
+    this.buttonRadius,
     this.label,
     this.color,
     this.textDecoration,
@@ -88,9 +94,11 @@ class AppButton extends StatelessWidget {
   const AppButton.secondary({
     super.key,
     this.icon,
+    this.iconSize,
     this.iconLabelGap,
     this.iconColor,
     this.assetImage,
+    this.buttonRadius,
     this.label,
     this.color,
     this.textDecoration,
@@ -110,11 +118,13 @@ class AppButton extends StatelessWidget {
   const AppButton.tertiary({
     super.key,
     this.icon,
+    this.iconSize,
     this.iconLabelGap,
     this.iconColor,
     this.color,
     this.textDecoration,
     this.assetImage,
+    this.buttonRadius,
     this.label,
     required this.onPressed,
     this.isLoading = false,
@@ -132,9 +142,11 @@ class AppButton extends StatelessWidget {
   const AppButton.danger({
     super.key,
     this.icon,
+    this.iconSize,
     this.iconLabelGap,
     this.iconColor,
     this.assetImage,
+    this.buttonRadius,
     this.label,
     this.color,
     this.textDecoration,
@@ -154,9 +166,11 @@ class AppButton extends StatelessWidget {
   const AppButton.primaryLight({
     super.key,
     this.icon,
+    this.iconSize,
     this.iconLabelGap,
     this.iconColor,
     this.assetImage,
+    this.buttonRadius,
     this.label,
     this.color,
     this.textDecoration,
@@ -174,6 +188,10 @@ class AppButton extends StatelessWidget {
         );
 
   final IconData? icon;
+
+  final double? iconSize;
+
+  final BorderRadius? buttonRadius;
 
   /// The space between the icon and the label.
   ///
@@ -301,7 +319,7 @@ class AppButton extends StatelessWidget {
       }
     }();
 
-    final buttonRadius = theme.radius.asBorderRadius.xs;
+    final buttonRadius = this.buttonRadius ?? theme.radius.asBorderRadius.xs;
 
     final style = () {
       switch (buttonType) {
@@ -362,6 +380,7 @@ class AppButton extends StatelessWidget {
       if (icon != null) {
         return Icon(
           icon,
+          size: iconSize ?? theme.iconTheme.size,
           color: maybeIconColor ??
               (isDisabled ? disabledForegroundColor : foregroundColor),
         );
