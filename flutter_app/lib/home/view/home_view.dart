@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_bam_theme/cdapp_theme.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key, required this.title});
@@ -36,87 +35,77 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFF623CEA),
-      body: Stack(
-        children: [
-          Image.asset(
-            "assets/Background.png",
-            fit: BoxFit.cover,
-            height: double.infinity,
-            width: double.infinity,
-            alignment: Alignment.center,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(24),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              // crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Text(
-                  _timer.asPrettyString,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 80,
-                    fontFamily: "Roboto",
-                    fontWeight: FontWeight.w600,
-                  ),
+    return Stack(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            // crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Text(
+                _timer.asPrettyString,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 80,
+                  fontFamily: "Roboto",
+                  fontWeight: FontWeight.w600,
                 ),
-                const SizedBox(
-                  height: 16,
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              ElevatedButton(
+                onPressed: () => {},
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16)),
+                  padding: const EdgeInsets.all(36.5),
+                  backgroundColor: const Color(0xFF241263),
                 ),
-                ElevatedButton(
-                  onPressed: () => {},
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16)),
-                    padding: const EdgeInsets.all(36.5),
-                    backgroundColor: const Color(0xFF241263),
-                  ),
-                  child: const Icon(
-                    Icons.play_arrow_outlined,
-                    size: 80,
-                    color: Colors.white,
-                  ),
+                child: const Icon(
+                  Icons.play_arrow_outlined,
+                  size: 80,
+                  color: Colors.white,
                 ),
-                const Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(top: 48, bottom: 16),
-                      child: Text(
-                        "Mes dernières tâches",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 26,
-                          fontFamily: "Roboto",
-                          fontWeight: FontWeight.w700,
-                        ),
-                        textAlign: TextAlign.start,
+              ),
+              const Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(top: 48, bottom: 16),
+                    child: Text(
+                      "Mes dernières tâches",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 26,
+                        fontFamily: "Roboto",
+                        fontWeight: FontWeight.w700,
                       ),
+                      textAlign: TextAlign.start,
                     ),
-                    DayView(
-                      duration: Duration(minutes: 45, seconds: 30),
-                      title: "TF1+",
-                      icon: Icons.check_circle,
-                      date: "Lundi 20/03",
-                    ),
-                    SizedBox(
-                      height: 16,
-                    ),
-                    DayView(
-                      duration: Duration(hours: 1, minutes: 32, seconds: 15),
-                      title: "Decathlon",
-                      icon: Icons.check_circle,
-                      date: "Lundi 18/03",
-                    ),
-                  ],
-                )
-              ],
-            ),
+                  ),
+                  DayView(
+                    duration: Duration(minutes: 45, seconds: 30),
+                    title: "TF1+",
+                    icon: Icons.check_circle,
+                    date: "Lundi 20/03",
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  DayView(
+                    duration: Duration(hours: 1, minutes: 32, seconds: 15),
+                    title: "Decathlon",
+                    icon: Icons.check_circle,
+                    date: "Lundi 18/03",
+                  ),
+                ],
+              )
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

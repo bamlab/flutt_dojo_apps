@@ -34,60 +34,43 @@ class StatisticsView extends StatelessWidget {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    return Scaffold(
-      backgroundColor: Colors.indigo,
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Colors.transparent,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: const Text(
-          "Total de la semaine",
-          style: TextStyle(color: Colors.white),
-        ),
-        centerTitle: false,
-      ),
-      body: CustomScrollView(
-        slivers: [
-          const SliverToBoxAdapter(
-              child: Center(
-                  child: Text(
-            "40h56",
-            style: TextStyle(fontSize: 70, color: Colors.white),
-          ))),
-          const SliverToBoxAdapter(
-            child: SizedBox(
-              height: 20,
-            ),
+    return CustomScrollView(
+      slivers: [
+        const SliverToBoxAdapter(
+            child: Center(
+                child: Text(
+          "40h56",
+          style: TextStyle(fontSize: 70, color: Colors.white),
+        ))),
+        const SliverToBoxAdapter(
+          child: SizedBox(
+            height: 20,
           ),
-          SliverPadding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            sliver: SliverToBoxAdapter(
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(maxHeight: 800),
-                child: MasonryGridView.count(
-                  crossAxisCount: 2,
-                  primary: true,
-                  mainAxisSpacing: 8,
-                  crossAxisSpacing: 8,
-                  scrollDirection: Axis.vertical,
-                  itemCount: timeOfTasks.length,
-                  itemBuilder: (context, index) {
-                    return SizedBox(
-                        height: MediaQuery.of(context).size.height *
-                            timeOfTasks[index].inMinutes /
-                            totalTime.inMinutes,
-                        child:
-                            TimeOfTaskWidget(timeOfTask: timeOfTasks[index]));
-                  },
-                ),
+        ),
+        SliverPadding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          sliver: SliverToBoxAdapter(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxHeight: 800),
+              child: MasonryGridView.count(
+                crossAxisCount: 2,
+                primary: true,
+                mainAxisSpacing: 8,
+                crossAxisSpacing: 8,
+                scrollDirection: Axis.vertical,
+                itemCount: timeOfTasks.length,
+                itemBuilder: (context, index) {
+                  return SizedBox(
+                      height: MediaQuery.of(context).size.height *
+                          timeOfTasks[index].inMinutes /
+                          totalTime.inMinutes,
+                      child: TimeOfTaskWidget(timeOfTask: timeOfTasks[index]));
+                },
               ),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

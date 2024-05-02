@@ -16,61 +16,51 @@ class _TaskListViewState extends State<TaskListView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          Container(
-            decoration: const BoxDecoration(
-              color: Color(0xFF623CEA),
-              image: DecorationImage(
-                image: AssetImage('assets/Background.png'),
+    return Stack(
+      children: [
+        BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+            child: SafeArea(
+              child: Column(
+                children: [
+                  const TaskListHeader(
+                    projects: [
+                      AssetImage('assets/logo.png'),
+                      AssetImage('assets/logo.png'),
+                      AssetImage('assets/logo.png'),
+                      AssetImage('assets/logo.png'),
+                      AssetImage('assets/logo.png'),
+                      AssetImage('assets/logo.png'),
+                      AssetImage('assets/logo.png'),
+                      AssetImage('assets/logo.png'),
+                      AssetImage('assets/logo.png'),
+                      AssetImage('assets/logo.png'),
+                      AssetImage('assets/logo.png'),
+                      AssetImage('assets/logo.png'),
+                      AssetImage('assets/logo.png'),
+                      AssetImage('assets/logo.png'),
+                      AssetImage('assets/logo.png'),
+                      AssetImage('assets/logo.png'),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: TaskListSwitcher(
+                      selectedState: todoState,
+                      onSelectedState: (selectedState) {
+                        setState(() {
+                          todoState = selectedState.first;
+                        });
+                      },
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ),
-          BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-              child: SafeArea(
-                child: Column(
-                  children: [
-                    const TaskListHeader(
-                      projects: [
-                        AssetImage('assets/logo.png'),
-                        AssetImage('assets/logo.png'),
-                        AssetImage('assets/logo.png'),
-                        AssetImage('assets/logo.png'),
-                        AssetImage('assets/logo.png'),
-                        AssetImage('assets/logo.png'),
-                        AssetImage('assets/logo.png'),
-                        AssetImage('assets/logo.png'),
-                        AssetImage('assets/logo.png'),
-                        AssetImage('assets/logo.png'),
-                        AssetImage('assets/logo.png'),
-                        AssetImage('assets/logo.png'),
-                        AssetImage('assets/logo.png'),
-                        AssetImage('assets/logo.png'),
-                        AssetImage('assets/logo.png'),
-                        AssetImage('assets/logo.png'),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 24,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: TaskListSwitcher(
-                        selectedState: todoState,
-                        onSelectedState: (selectedState) {
-                          setState(() {
-                            todoState = selectedState.first;
-                          });
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              )),
-        ],
-      ),
+            )),
+      ],
     );
   }
 }
