@@ -47,7 +47,7 @@ class _HomeViewState extends State<HomeView> {
                 _timer.asPrettyString,
                 style: const TextStyle(
                   color: Colors.white,
-                  fontSize: 80,
+                  fontSize: 70,
                   fontFamily: "Roboto",
                   fontWeight: FontWeight.w600,
                 ),
