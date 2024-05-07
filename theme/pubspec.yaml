@@ -71,3 +71,14 @@ flutter:
       fonts:
         - asset: fonts/Arcadienne-Brush.otf
           weight: 600
+    - family: Avenir
+      fonts:
+        - asset: fonts/Avenir-Regular.ttf
+          weight: 600
+    - family: ZillaSlab
+      fonts:
+        - asset: fonts/ZillaSlab-Regular.ttf
+        - asset: fonts/ZillaSlab-SemiBold.ttf
+          weight: 600
+        - asset: fonts/ZillaSlab-Bold.ttf
+          weight: 700

@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bam_theme/src/theme/data/box_shadow.dart';
-import 'package:flutter_bam_theme/src/theme/data/round_slider_thumb_shape.dart';
 
 import '../../cdapp_theme.dart';
 import 'data/breakpoints.dart';

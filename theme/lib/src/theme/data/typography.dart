@@ -9,98 +9,98 @@ class ThemeTypographyData extends TextTheme {
   /// Instantiate [TextTheme] with the cdapp_theme TextStyles and colors.
   ThemeTypographyData.fromColors(ThemeColorsData colors)
       : super(
-          displayLarge: _montserratBaseTextStyle.copyWith(
+          displayLarge: _avenirBaseTextStyle.copyWith(
             fontSize: 60,
             height: 1.12,
             letterSpacing: 0,
             color: colors.text,
           ),
-          displayMedium: _montserratBaseTextStyle.copyWith(
+          displayMedium: _avenirBaseTextStyle.copyWith(
             fontSize: 46,
             height: 1.3,
             fontWeight: FontWeight.w800,
             letterSpacing: 0,
             color: colors.text,
           ),
-          displaySmall: _montserratBaseTextStyle.copyWith(
+          displaySmall: _avenirBaseTextStyle.copyWith(
             fontSize: 36,
             height: 1.22,
             letterSpacing: 0,
             color: colors.text,
           ),
-          headlineLarge: _montserratBaseTextStyle.copyWith(
+          headlineLarge: _zillaSlabBaseTextStyle.copyWith(
             fontSize: 32,
             height: 1.25,
             letterSpacing: 0,
             color: colors.text,
           ),
-          headlineMedium: _montserratBaseTextStyle.copyWith(
+          headlineMedium: _zillaSlabBaseTextStyle.copyWith(
             fontSize: 28,
             height: 1.128,
             letterSpacing: 0,
             color: colors.text,
           ),
-          headlineSmall: _montserratBaseTextStyle.copyWith(
+          headlineSmall: _zillaSlabBaseTextStyle.copyWith(
             fontSize: 30,
             height: 1.3,
             letterSpacing: 0,
             fontWeight: FontWeight.w900,
             color: colors.text,
           ),
-          titleLarge: _montserratBaseTextStyle.copyWith(
-            fontSize: 24,
-            height: 1.27,
+          titleLarge: _zillaSlabBaseTextStyle.copyWith(
+            fontSize: 26,
+            height: 1.2,
             letterSpacing: 0,
             color: colors.text,
-            fontWeight: FontWeight.w900,
+            fontWeight: FontWeight.w700,
           ),
-          titleMedium: _montserratBlackBaseTextStyle.copyWith(
+          titleMedium: _zillaSlabBaseTextStyle.copyWith(
             fontSize: 20,
             height: 1.3,
             letterSpacing: 0.15,
             color: colors.text,
             fontWeight: FontWeight.w800,
           ),
-          titleSmall: _montserratBaseTextStyle.copyWith(
+          titleSmall: _zillaSlabBaseTextStyle.copyWith(
             fontSize: 16,
             height: 1.3,
             letterSpacing: 0.1,
             color: colors.text,
             fontWeight: FontWeight.w800,
           ),
-          bodyLarge: _montserratBaseTextStyle.copyWith(
+          bodyLarge: _avenirBaseTextStyle.copyWith(
             fontSize: 16,
             height: 1.5,
             letterSpacing: 0.15,
             color: colors.text,
           ),
-          bodyMedium: _montserratBaseTextStyle.copyWith(
+          bodyMedium: _avenirBaseTextStyle.copyWith(
             fontSize: 14,
             height: 1.5,
             letterSpacing: 0.25,
             color: colors.text,
           ),
-          bodySmall: _montserratBaseTextStyle.copyWith(
+          bodySmall: _avenirBaseTextStyle.copyWith(
             fontSize: 12,
             height: 1.33,
             letterSpacing: 0.4,
             color: colors.text,
           ),
-          labelLarge: _montserratBaseTextStyle.copyWith(
+          labelLarge: _avenirBaseTextStyle.copyWith(
             fontSize: 14,
             height: 1.43,
             letterSpacing: 0.1,
             color: colors.text,
             fontWeight: FontWeight.w700,
           ),
-          labelMedium: _montserratBaseTextStyle.copyWith(
+          labelMedium: _avenirBaseTextStyle.copyWith(
             fontSize: 12,
             height: 1.33,
             letterSpacing: 0.5,
             color: colors.text,
             fontWeight: FontWeight.w700,
           ),
-          labelSmall: _montserratBaseTextStyle.copyWith(
+          labelSmall: _avenirBaseTextStyle.copyWith(
             fontSize: 11,
             height: 1.45,
             letterSpacing: 0.5,
@@ -173,18 +173,30 @@ extension CustomTextTheme on TextTheme {
 
 const _montserratBaseTextStyle = TextStyle(
   fontFamily: 'Montserrat',
-  package: 'cdapp_theme',
+  package: 'flutter_bam_theme',
   fontWeight: FontWeight.normal,
 );
 
 const _montserratBlackBaseTextStyle = TextStyle(
   fontFamily: 'Montserrat_Black',
-  package: 'cdapp_theme',
+  package: 'flutter_bam_theme',
   fontWeight: FontWeight.normal,
 );
 
 const _arcadienneBaseTextStyle = TextStyle(
   fontFamily: 'Arcadienne',
-  package: 'cdapp_theme',
+  package: 'flutter_bam_theme',
   fontWeight: FontWeight.w600,
+);
+
+const _avenirBaseTextStyle = TextStyle(
+  fontFamily: 'Avenir',
+  package: 'flutter_bam_theme',
+  fontWeight: FontWeight.normal,
+);
+
+const _zillaSlabBaseTextStyle = TextStyle(
+  fontFamily: 'ZillaSlab',
+  package: 'flutter_bam_theme',
+  fontWeight: FontWeight.normal,
 );
