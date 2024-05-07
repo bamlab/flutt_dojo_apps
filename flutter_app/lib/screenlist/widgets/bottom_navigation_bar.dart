@@ -36,8 +36,7 @@ class CustomNavigationBar extends StatelessWidget {
               end: Alignment.centerRight,
               tileMode: TileMode.mirror)),
       child: Padding(
-        padding: EdgeInsets.only(bottom: bottomPadding, top: theme.sizes.m) +
-            theme.sizes.asInsets.m.horizontalOnly,
+        padding: EdgeInsets.only(bottom: bottomPadding, top: theme.sizes.m),
         child: DividedRow(
           mainAxisAlignment: MainAxisAlignment.center,
           customSeparator: const AppGap.xl(),

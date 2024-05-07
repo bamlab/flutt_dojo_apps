@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bam_theme/cdapp_theme.dart';
 import 'package:flutter_dojo_apps/statistics/widgets/time_of_task.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
@@ -34,43 +35,57 @@ class StatisticsView extends StatelessWidget {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    return CustomScrollView(
-      slivers: [
-        const SliverToBoxAdapter(
-            child: Center(
-                child: Text(
-          "40h56",
-          style: TextStyle(fontSize: 70, color: Colors.white),
-        ))),
-        const SliverToBoxAdapter(
-          child: SizedBox(
-            height: 20,
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+      appBar: AppBar(
+        centerTitle: false,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: const AppText.titleLarge("Total de la semaine"),
+      ),
+      body: CustomScrollView(
+        slivers: [
+          const SliverToBoxAdapter(
+              child: Center(
+                  child: Text(
+            "40h56",
+            style: TextStyle(
+                fontSize: 80,
+                color: Colors.white,
+                fontFamily: "ZillaSlab",
+                fontWeight: FontWeight.w600),
+          ))),
+          const SliverToBoxAdapter(
+            child: SizedBox(
+              height: 20,
+            ),
           ),
-        ),
-        SliverPadding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          sliver: SliverToBoxAdapter(
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxHeight: 800),
-              child: MasonryGridView.count(
-                crossAxisCount: 2,
-                primary: true,
-                mainAxisSpacing: 8,
-                crossAxisSpacing: 8,
-                scrollDirection: Axis.vertical,
-                itemCount: timeOfTasks.length,
-                itemBuilder: (context, index) {
-                  return SizedBox(
-                      height: MediaQuery.of(context).size.height *
-                          timeOfTasks[index].inMinutes /
-                          totalTime.inMinutes,
-                      child: TimeOfTaskWidget(timeOfTask: timeOfTasks[index]));
-                },
+          SliverPadding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            sliver: SliverToBoxAdapter(
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxHeight: 800),
+                child: MasonryGridView.count(
+                  crossAxisCount: 2,
+                  primary: true,
+                  mainAxisSpacing: 8,
+                  crossAxisSpacing: 8,
+                  scrollDirection: Axis.vertical,
+                  itemCount: timeOfTasks.length,
+                  itemBuilder: (context, index) {
+                    return SizedBox(
+                        height: MediaQuery.of(context).size.height *
+                            timeOfTasks[index].inMinutes /
+                            totalTime.inMinutes,
+                        child:
+                            TimeOfTaskWidget(timeOfTask: timeOfTasks[index]));
+                  },
+                ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

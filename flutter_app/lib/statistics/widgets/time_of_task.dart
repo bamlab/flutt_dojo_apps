@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bam_theme/cdapp_theme.dart';
 
 class TimeOfTaskWidget extends StatelessWidget {
   const TimeOfTaskWidget({super.key, required this.timeOfTask});
@@ -13,6 +14,7 @@ class TimeOfTaskWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Container(
       decoration: BoxDecoration(
         color: Colors.white.withOpacity(0.1),
@@ -30,12 +32,13 @@ class TimeOfTaskWidget extends StatelessWidget {
                 shape: BoxShape.circle,
               ),
             ),
-            Text(
+            AppText.titleSmall(
               durationString,
-              style: const TextStyle(
-                fontSize: 10,
-                fontWeight: FontWeight.bold,
-              ),
+              color: theme.colors.primary,
+              // style: const TextStyle(
+              //   fontSize: 10,
+              //   fontWeight: FontWeight.bold,
+              // ),
             ),
           ],
         ),

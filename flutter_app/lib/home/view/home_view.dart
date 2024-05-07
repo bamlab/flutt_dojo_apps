@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bam_theme/cdapp_theme.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key, required this.title});
@@ -48,7 +49,7 @@ class _HomeViewState extends State<HomeView> {
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 70,
-                  fontFamily: "Roboto",
+                  fontFamily: "ZillaSlab",
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -74,14 +75,8 @@ class _HomeViewState extends State<HomeView> {
                 children: [
                   Padding(
                     padding: EdgeInsets.only(top: 48, bottom: 16),
-                    child: Text(
+                    child: AppText.titleLarge(
                       "Mes dernières tâches",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 26,
-                        fontFamily: "Roboto",
-                        fontWeight: FontWeight.w700,
-                      ),
                       textAlign: TextAlign.start,
                     ),
                   ),
@@ -131,14 +126,9 @@ class DayView extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text(
+        AppText.bodyMedium(
           date,
-          style: TextStyle(
-            color: theme.primaryColor,
-            fontSize: 16,
-            fontFamily: "Roboto",
-            fontWeight: FontWeight.w400,
-          ),
+          color: theme.colors.primary,
         ),
         const SizedBox(
           height: 8,
@@ -161,24 +151,27 @@ class DayView extends StatelessWidget {
                 const SizedBox(
                   width: 16,
                 ),
-                Text(
+                AppText.bodyMedium(
                   title,
-                  style: TextStyle(
-                    color: theme.primaryColor,
-                    fontSize: 16,
-                    fontFamily: "Roboto",
-                    fontWeight: FontWeight.w800,
-                  ),
+                  color: theme.colors.primary,
+                  fontWeight: FontWeight.w800,
+                  // style: TextStyle(
+                  //   color: theme.primaryColor,
+                  //   fontSize: 16,
+                  //   fontFamily: "Roboto",
+                  //   fontWeight: FontWeight.w800,
+                  // ),
                 ),
                 const Spacer(),
-                Text(
+                AppText.titleMedium(
                   duration.asPrettyString,
-                  style: TextStyle(
-                    color: theme.primaryColor,
-                    fontSize: 20,
-                    fontFamily: "Roboto",
-                    fontWeight: FontWeight.w600,
-                  ),
+                  color: theme.colors.primary,
+                  // style: TextStyle(
+                  //   color: theme.primaryColor,
+                  //   fontSize: 20,
+                  //   fontFamily: "Roboto",
+                  //   fontWeight: FontWeight.w600,
+                  // ),
                 ),
               ],
             ),

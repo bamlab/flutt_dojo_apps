@@ -75,10 +75,11 @@ class ThemeTypographyData extends TextTheme {
             color: colors.text,
           ),
           bodyMedium: _avenirBaseTextStyle.copyWith(
-            fontSize: 14,
-            height: 1.5,
+            fontSize: 16,
+            height: 1.36,
             letterSpacing: 0.25,
             color: colors.text,
+            fontWeight: FontWeight.w400,
           ),
           bodySmall: _avenirBaseTextStyle.copyWith(
             fontSize: 12,
