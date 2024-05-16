@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bam_theme/cdapp_theme.dart';
 
 class HomeView extends StatefulWidget {

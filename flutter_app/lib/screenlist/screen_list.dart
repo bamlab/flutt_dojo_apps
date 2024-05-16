@@ -1,8 +1,6 @@
 import 'dart:ui';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_dojo_apps/home/view/home_view.dart';
 import 'package:flutter_dojo_apps/screenlist/widgets/bottom_navigation_bar.dart';
 import 'package:flutter_dojo_apps/statistics/view/statistics_view.dart';
