@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bam_theme/cdapp_theme.dart';
 import 'package:flutter_dojo_apps/task_list/widgets/company_logo.dart';
+import 'package:gradient_borders/gradient_borders.dart';
 
 class TimeOfTaskWidget extends StatelessWidget {
   const TimeOfTaskWidget({super.key, required this.timeOfTask});
@@ -18,7 +19,20 @@ class TimeOfTaskWidget extends StatelessWidget {
     final theme = Theme.of(context);
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.1),
+        border: GradientBoxBorder(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.white.withOpacity(0.4),
+              Colors.white.withOpacity(0),
+              Colors.white.withOpacity(0),
+              Colors.white.withOpacity(0.1),
+            ],
+          ),
+          width: 1,
+        ),
+        color: Colors.white.withOpacity(0.2),
         borderRadius: const BorderRadius.all(Radius.circular(10)),
       ),
       child: Center(
