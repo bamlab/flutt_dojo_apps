@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bam_theme/cdapp_theme.dart';
+import 'package:flutter_dojo_apps/task_list/widgets/company_logo.dart';
 
 class TimeOfTaskWidget extends StatelessWidget {
   const TimeOfTaskWidget({super.key, required this.timeOfTask});
@@ -20,18 +21,11 @@ class TimeOfTaskWidget extends StatelessWidget {
         color: Colors.white.withOpacity(0.1),
         borderRadius: const BorderRadius.all(Radius.circular(10)),
       ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 20),
+      child: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Container(
-              height: 20,
-              decoration: const BoxDecoration(
-                color: Color.fromARGB(255, 7, 7, 7),
-                shape: BoxShape.circle,
-              ),
-            ),
+            const CompanyLogo(imageProvider: AssetImage('assets/logo.png')),
             AppText.titleSmall(
               durationString,
               color: theme.colors.primary,

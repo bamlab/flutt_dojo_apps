@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dojo_apps/task_list/widgets/company_logo.dart';
 
 class TaskListHeader extends StatelessWidget {
   const TaskListHeader({super.key, required this.projects});
@@ -15,19 +16,7 @@ class TaskListHeader extends StatelessWidget {
         separatorBuilder: (context, index) => const SizedBox(width: 8),
         itemCount: projects.length,
         itemBuilder: (context, index) {
-          return SizedBox(
-            width: 48,
-            height: 48,
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(500),
-                image: DecorationImage(
-                  image: projects[index],
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-          );
+          return CompanyLogo(imageProvider: projects[index]);
         },
       ),
     );

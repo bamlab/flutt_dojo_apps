@@ -65,21 +65,37 @@ class StatisticsView extends StatelessWidget {
             sliver: SliverToBoxAdapter(
               child: ConstrainedBox(
                 constraints: const BoxConstraints(maxHeight: 800),
-                child: MasonryGridView.count(
-                  crossAxisCount: 2,
-                  primary: true,
+                child: StaggeredGrid.count(
+                  crossAxisCount: 4,
                   mainAxisSpacing: 8,
                   crossAxisSpacing: 8,
-                  scrollDirection: Axis.vertical,
-                  itemCount: timeOfTasks.length,
-                  itemBuilder: (context, index) {
-                    return SizedBox(
-                        height: MediaQuery.of(context).size.height *
-                            timeOfTasks[index].inMinutes /
-                            totalTime.inMinutes,
-                        child:
-                            TimeOfTaskWidget(timeOfTask: timeOfTasks[index]));
-                  },
+                  children: [
+                    StaggeredGridTile.count(
+                      crossAxisCellCount: 3,
+                      mainAxisCellCount: 2,
+                      child: TimeOfTaskWidget(timeOfTask: timeOfTasks[0]),
+                    ),
+                    StaggeredGridTile.count(
+                      crossAxisCellCount: 1,
+                      mainAxisCellCount: 2,
+                      child: TimeOfTaskWidget(timeOfTask: timeOfTasks[1]),
+                    ),
+                    StaggeredGridTile.count(
+                      crossAxisCellCount: 2,
+                      mainAxisCellCount: 1,
+                      child: TimeOfTaskWidget(timeOfTask: timeOfTasks[2]),
+                    ),
+                    StaggeredGridTile.count(
+                      crossAxisCellCount: 1,
+                      mainAxisCellCount: 1,
+                      child: TimeOfTaskWidget(timeOfTask: timeOfTasks[3]),
+                    ),
+                    StaggeredGridTile.count(
+                      crossAxisCellCount: 1,
+                      mainAxisCellCount: 1,
+                      child: TimeOfTaskWidget(timeOfTask: timeOfTasks[4]),
+                    ),
+                  ],
                 ),
               ),
             ),
