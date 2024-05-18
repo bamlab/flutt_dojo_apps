@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bam_theme/cdapp_theme.dart';
+import 'package:flutter_dojo_apps/home/view/widgets/project_radio_button.dart';
+
+const _projectList = ['TF1+', 'Decathlon', 'Leroy Merlin', 'Carrefour'];
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key, required this.title});
@@ -22,6 +25,8 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   final Duration _timer = Duration.zero;
 
+  String selectedProject = '';
+
   void _incrementTimer() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -30,6 +35,65 @@ class _HomeViewState extends State<HomeView> {
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
     });
+  }
+
+  void selectProject(String project) {
+    setState(() {
+      selectedProject = project;
+    });
+  }
+
+  void openProjectSelectionBottomSheet() {
+    showModalBottomSheet(
+      context: context,
+      clipBehavior: Clip.hardEdge,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(16),
+          topRight: Radius.circular(16),
+        ),
+      ),
+      builder: (context) {
+        return Container(
+          decoration: const BoxDecoration(
+            color: Colors.white,
+          ),
+          child: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.all(24),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Text(
+                    'Sélectionner un projet',
+                    style: TextStyle(
+                      color: Color(0xFF241263),
+                      fontFamily: "ZillaSlab",
+                      fontWeight: FontWeight.w700,
+                      fontSize: 26,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  ..._projectList.map((project) {
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 8.0),
+                      child: ProjectRadioButton(
+                        project: project,
+                        isSelected: selectedProject == project,
+                        onTap: () => selectProject(project),
+                      ),
+                    );
+                  }).toList(),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
   }
 
   @override
@@ -42,6 +106,23 @@ class _HomeViewState extends State<HomeView> {
             mainAxisAlignment: MainAxisAlignment.center,
             // crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
+              OutlinedButton(
+                  onPressed: openProjectSelectionBottomSheet,
+                  style: OutlinedButton.styleFrom(
+                    backgroundColor: Colors.white.withOpacity(0.4),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16)),
+                    padding: const EdgeInsets.all(16),
+                    side: const BorderSide(color: Colors.white, width: 2),
+                  ),
+                  child: const Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text('Sélectionner un projet',
+                          style: TextStyle(color: Colors.white)),
+                      Icon(Icons.keyboard_arrow_down, color: Colors.white)
+                    ],
+                  )),
               Text(
                 _timer.asPrettyString,
                 style: const TextStyle(
