@@ -43,6 +43,9 @@ dependencies:
     path: "../theme"
   responsive_navigation_bar: ^4.0.4
   gradient_borders: ^1.0.0
+  animated_clipper: ^0.2.0+2
+  flutter_animate: ^4.5.0
+  salomon_bottom_bar: ^3.3.2
 
 dev_dependencies:
   flutter_test:
