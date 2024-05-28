@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
-import '../../utils/named.dart';
-import 'sizes.dart';
+import 'package:flutter_bam_theme/src/theme/data/sizes.dart';
+import 'package:flutter_bam_theme/src/utils/named.dart';
 
 /// Data class that holds every Cupertino Navigation bar theme data.
 class CupertinoNavigationBarTheme extends Equatable {

@@ -5,7 +5,10 @@ import 'package:flutter_dojo_apps/home/view/widgets/project_radio_button.dart';
 const _projectList = ['TF1+', 'Decathlon', 'Leroy Merlin', 'Carrefour'];
 
 class HomeView extends StatefulWidget {
-  const HomeView({super.key, required this.title});
+  const HomeView({
+    required this.title,
+    super.key,
+  });
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -27,16 +30,6 @@ class _HomeViewState extends State<HomeView> {
 
   String selectedProject = '';
 
-  void _incrementTimer() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-    });
-  }
-
   void selectProject(String project) {
     setState(() {
       selectedProject = project;
@@ -44,7 +37,7 @@ class _HomeViewState extends State<HomeView> {
   }
 
   void openProjectSelectionBottomSheet() {
-    showModalBottomSheet(
+    showModalBottomSheet<void>(
       context: context,
       clipBehavior: Clip.hardEdge,
       shape: const RoundedRectangleBorder(
@@ -54,7 +47,7 @@ class _HomeViewState extends State<HomeView> {
         ),
       ),
       builder: (context) {
-        return Container(
+        return DecoratedBox(
           decoration: const BoxDecoration(
             color: Colors.white,
           ),
@@ -69,7 +62,7 @@ class _HomeViewState extends State<HomeView> {
                     'Sélectionner un projet',
                     style: TextStyle(
                       color: Color(0xFF241263),
-                      fontFamily: "ZillaSlab",
+                      fontFamily: 'ZillaSlab',
                       fontWeight: FontWeight.w700,
                       fontSize: 26,
                     ),
@@ -79,14 +72,14 @@ class _HomeViewState extends State<HomeView> {
                   ),
                   ..._projectList.map((project) {
                     return Padding(
-                      padding: const EdgeInsets.only(bottom: 8.0),
+                      padding: const EdgeInsets.only(bottom: 8),
                       child: ProjectRadioButton(
                         project: project,
                         isSelected: selectedProject == project,
                         onTap: () => selectProject(project),
                       ),
                     );
-                  }).toList(),
+                  }),
                 ],
               ),
             ),
@@ -107,28 +100,32 @@ class _HomeViewState extends State<HomeView> {
             // crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               OutlinedButton(
-                  onPressed: openProjectSelectionBottomSheet,
-                  style: OutlinedButton.styleFrom(
-                    backgroundColor: Colors.white.withOpacity(0.4),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16)),
-                    padding: const EdgeInsets.all(16),
-                    side: const BorderSide(color: Colors.white, width: 2),
+                onPressed: openProjectSelectionBottomSheet,
+                style: OutlinedButton.styleFrom(
+                  backgroundColor: Colors.white.withOpacity(0.4),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
                   ),
-                  child: const Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text('Sélectionner un projet',
-                          style: TextStyle(color: Colors.white)),
-                      Icon(Icons.keyboard_arrow_down, color: Colors.white)
-                    ],
-                  )),
+                  padding: const EdgeInsets.all(16),
+                  side: const BorderSide(color: Colors.white, width: 2),
+                ),
+                child: const Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      'Sélectionner un projet',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    Icon(Icons.keyboard_arrow_down, color: Colors.white),
+                  ],
+                ),
+              ),
               Text(
                 _timer.asPrettyString,
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 70,
-                  fontFamily: "ZillaSlab",
+                  fontFamily: 'ZillaSlab',
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -139,7 +136,8 @@ class _HomeViewState extends State<HomeView> {
                 onPressed: () => {},
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16)),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
                   padding: const EdgeInsets.all(36.5),
                   backgroundColor: const Color(0xFF241263),
                 ),
@@ -155,27 +153,27 @@ class _HomeViewState extends State<HomeView> {
                   Padding(
                     padding: EdgeInsets.only(top: 48, bottom: 16),
                     child: AppText.titleLarge(
-                      "Mes dernières tâches",
+                      'Mes dernières tâches',
                       textAlign: TextAlign.start,
                     ),
                   ),
                   DayView(
                     duration: Duration(minutes: 45, seconds: 30),
-                    title: "TF1+",
+                    title: 'TF1+',
                     icon: Icons.check_circle,
-                    date: "Lundi 20/03",
+                    date: 'Lundi 20/03',
                   ),
                   SizedBox(
                     height: 16,
                   ),
                   DayView(
                     duration: Duration(hours: 1, minutes: 32, seconds: 15),
-                    title: "Decathlon",
+                    title: 'Decathlon',
                     icon: Icons.check_circle,
-                    date: "Lundi 18/03",
+                    date: 'Lundi 18/03',
                   ),
                 ],
-              )
+              ),
             ],
           ),
         ),
@@ -186,11 +184,11 @@ class _HomeViewState extends State<HomeView> {
 
 class DayView extends StatelessWidget {
   const DayView({
-    super.key,
     required this.duration,
     required this.title,
     required this.icon,
     required this.date,
+    super.key,
   });
 
   final Duration duration;
@@ -255,13 +253,14 @@ class DayView extends StatelessWidget {
               ],
             ),
           ),
-        )
+        ),
       ],
     );
   }
 }
 
 extension on Duration {
-  String get asPrettyString =>
-      '${inHours.toString().padLeft(2, '0')}:${inMinutes.remainder(60).toString().padLeft(2, '0')}:${inSeconds.remainder(60).toString().padLeft(2, '0')}';
+  String get asPrettyString => '${inHours.toString().padLeft(2, '0')}:'
+      '${inMinutes.remainder(60).toString().padLeft(2, '0')}:'
+      '${inSeconds.remainder(60).toString().padLeft(2, '0')}';
 }

@@ -3,13 +3,13 @@ import 'dart:math';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
-import '../../cdapp_theme.dart';
+import 'package:flutter_bam_theme/cdapp_theme.dart';
 
 class AppTabBarContent extends Equatable {
   const AppTabBarContent({
     required this.title,
-    this.icon,
     required this.onTap,
+    this.icon,
   });
 
   final String title;
@@ -22,10 +22,10 @@ class AppTabBarContent extends Equatable {
 
 class AppTabBar extends StatelessWidget {
   const AppTabBar({
-    super.key,
     required this.tabs,
     required this.isSliver,
     this.isScrollable = false,
+    super.key,
   });
 
   final List<AppTabBarContent> tabs;

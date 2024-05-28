@@ -19,13 +19,17 @@ class _ScreenList2State extends State<ScreenList>
     with TickerProviderStateMixin {
   int _selectedIndex = 0;
   late final animationController = AnimationController(
-      duration: const Duration(milliseconds: 2000), vsync: this);
+    duration: const Duration(milliseconds: 2000),
+    vsync: this,
+  );
 
-  late Tween<double> _tween = Tween(begin: 0.0, end: 0.0);
+  late Tween<double> _tween = Tween(begin: 0, end: 0);
   void changeTab(int index) {
     setState(() {
       _tween = Tween(
-          begin: _tween.evaluate(animationController), end: index.toDouble());
+        begin: _tween.evaluate(animationController),
+        end: index.toDouble(),
+      );
       _selectedIndex = index;
     });
     animationController.animateTo(index / 3);
@@ -41,7 +45,6 @@ class _ScreenList2State extends State<ScreenList>
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final page = switch (_selectedIndex) {
-      // TODO: Handle this case.
       0 => const HomeView(title: 'test'),
       1 => const StatisticsView(),
       2 => const TaskListView(),
@@ -76,11 +79,10 @@ class _ScreenList2State extends State<ScreenList>
         ColoredBox(
           color: const Color(0xFF623CEA),
           child: Image.asset(
-            "assets/Background.png",
+            'assets/Background.png',
             fit: BoxFit.cover,
             height: double.infinity,
             width: double.infinity,
-            alignment: Alignment.center,
           ),
         ),
         BackdropFilter(
@@ -105,15 +107,15 @@ class _ScreenList2State extends State<ScreenList>
                 ),
                 color: theme.colors.surface.withOpacity(0.4),
                 borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(16),
-                    topRight: Radius.circular(16)),
+                  topLeft: Radius.circular(16),
+                  topRight: Radius.circular(16),
+                ),
                 gradient: LinearGradient(
                   colors: [
                     theme.colors.surface.withOpacity(0.4),
                     theme.colors.surface.withOpacity(0.8),
                   ],
                   begin: Alignment.center,
-                  end: Alignment.centerRight,
                   tileMode: TileMode.mirror,
                 ),
               ),
@@ -138,18 +140,20 @@ class _ScreenList2State extends State<ScreenList>
                     index: 2,
                   ),
                   salomonBarItem(
-                      title: 'Profile', icon: Icons.person, index: 3),
+                    title: 'Profile',
+                    icon: Icons.person,
+                    index: 3,
+                  ),
                 ],
               ),
             ),
             body: Stack(
               children: [
                 Image.asset(
-                  "assets/Background.png",
+                  'assets/Background.png',
                   fit: BoxFit.cover,
                   height: double.infinity,
                   width: double.infinity,
-                  alignment: Alignment.center,
                 ),
                 SafeArea(child: page),
               ],

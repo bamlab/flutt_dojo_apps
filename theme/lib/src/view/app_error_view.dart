@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
-import '../../cdapp_theme.dart';
+import 'package:flutter_bam_theme/cdapp_theme.dart';
 
 /// A view to display an error message to the user.
 ///
 /// Additionally, it can display a button to retry or redirect.
 class AppErrorView extends StatelessWidget {
   const AppErrorView({
-    super.key,
     required this.title,
     this.message,
     this.icon,
     this.bottomWidget,
     this.isRefreshing = false,
     this.color,
+    super.key,
   });
 
   final Color? color;

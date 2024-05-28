@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../cdapp_theme.dart';
+import 'package:flutter_bam_theme/cdapp_theme.dart';
 
 class AppTabBarRoundedIcons extends StatelessWidget {
   const AppTabBarRoundedIcons({
-    super.key,
     required this.icons,
+    super.key,
   });
 
   static const _tabBarHeight = 48.0;

@@ -8,12 +8,12 @@ const kModalInitialHeightFraction = 0.42;
 
 class AppFlexibleModal extends StatelessWidget {
   const AppFlexibleModal({
-    super.key,
     required this.scrollController,
     required this.scrollExtent,
     required this.child,
     this.initialHeightFraction = kModalInitialHeightFraction,
     this.onBackButtonPressed,
+    super.key,
   });
 
   final ScrollController scrollController;

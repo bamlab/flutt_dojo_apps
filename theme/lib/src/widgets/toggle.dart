@@ -1,16 +1,16 @@
-import 'package:flutter_bam_theme/cdapp_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bam_theme/cdapp_theme.dart';
 
 enum AppToggleValue { first, second }
 
 class AppToggle extends StatelessWidget {
   const AppToggle({
-    super.key,
     required this.firstIcon,
     required this.secondIcon,
     required this.value,
     required this.onChanged,
     this.onToggleEnd,
+    super.key,
   });
 
   final IconData firstIcon;

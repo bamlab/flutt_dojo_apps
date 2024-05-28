@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class ConditionnalWrapper extends StatelessWidget {
   const ConditionnalWrapper({
-    super.key,
     required this.wrapperbuilder,
     required this.child,
     required this.hasWrapper,
+    super.key,
   });
 
   final Widget Function(Widget child) wrapperbuilder;

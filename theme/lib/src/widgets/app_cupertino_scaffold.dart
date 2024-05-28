@@ -6,7 +6,7 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 // [CupertinoScaffold.showCupertinoModalBottomSheet] later in the app
 // and have the correct transition effect.
 class AppCupertinoScaffold extends StatelessWidget {
-  const AppCupertinoScaffold({super.key, required this.child});
+  const AppCupertinoScaffold({required this.child, super.key});
 
   final Widget child;
 

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../../utils/named.dart';
-import 'colors.dart';
+import 'package:flutter_bam_theme/src/theme/data/colors.dart';
+import 'package:flutter_bam_theme/src/utils/named.dart';
 
 /// Data class that holds theme TextStyles.
 /// See: [TextTheme]
@@ -171,12 +170,6 @@ extension CustomTextTheme on TextTheme {
         titleMediumCaps.named('titleMediumCaps'),
       ];
 }
-
-const _montserratBaseTextStyle = TextStyle(
-  fontFamily: 'Montserrat',
-  package: 'flutter_bam_theme',
-  fontWeight: FontWeight.normal,
-);
 
 const _montserratBlackBaseTextStyle = TextStyle(
   fontFamily: 'Montserrat_Black',

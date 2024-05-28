@@ -1,10 +1,9 @@
 import 'dart:async';
 
 import 'package:capped_progress_indicator/capped_progress_indicator.dart';
-import 'package:flutter_bam_theme/cdapp_theme.dart';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bam_theme/cdapp_theme.dart';
 
 /// The duration of the animation to show the refresh indicator.
 /// Similar to the RefreshIndicator widget.
@@ -23,10 +22,10 @@ const kIndicatorSnapDuration = Duration(milliseconds: 150);
 /// same name.
 class AppRefreshIndicator extends StatefulWidget {
   const AppRefreshIndicator({
-    super.key,
     required this.child,
     required this.isRefreshing,
     required this.onRefresh,
+    super.key,
     this.atTop = true,
     this.displacement,
     this.edgeOffset,
@@ -214,8 +213,8 @@ class AppRefreshIndicatorState extends State<AppRefreshIndicator> {
 
 class AppLinearProgressIndicator extends StatelessWidget {
   const AppLinearProgressIndicator({
-    super.key,
     required this.isRefreshing,
+    super.key,
     this.color,
     this.backgroundColor,
     this.minHeight = 4,
@@ -263,8 +262,8 @@ class SliverRefreshControl extends StatelessWidget {
   /// The [onRefresh] argument will be called when pulled far enough to trigger
   /// a refresh. It also trigger a HapticFeedback.
   const SliverRefreshControl({
-    super.key,
     required this.onRefresh,
+    super.key,
   });
 
   final VoidCallback onRefresh;

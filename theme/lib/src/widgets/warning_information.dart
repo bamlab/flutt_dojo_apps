@@ -1,10 +1,10 @@
-import 'package:flutter_bam_theme/cdapp_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bam_theme/cdapp_theme.dart';
 
 class WarningInformation extends StatelessWidget {
   const WarningInformation({
-    super.key,
     required this.description,
+    super.key,
     this.maxLines = 2,
   });
 

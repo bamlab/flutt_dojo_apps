@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:flutter_bam_theme/cdapp_theme.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bam_theme/cdapp_theme.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:video_player/video_player.dart';
 
@@ -32,10 +32,10 @@ class CachedVideoControllerService {
 
 class ThemeVideo extends StatefulWidget {
   const ThemeVideo({
-    super.key,
     required this.videoUrl,
     this.loadingBuilder,
     this.errorBuilder,
+    super.key,
   });
 
   final String videoUrl;

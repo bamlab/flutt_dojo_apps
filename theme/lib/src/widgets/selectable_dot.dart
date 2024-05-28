@@ -1,12 +1,12 @@
-import 'package:flutter_bam_theme/cdapp_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bam_theme/cdapp_theme.dart';
 
 class AppSelectableDot extends StatelessWidget {
   const AppSelectableDot({
-    super.key,
     required this.animationDuration,
     required this.isSelected,
     required this.borderColor,
+    super.key,
   });
 
   final Duration animationDuration;

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../cdapp_theme.dart';
+import 'package:flutter_bam_theme/cdapp_theme.dart';
 
 enum ButtonType {
   primary,
@@ -20,6 +20,8 @@ const kSmallButtonMinimumSize = Size(64, 32);
 /// Button with the AppTheme
 class AppButton extends StatelessWidget {
   const AppButton({
+    required this.onPressed,
+    required this.buttonType,
     super.key,
     this.icon,
     this.iconSize,
@@ -30,13 +32,11 @@ class AppButton extends StatelessWidget {
     this.label,
     this.color,
     this.textDecoration,
-    required this.onPressed,
     this.isLoading = false,
     this.iconPosition = IconPosition.left,
     this.isFullWidth = false,
     this.isSmall = false,
     this.alignment = MainAxisAlignment.center,
-    required this.buttonType,
     this.backgroundColor,
   }) : assert(
           !(icon != null && assetImage != null),
@@ -44,6 +44,7 @@ class AppButton extends StatelessWidget {
         );
 
   const AppButton.primary({
+    required this.onPressed,
     super.key,
     this.icon,
     this.iconSize,
@@ -54,7 +55,6 @@ class AppButton extends StatelessWidget {
     this.label,
     this.color,
     this.textDecoration,
-    required this.onPressed,
     this.isLoading = false,
     this.iconPosition = IconPosition.left,
     this.isFullWidth = false,
@@ -68,6 +68,7 @@ class AppButton extends StatelessWidget {
         );
 
   const AppButton.primaryCustomColor({
+    required this.onPressed,
     super.key,
     this.icon,
     this.iconSize,
@@ -78,7 +79,6 @@ class AppButton extends StatelessWidget {
     this.label,
     this.color,
     this.textDecoration,
-    required this.onPressed,
     this.isLoading = false,
     this.iconPosition = IconPosition.left,
     this.isFullWidth = false,
@@ -92,6 +92,7 @@ class AppButton extends StatelessWidget {
         );
 
   const AppButton.secondary({
+    required this.onPressed,
     super.key,
     this.icon,
     this.iconSize,
@@ -102,7 +103,6 @@ class AppButton extends StatelessWidget {
     this.label,
     this.color,
     this.textDecoration,
-    required this.onPressed,
     this.isLoading = false,
     this.iconPosition = IconPosition.left,
     this.isFullWidth = false,
@@ -116,6 +116,7 @@ class AppButton extends StatelessWidget {
         );
 
   const AppButton.tertiary({
+    required this.onPressed,
     super.key,
     this.icon,
     this.iconSize,
@@ -126,7 +127,6 @@ class AppButton extends StatelessWidget {
     this.assetImage,
     this.buttonRadius,
     this.label,
-    required this.onPressed,
     this.isLoading = false,
     this.iconPosition = IconPosition.left,
     this.isFullWidth = false,
@@ -140,6 +140,7 @@ class AppButton extends StatelessWidget {
         );
 
   const AppButton.danger({
+    required this.onPressed,
     super.key,
     this.icon,
     this.iconSize,
@@ -150,7 +151,6 @@ class AppButton extends StatelessWidget {
     this.label,
     this.color,
     this.textDecoration,
-    required this.onPressed,
     this.isLoading = false,
     this.iconPosition = IconPosition.left,
     this.isFullWidth = false,
@@ -164,6 +164,7 @@ class AppButton extends StatelessWidget {
         );
 
   const AppButton.primaryLight({
+    required this.onPressed,
     super.key,
     this.icon,
     this.iconSize,
@@ -174,7 +175,6 @@ class AppButton extends StatelessWidget {
     this.label,
     this.color,
     this.textDecoration,
-    required this.onPressed,
     this.isLoading = false,
     this.iconPosition = IconPosition.left,
     this.isFullWidth = false,

@@ -2,15 +2,15 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-import '../../cdapp_theme.dart';
+import 'package:flutter_bam_theme/cdapp_theme.dart';
 
 enum DividerType { gap, line, none }
 
 class AppCard extends StatelessWidget {
   const AppCard({
-    super.key,
     required this.child,
     required this.bottom,
+    super.key,
     this.isBlured = false,
     this.trailing,
     this.leading,
@@ -96,7 +96,9 @@ class AppCard extends StatelessWidget {
         borderRadius: theme.radius.asBorderRadius.s,
         child: BackdropFilter(
           filter: ImageFilter.blur(
-              sigmaX: isBlured ? 20 : 0, sigmaY: isBlured ? 20 : 0),
+            sigmaX: isBlured ? 20 : 0,
+            sigmaY: isBlured ? 20 : 0,
+          ),
           child: Padding(
             padding: padding ?? theme.sizes.asInsets.m,
             child: trailing != null || leading != null

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dojo_apps/task_list/widgets/company_logo.dart';
 
 class TaskListHeader extends StatelessWidget {
-  const TaskListHeader({super.key, required this.projects});
+  const TaskListHeader({required this.projects, super.key});
 
   final List<AssetImage> projects;
 

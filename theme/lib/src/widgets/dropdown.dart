@@ -3,11 +3,11 @@ import 'package:flutter_bam_theme/cdapp_theme.dart';
 
 class Dropdown<T> extends StatefulWidget {
   const Dropdown({
-    super.key,
     required this.onItemSelected,
     required this.radioButtons,
     required this.selectionModalHeader,
     required this.initialItem,
+    super.key,
     this.whenTapped,
   });
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../cdapp_theme.dart';
+import 'package:flutter_bam_theme/cdapp_theme.dart';
 
 class AppCheckbox extends StatelessWidget {
   const AppCheckbox({

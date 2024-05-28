@@ -4,20 +4,23 @@ import 'package:flutter_dojo_apps/task_list/widgets/company_logo.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 
 class TimeOfTaskWidget extends StatelessWidget {
-  const TimeOfTaskWidget({super.key, required this.timeOfTask});
+  const TimeOfTaskWidget({
+    required this.timeOfTask,
+    super.key,
+  });
 
   final Duration timeOfTask;
 
   String get durationString {
     final hours = timeOfTask.inHours;
     final minutes = timeOfTask.inMinutes.remainder(60);
-    return "$hours h $minutes";
+    return '$hours h $minutes';
   }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Container(
+    return DecoratedBox(
       decoration: BoxDecoration(
         border: GradientBoxBorder(
           gradient: LinearGradient(
@@ -30,7 +33,6 @@ class TimeOfTaskWidget extends StatelessWidget {
               Colors.white.withOpacity(0.1),
             ],
           ),
-          width: 1,
         ),
         color: Colors.white.withOpacity(0.2),
         borderRadius: const BorderRadius.all(Radius.circular(10)),

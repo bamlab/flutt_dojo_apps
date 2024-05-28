@@ -19,47 +19,48 @@ class _TaskListViewState extends State<TaskListView> {
     return Stack(
       children: [
         BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-            child: SafeArea(
-              child: Column(
-                children: [
-                  const TaskListHeader(
-                    projects: [
-                      AssetImage('assets/logo.png'),
-                      AssetImage('assets/logo.png'),
-                      AssetImage('assets/logo.png'),
-                      AssetImage('assets/logo.png'),
-                      AssetImage('assets/logo.png'),
-                      AssetImage('assets/logo.png'),
-                      AssetImage('assets/logo.png'),
-                      AssetImage('assets/logo.png'),
-                      AssetImage('assets/logo.png'),
-                      AssetImage('assets/logo.png'),
-                      AssetImage('assets/logo.png'),
-                      AssetImage('assets/logo.png'),
-                      AssetImage('assets/logo.png'),
-                      AssetImage('assets/logo.png'),
-                      AssetImage('assets/logo.png'),
-                      AssetImage('assets/logo.png'),
-                    ],
+          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+          child: SafeArea(
+            child: Column(
+              children: [
+                const TaskListHeader(
+                  projects: [
+                    AssetImage('assets/logo.png'),
+                    AssetImage('assets/logo.png'),
+                    AssetImage('assets/logo.png'),
+                    AssetImage('assets/logo.png'),
+                    AssetImage('assets/logo.png'),
+                    AssetImage('assets/logo.png'),
+                    AssetImage('assets/logo.png'),
+                    AssetImage('assets/logo.png'),
+                    AssetImage('assets/logo.png'),
+                    AssetImage('assets/logo.png'),
+                    AssetImage('assets/logo.png'),
+                    AssetImage('assets/logo.png'),
+                    AssetImage('assets/logo.png'),
+                    AssetImage('assets/logo.png'),
+                    AssetImage('assets/logo.png'),
+                    AssetImage('assets/logo.png'),
+                  ],
+                ),
+                const SizedBox(
+                  height: 24,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: TaskListSwitcher(
+                    selectedState: todoState,
+                    onSelectedState: (selectedState) {
+                      setState(() {
+                        todoState = selectedState.first;
+                      });
+                    },
                   ),
-                  const SizedBox(
-                    height: 24,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: TaskListSwitcher(
-                      selectedState: todoState,
-                      onSelectedState: (selectedState) {
-                        setState(() {
-                          todoState = selectedState.first;
-                        });
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            )),
+                ),
+              ],
+            ),
+          ),
+        ),
       ],
     );
   }

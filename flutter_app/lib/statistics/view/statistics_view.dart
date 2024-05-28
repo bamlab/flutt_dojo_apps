@@ -6,18 +6,9 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 class StatisticsView extends StatelessWidget {
   const StatisticsView({super.key});
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
   @override
   Widget build(BuildContext context) {
-    const totalTime = Duration(hours: 40, minutes: 56);
+    // const totalTime = Duration(hours: 40, minutes: 56);
 
     const timeOfTasks = [
       Duration(hours: 17, minutes: 47),
@@ -27,7 +18,7 @@ class StatisticsView extends StatelessWidget {
       Duration(hours: 1, minutes: 30),
     ];
 
-    print(timeOfTasks[1].inMinutes * 100 ~/ totalTime.inMinutes);
+    // print(timeOfTasks[1].inMinutes * 100 ~/ totalTime.inMinutes);
 
     return Scaffold(
       backgroundColor: Colors.transparent,
@@ -35,20 +26,23 @@ class StatisticsView extends StatelessWidget {
         centerTitle: false,
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: const AppText.titleLarge("Total de la semaine"),
+        title: const AppText.titleLarge('Total de la semaine'),
       ),
       body: CustomScrollView(
         slivers: [
           const SliverToBoxAdapter(
-              child: Center(
-                  child: Text(
-            "40h56",
-            style: TextStyle(
-                fontSize: 80,
-                color: Colors.white,
-                fontFamily: "ZillaSlab",
-                fontWeight: FontWeight.w600),
-          ))),
+            child: Center(
+              child: Text(
+                '40h56',
+                style: TextStyle(
+                  fontSize: 80,
+                  color: Colors.white,
+                  fontFamily: 'ZillaSlab',
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+          ),
           const SliverToBoxAdapter(
             child: SizedBox(
               height: 20,

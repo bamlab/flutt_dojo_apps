@@ -3,14 +3,14 @@ import 'package:flutter_bam_theme/cdapp_theme.dart';
 
 class ChipButton extends StatelessWidget {
   const ChipButton({
-    super.key,
     required this.onTap,
     required this.label,
     required this.icon,
     required this.backgroundColor,
+    super.key,
   });
 
-  final Function()? onTap;
+  final void Function()? onTap;
   final String label;
   final IconData icon;
   final Color backgroundColor;

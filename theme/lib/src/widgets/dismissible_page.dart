@@ -4,9 +4,9 @@ import 'package:flutter_bam_theme/cdapp_theme.dart';
 
 class AppDismissiblePage extends StatelessWidget {
   const AppDismissiblePage({
-    super.key,
     required this.pageKey,
     required this.child,
+    super.key,
   });
 
   /// The key for the DismissiblePage.

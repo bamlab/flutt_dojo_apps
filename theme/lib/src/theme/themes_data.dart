@@ -1,14 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bam_theme/cdapp_theme.dart';
 import 'package:flutter_bam_theme/src/theme/data/box_shadow.dart';
-
-import '../../cdapp_theme.dart';
-import 'data/breakpoints.dart';
-import 'data/colors.dart';
-import 'data/cupertino_navigation_bar_theme.dart';
-import 'data/durations.dart';
-import 'data/radius.dart';
-import 'data/sizes.dart';
+import 'package:flutter_bam_theme/src/theme/data/breakpoints.dart';
+import 'package:flutter_bam_theme/src/theme/data/colors.dart';
+import 'package:flutter_bam_theme/src/theme/data/cupertino_navigation_bar_theme.dart';
+import 'package:flutter_bam_theme/src/theme/data/durations.dart';
+import 'package:flutter_bam_theme/src/theme/data/radius.dart';
+import 'package:flutter_bam_theme/src/theme/data/sizes.dart';
 
 /// CDApp custom [ThemeData]. `ThemeMode.valIsere` version.
 ThemeData get dojo {

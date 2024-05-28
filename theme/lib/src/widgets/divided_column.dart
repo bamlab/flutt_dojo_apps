@@ -1,11 +1,10 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/material.dart';
 
-import '../../cdapp_theme.dart';
+import 'package:flutter_bam_theme/cdapp_theme.dart';
 
 class DividedColumn extends StatelessWidget {
   const DividedColumn({
-    super.key,
     required this.children,
     this.customSeparator,
     this.mainAxisAlignment = MainAxisAlignment.start,
@@ -14,6 +13,7 @@ class DividedColumn extends StatelessWidget {
     this.textDirection,
     this.verticalDirection = VerticalDirection.down,
     this.textBaseline,
+    super.key,
   });
 
   final List<Widget> children;

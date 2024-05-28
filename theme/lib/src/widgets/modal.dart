@@ -1,6 +1,5 @@
-import 'package:flutter_bam_theme/cdapp_theme.dart';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bam_theme/cdapp_theme.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 Future<void> showAppModal({
@@ -62,9 +61,9 @@ Future<T?> showAppModalWithResult<T>({
 
 class AppModal extends StatelessWidget {
   const AppModal({
+    required this.child,
     super.key,
     this.scrollable = false,
-    required this.child,
     this.showTopBar = true,
     this.crossAxisAlignment,
   });

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class CompanyLogo extends StatelessWidget {
   const CompanyLogo({
-    super.key,
     required this.imageProvider,
+    super.key,
   });
 
   final ImageProvider imageProvider;

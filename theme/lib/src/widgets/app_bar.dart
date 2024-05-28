@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../cdapp_theme.dart';
-import '../theme/data/cupertino_navigation_bar_theme.dart';
+import 'package:flutter_bam_theme/cdapp_theme.dart';
+import 'package:flutter_bam_theme/src/theme/data/cupertino_navigation_bar_theme.dart';
 
 const kNavBarLargeTitleHeightExtension = 52;
 

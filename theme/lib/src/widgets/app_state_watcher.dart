@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class AppStateWatcher extends StatefulWidget {
   const AppStateWatcher({
-    super.key,
     required this.handleAppState,
     required this.child,
+    super.key,
   });
 
   final void Function(

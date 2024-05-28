@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../theme/themes_data.dart';
+import 'package:flutter_bam_theme/src/theme/themes_data.dart';
 
 enum LineDirection {
   vertical,

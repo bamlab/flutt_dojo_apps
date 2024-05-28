@@ -3,9 +3,9 @@ import 'package:flutter_bam_theme/cdapp_theme.dart';
 
 class ContentSwitcher<T> extends StatefulWidget {
   const ContentSwitcher({
-    super.key,
     required this.initialContent,
     required this.contentBuilder,
+    super.key,
   });
 
   final T initialContent;

@@ -1,5 +1,5 @@
-import 'package:flutter_bam_theme/cdapp_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bam_theme/cdapp_theme.dart';
 
 /// Enum of all styles
 enum StyleEnum {

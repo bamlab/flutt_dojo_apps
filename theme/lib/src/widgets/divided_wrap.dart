@@ -1,12 +1,12 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/material.dart';
 
-import '../../cdapp_theme.dart';
+import 'package:flutter_bam_theme/cdapp_theme.dart';
 
 class DividedWrap extends StatelessWidget {
   DividedWrap({
-    super.key,
     required this.children,
+    super.key,
     this.customSeparator,
     this.runAlignement = WrapAlignment.start,
     this.alignment = WrapAlignment.start,

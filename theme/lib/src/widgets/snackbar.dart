@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../cdapp_theme.dart';
+import 'package:flutter_bam_theme/cdapp_theme.dart';
 
 enum SnackBarType {
   error,
@@ -24,11 +24,11 @@ Color _getBackgroundColor(BuildContext context, SnackBarType type) {
 }
 
 /// Show a Snackbar
-ScaffoldFeatureController showSnackBar(
+ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showSnackBar(
   BuildContext context, {
-  String? title,
   required String message,
   required SnackBarType type,
+  String? title,
   IconData? prefixIcon,
 
   /// Defaut value is `theme.sizes.l`
@@ -71,13 +71,13 @@ ScaffoldFeatureController showSnackBar(
 class SnackBarNotif extends StatelessWidget {
   /// Default constructor
   const SnackBarNotif({
-    super.key,
-    this.title,
     required this.message,
     required this.type,
+    this.title,
     this.isLoading = false,
     this.prefixIcon,
     this.onTap,
+    super.key,
   });
 
   /// The title of the snackbar. If null, no title is shown
@@ -124,13 +124,13 @@ class SnackBarNotif extends StatelessWidget {
 class SnackBarBody extends StatelessWidget {
   /// Default constructor
   const SnackBarBody({
-    super.key,
-    this.title,
-    this.prefixIcon,
     required this.message,
     required this.type,
+    this.title,
+    this.prefixIcon,
     this.isLoading = false,
     this.onTap,
+    super.key,
   });
 
   /// The title of the snackbar. If null, no title is shown

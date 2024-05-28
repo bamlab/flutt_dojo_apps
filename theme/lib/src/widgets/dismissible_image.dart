@@ -4,8 +4,8 @@ import 'package:flutter_bam_theme/cdapp_theme.dart';
 
 class AppDismissibleImage extends StatefulWidget {
   const AppDismissibleImage({
-    super.key,
     required this.url,
+    super.key,
     this.heroTag,
     this.actions,
   });

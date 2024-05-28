@@ -1,5 +1,5 @@
-import 'package:flutter_bam_theme/cdapp_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bam_theme/cdapp_theme.dart';
 
 enum AppSelectableTileType {
   small,
@@ -8,11 +8,11 @@ enum AppSelectableTileType {
 
 class AppSelectableTile extends StatelessWidget {
   const AppSelectableTile({
-    super.key,
     required this.isSelected,
     required this.isDisabled,
     required this.onTap,
     required this.label,
+    super.key,
     this.trailing,
     this.type = AppSelectableTileType.regular,
   }) : assert(

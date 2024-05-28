@@ -1,21 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../cdapp_theme.dart';
-import '../theme/data/colors.dart';
+import 'package:flutter_bam_theme/cdapp_theme.dart';
+import 'package:flutter_bam_theme/src/theme/data/colors.dart';
 
 class AppActionButton extends StatelessWidget {
   const AppActionButton({
-    super.key,
     required this.onTap,
+    required this.iconWidget,
     this.onDoubleTap,
     this.onLongPress,
     this.onTapDown,
     this.onTapCancel,
-    required this.iconWidget,
     this.backgroundColor,
     this.borderColor,
     this.isLoading = false,
+    super.key,
   });
 
   final GestureTapCallback? onTap;

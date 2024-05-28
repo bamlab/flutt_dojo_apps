@@ -4,12 +4,12 @@ import 'package:sliver_tools/sliver_tools.dart';
 
 class EmptySliverView extends StatelessWidget {
   const EmptySliverView({
-    super.key,
     required this.title,
     required this.subtitle,
     this.icon,
     this.header,
     this.bottom,
+    super.key,
   }) : assert(
           icon != null || header != null,
           'Either icon or header must be provided',

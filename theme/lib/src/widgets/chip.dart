@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../cdapp_theme.dart';
+import 'package:flutter_bam_theme/cdapp_theme.dart';
 
 class _Dot extends StatelessWidget {
   const _Dot({
@@ -27,9 +27,9 @@ class _Dot extends StatelessWidget {
 
 class AppChip extends StatelessWidget {
   const AppChip({
-    super.key,
     required this.color,
     required this.label,
+    super.key,
     this.backgroundColor,
   });
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/loader.dart';
+import 'package:flutter_bam_theme/src/widgets/loader.dart';
 
 class AppLoadingView extends StatelessWidget {
   const AppLoadingView({super.key, this.color});

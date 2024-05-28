@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
 class TaskListSwitcher extends StatelessWidget {
-  const TaskListSwitcher(
-      {super.key, required this.selectedState, required this.onSelectedState});
+  const TaskListSwitcher({
+    required this.selectedState,
+    required this.onSelectedState,
+    super.key,
+  });
 
   final TodoState selectedState;
   final void Function(Set<TodoState>) onSelectedState;
@@ -18,19 +21,21 @@ class TaskListSwitcher extends StatelessWidget {
       child: SegmentedButton<TodoState>(
         segments: const [
           ButtonSegment(
-              value: TodoState.done,
-              label: Text(
-                style: TextStyle(color: Colors.white),
-                textAlign: TextAlign.center,
-                'Done',
-              )),
+            value: TodoState.done,
+            label: Text(
+              style: TextStyle(color: Colors.white),
+              textAlign: TextAlign.center,
+              'Done',
+            ),
+          ),
           ButtonSegment(
-              value: TodoState.todo,
-              label: Text(
-                style: TextStyle(color: Colors.white),
-                textAlign: TextAlign.center,
-                'To Do',
-              ))
+            value: TodoState.todo,
+            label: Text(
+              style: TextStyle(color: Colors.white),
+              textAlign: TextAlign.center,
+              'To Do',
+            ),
+          ),
         ],
         selected: {selectedState},
         showSelectedIcon: false,

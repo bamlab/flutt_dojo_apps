@@ -1,17 +1,15 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
-import '../../utils/named.dart';
+import 'package:flutter_bam_theme/src/utils/named.dart';
 
 // Colors are named with this website:
 // https://colornamer.robertcooper.me
 const _white = Colors.white;
-const _pinkishRed = Color(0xFFF50A42);
 const _transparent = Colors.transparent;
 const _violetDojo = Color(0xFF241263);
 const _violetDojoLight = Color(0xFF623CEA);
 const _orangeDojo = Color(0xFFFFBA9D);
-const _pinkDojo = Color(0xFF660D55);
 const _salonBleu = Color(0xFF7D8896);
 const _silverSprings = Color(0xFFB5BCC3);
 const _grainOfSalt = Color(0xFFD8DCE0);
@@ -19,7 +17,6 @@ const _gramsHair = Color(0xFFF6F6F8);
 
 // Colors are named with this website:
 // https://colornamer.robertcooper.me
-const _brownChocolate = Color(0xFF651D32);
 const _whiteSmoke = Color(0xFFF5F5F5);
 const _blackMetal = Color(0xFF050505);
 const _blackIsBack = Color(0xFF0D131E);

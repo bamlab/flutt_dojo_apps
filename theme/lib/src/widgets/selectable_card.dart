@@ -1,15 +1,15 @@
-import 'package:flutter_bam_theme/cdapp_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bam_theme/cdapp_theme.dart';
 
 class AppSelectableCard extends StatelessWidget {
   const AppSelectableCard({
-    super.key,
     required this.isSelected,
     required this.isDisabled,
     required this.onTap,
     required this.builder,
     this.disabledSurfaceColor,
     this.disabledBorderColor,
+    super.key,
   }) : assert(
           !(isSelected && isDisabled),
           'A card cannot be selected and disabled',

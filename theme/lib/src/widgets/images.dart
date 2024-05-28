@@ -1,8 +1,8 @@
 import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter_bam_theme/cdapp_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bam_theme/cdapp_theme.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:progressive_image/progressive_image.dart';
@@ -32,9 +32,9 @@ class InheritedCacheManager extends InheritedWidget {
   ///
   /// The [child] argument must not be null.
   const InheritedCacheManager({
+    required super.child,
     super.key,
     this.cacheManagerOverride,
-    required super.child,
   });
 
   /// Override the default cache manager for the subtree.
@@ -83,9 +83,9 @@ class InheritedCachedImageOverride extends InheritedWidget {
   ///
   /// The [child] argument must not be null.
   const InheritedCachedImageOverride({
+    required super.child,
     super.key,
     this.defaultAssetImage,
-    required super.child,
   });
 
   /// Tells to widgets in the subtree, the default image to use
@@ -126,8 +126,8 @@ class ImageWithFallback extends StatelessWidget {
   /// [InheritedCachedImageOverride], and set the property
   /// `defaultAssetImage` to the image you want to have in your tests.
   ImageWithFallback({
-    super.key,
     required this.src,
+    super.key,
     this.height,
     this.width,
     this.fit,
@@ -247,11 +247,11 @@ class ImageWithProgress extends StatelessWidget {
   /// [InheritedCachedImageOverride], and set the property
   /// `defaultAssetImage` to the image you want to have in your tests.
   const ImageWithProgress({
-    super.key,
-    this.placeholderLocalUrl,
     required this.thumbnailUrl,
     required this.imageUrl,
     required this.onError,
+    super.key,
+    this.placeholderLocalUrl,
     this.loadingBuilder,
     this.thumbnailUrlCacheKey,
     this.imageUrlCacheKey,
@@ -430,8 +430,8 @@ class ImagePlaceHolder extends StatelessWidget {
 
 class AppPhotoView extends StatelessWidget {
   const AppPhotoView({
-    super.key,
     required this.url,
+    super.key,
     this.heroTag,
   });
 

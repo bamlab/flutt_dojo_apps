@@ -1,12 +1,11 @@
-import 'package:flutter_bam_theme/cdapp_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bam_theme/cdapp_theme.dart';
 import 'package:flutter_bam_theme/const/regex.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 class AppReactiveTextField<T> extends StatefulWidget {
   const AppReactiveTextField({
-    super.key,
     required this.label,
     required this.formControl,
     this.icon,
@@ -26,6 +25,7 @@ class AppReactiveTextField<T> extends StatefulWidget {
     this.isSliver = false,
     this.enabled = true,
     this.textInputAction,
+    super.key,
   });
 
   /// The label of the text field.
@@ -116,7 +116,8 @@ class AppReactiveTextField<T> extends StatefulWidget {
   final TextInputAction? textInputAction;
 
   @override
-  State<AppReactiveTextField> createState() => _AppReactiveTextFieldState<T>();
+  State<AppReactiveTextField<T>> createState() =>
+      _AppReactiveTextFieldState<T>();
 }
 
 class _AppReactiveTextFieldState<T> extends State<AppReactiveTextField<T>> {

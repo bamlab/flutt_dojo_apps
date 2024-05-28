@@ -14,7 +14,7 @@ const tableCellElements = ['th', 'td'];
 const tableDefinitionElements = ['col', 'colgroup'];
 
 class HtmlText extends StatelessWidget {
-  const HtmlText({super.key, required this.content, this.style});
+  const HtmlText({required this.content, super.key, this.style});
 
   final String content;
   final TextStyle? style;

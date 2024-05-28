@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
-import '../../utils/named.dart';
+import 'package:flutter_bam_theme/src/utils/named.dart';
 
 /// Data class that holds every theme durations.
 class ThemeDurationsData extends Equatable {

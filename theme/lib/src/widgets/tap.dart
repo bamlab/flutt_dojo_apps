@@ -1,13 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../cdapp_theme.dart';
-import '../theme/data/colors.dart';
+import 'package:flutter_bam_theme/cdapp_theme.dart';
+import 'package:flutter_bam_theme/src/theme/data/colors.dart';
 
 class AppTap extends StatelessWidget {
   const AppTap({
-    super.key,
     required this.onTap,
+    required this.child,
+    super.key,
     this.onDoubleTap,
     this.onLongPress,
     this.onTapDown,
@@ -17,7 +18,6 @@ class AppTap extends StatelessWidget {
     this.borderRadius,
     this.backgroundColor,
     this.splashFactory,
-    required this.child,
   });
 
   final GestureTapCallback? onTap;

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class Init extends StatefulWidget {
   const Init({
-    super.key,
     required this.init,
     required this.child,
+    super.key,
   });
 
   final void Function() init;

@@ -1,13 +1,13 @@
-import 'package:flutter_bam_theme/cdapp_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bam_theme/cdapp_theme.dart';
 
 class RadioButton<T> extends StatefulWidget {
   const RadioButton({
-    super.key,
     required this.description,
     required this.isSelected,
     required this.name,
     required this.item,
+    super.key,
   });
 
   final String? name;
@@ -16,10 +16,10 @@ class RadioButton<T> extends StatefulWidget {
   final T item;
 
   @override
-  State<RadioButton> createState() => _RadioButtonState();
+  State<RadioButton<T>> createState() => _RadioButtonState<T>();
 }
 
-class _RadioButtonState extends State<RadioButton> {
+class _RadioButtonState<T> extends State<RadioButton<T>> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
