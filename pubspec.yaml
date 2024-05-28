@@ -7,3 +7,7 @@ environment:
 
 dev_dependencies:
   melos: ^3.1.0
+  bam_analysis:
+    git:
+      url: https://github.com/bamlab/bam_analysis.git
+      ref: 98176cdbaf95a8cd089752076debbe0c08787418

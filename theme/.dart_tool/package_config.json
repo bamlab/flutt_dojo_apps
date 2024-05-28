@@ -2,46 +2,22 @@
   "configVersion": 2,
   "packages": [
     {
-      "name": "_fe_analyzer_shared",
-      "rootUri": "file:///Users/louisgiboin/.pub-cache/hosted/pub.dev/_fe_analyzer_shared-61.0.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.17"
-    },
-    {
       "name": "adaptive_test",
       "rootUri": "file:///Users/louisgiboin/.pub-cache/hosted/pub.dev/adaptive_test-0.4.1",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
     {
-      "name": "analyzer",
-      "rootUri": "file:///Users/louisgiboin/.pub-cache/hosted/pub.dev/analyzer-5.13.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.19"
-    },
-    {
-      "name": "analyzer_plugin",
-      "rootUri": "file:///Users/louisgiboin/.pub-cache/hosted/pub.dev/analyzer_plugin-0.11.2",
-      "packageUri": "lib/",
-      "languageVersion": "2.17"
-    },
-    {
-      "name": "ansicolor",
-      "rootUri": "file:///Users/louisgiboin/.pub-cache/hosted/pub.dev/ansicolor-2.0.1",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
-      "name": "args",
-      "rootUri": "file:///Users/louisgiboin/.pub-cache/hosted/pub.dev/args-2.4.2",
-      "packageUri": "lib/",
-      "languageVersion": "2.19"
-    },
-    {
       "name": "async",
       "rootUri": "file:///Users/louisgiboin/.pub-cache/hosted/pub.dev/async-2.11.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
+    },
+    {
+      "name": "bam_analysis",
+      "rootUri": "file:///Users/louisgiboin/.pub-cache/git/bam_analysis-98176cdbaf95a8cd089752076debbe0c08787418/",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
     },
     {
       "name": "boolean_selector",
@@ -92,12 +68,6 @@
       "languageVersion": "2.18"
     },
     {
-      "name": "convert",
-      "rootUri": "file:///Users/louisgiboin/.pub-cache/hosted/pub.dev/convert-3.1.1",
-      "packageUri": "lib/",
-      "languageVersion": "2.18"
-    },
-    {
       "name": "crypto",
       "rootUri": "file:///Users/louisgiboin/.pub-cache/hosted/pub.dev/crypto-3.0.3",
       "packageUri": "lib/",
@@ -114,24 +84,6 @@
       "rootUri": "file:///Users/louisgiboin/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.5",
       "packageUri": "lib/",
       "languageVersion": "2.12"
-    },
-    {
-      "name": "dart_code_metrics",
-      "rootUri": "file:///Users/louisgiboin/.pub-cache/git/dart-code-metrics-8ae38ab96a6886bfac64bfbd21ce02e3278de65b/",
-      "packageUri": "lib/",
-      "languageVersion": "2.18"
-    },
-    {
-      "name": "dart_code_metrics_presets",
-      "rootUri": "file:///Users/louisgiboin/.pub-cache/hosted/pub.dev/dart_code_metrics_presets-1.8.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.17"
-    },
-    {
-      "name": "dart_style",
-      "rootUri": "file:///Users/louisgiboin/.pub-cache/hosted/pub.dev/dart_style-2.3.2",
-      "packageUri": "lib/",
-      "languageVersion": "2.19"
     },
     {
       "name": "dismissible_page",
@@ -210,12 +162,6 @@
       "rootUri": "file:///Users/louisgiboin/.pub-cache/hosted/pub.dev/gap-3.0.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
-    },
-    {
-      "name": "glob",
-      "rootUri": "file:///Users/louisgiboin/.pub-cache/hosted/pub.dev/glob-2.1.2",
-      "packageUri": "lib/",
-      "languageVersion": "2.19"
     },
     {
       "name": "html",
@@ -302,12 +248,6 @@
       "languageVersion": "2.12"
     },
     {
-      "name": "package_config",
-      "rootUri": "file:///Users/louisgiboin/.pub-cache/hosted/pub.dev/package_config-2.1.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
       "name": "path",
       "rootUri": "file:///Users/louisgiboin/.pub-cache/hosted/pub.dev/path-1.9.0",
       "packageUri": "lib/",
@@ -350,12 +290,6 @@
       "languageVersion": "2.18"
     },
     {
-      "name": "petitparser",
-      "rootUri": "file:///Users/louisgiboin/.pub-cache/hosted/pub.dev/petitparser-5.4.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.19"
-    },
-    {
       "name": "photo_view",
       "rootUri": "file:///Users/louisgiboin/.pub-cache/hosted/pub.dev/photo_view-0.14.0",
       "packageUri": "lib/",
@@ -378,12 +312,6 @@
       "rootUri": "file:///Users/louisgiboin/.pub-cache/git/progressive_image-40335e7dd254834cf5b59928ac4088712764f4ec/",
       "packageUri": "lib/",
       "languageVersion": "2.12"
-    },
-    {
-      "name": "pub_semver",
-      "rootUri": "file:///Users/louisgiboin/.pub-cache/hosted/pub.dev/pub_semver-2.1.4",
-      "packageUri": "lib/",
-      "languageVersion": "2.17"
     },
     {
       "name": "reactive_forms",
@@ -530,12 +458,6 @@
       "languageVersion": "3.0"
     },
     {
-      "name": "watcher",
-      "rootUri": "file:///Users/louisgiboin/.pub-cache/hosted/pub.dev/watcher-1.1.0",
-      "packageUri": "lib/",
-      "languageVersion": "3.0"
-    },
-    {
       "name": "win32",
       "rootUri": "file:///Users/louisgiboin/.pub-cache/hosted/pub.dev/win32-5.0.6",
       "packageUri": "lib/",
@@ -548,25 +470,13 @@
       "languageVersion": "2.18"
     },
     {
-      "name": "xml",
-      "rootUri": "file:///Users/louisgiboin/.pub-cache/hosted/pub.dev/xml-6.3.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.19"
-    },
-    {
-      "name": "yaml",
-      "rootUri": "file:///Users/louisgiboin/.pub-cache/hosted/pub.dev/yaml-3.1.2",
-      "packageUri": "lib/",
-      "languageVersion": "2.19"
-    },
-    {
       "name": "flutter_bam_theme",
       "rootUri": "../",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     }
   ],
-  "generated": "2024-05-28T15:11:49.577141Z",
+  "generated": "2024-05-28T15:21:08.108887Z",
   "generator": "pub",
   "generatorVersion": "3.3.4"
 }

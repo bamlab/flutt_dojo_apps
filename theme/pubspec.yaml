@@ -34,16 +34,15 @@ dependencies:
 
 dev_dependencies:
   adaptive_test: ^0.4.1
-  # DCM is no longer maintained
-  dart_code_metrics:
-    git:
-      url: https://github.com/Cteq3132/dart-code-metrics
-      ref: 8ae38ab96a6886bfac64bfbd21ce02e3278de65b
   file: ^7.0.0
   flutter_test:
     sdk: flutter
   mocktail: ^1.0.1
   video_player_platform_interface: ^6.2.1
+  bam_analysis:
+    git:
+      url: https://github.com/bamlab/bam_analysis.git
+      ref: 98176cdbaf95a8cd089752076debbe0c08787418
 
 flutter:
   uses-material-design: true

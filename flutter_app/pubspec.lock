@@ -57,6 +57,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.0"
+  bam_analysis:
+    dependency: "direct dev"
+    description:
+      path: "."
+      ref: "98176cdbaf95a8cd089752076debbe0c08787418"
+      resolved-ref: "98176cdbaf95a8cd089752076debbe0c08787418"
+      url: "https://github.com/bamlab/bam_analysis.git"
+    source: git
+    version: "0.1.0+1"
   boolean_selector:
     dependency: transitive
     description:
@@ -293,14 +302,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.0-beta.2"
-  flutter_lints:
-    dependency: "direct dev"
-    description:
-      name: flutter_lints
-      sha256: a25a15ebbdfc33ab1cd26c63a6ee519df92338a9c10f122adda92938253bef04
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.3"
   flutter_shaders:
     dependency: transitive
     description:
@@ -463,14 +464,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.1"
-  lints:
-    dependency: transitive
-    description:
-      name: lints
-      sha256: "0a217c6c989d21039f1498c3ed9f3ed71b354e69873f13a8dfc3c9fe76f1b452"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.1"
   list_counter:
     dependency: transitive
     description:

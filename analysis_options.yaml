@@ -1,0 +1,242 @@
+include: package:bam_analysis/analysis_options.yaml
+
+analyzer:
+  exclude:
+    - "example/**"
+    - "build/**"
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "**/*gicons.dart"
+    - "**/*.graphql.dart"
+linter:
+  rules:
+    # Not mandatory since this is not a sdk
+    public_member_api_docs: false
+    # Convignent for null safety checks of field in fucntion
+    no_leading_underscores_for_local_identifiers: false
+    # It has no sence for a state notifier
+    avoid_setters_without_getters: false
+    # Taken care of by dcm
+    avoid_positional_boolean_parameters: false
+    # False positive
+    cascade_invocations: false
+    # Not usefull
+    comment_references: false
+dart_code_metrics:
+  assists:
+    wrap-with:
+      - Scaffold:
+          prop: body
+          list: false
+      - Stack:
+          prop: children
+          list: true
+  metrics:
+    cyclomatic-complexity: 20
+    number-of-parameters: 4
+    maximum-nesting-level: 5
+  metrics-exclude:
+    - test/**
+    - "**/*gicons.dart"
+    - "**/*.graphql.dart"
+  rules-exclude:
+    - test/**
+    - "**/*gicons.dart"
+    - "**/*.graphql.dart"
+  pubspec-rules:
+    - prefer-publish-to-none
+    - prefer-caret-version-syntax
+    - avoid-any-version
+  rules:
+    - avoid-inferrable-type-arguments
+    - avoid-shadowing:
+        ignore-static: true
+        ignore-fields: true
+        ignore-parameters: true
+        ignored-names:
+          - context
+          - ref
+          - child
+          - formGroup
+    - member-ordering:
+        alphabetize: false # My god this is painfull
+        order:
+          - constructors
+          - public-fields
+          - private-fields
+        widgets-order:
+          - constructors
+          - public-fields
+          - private-fields
+          - init-state-method
+          - did-change-dependencies-method
+          - did-update-widget-method
+          - dispose-method
+          - build-method
+    - prefer-named-boolean-parameters:
+        ignore-single: true
+        ignore-single-boolean: true
+    - prefer-widget-private-members:
+        ignore-static: false
+        ignored-names:
+          - of
+    - avoid-substring
+    - avoid-cascade-after-if-null
+    - avoid-collection-methods-with-unrelated-types
+    - avoid-duplicate-exports
+    - avoid-dynamic
+    - avoid-global-state
+    - avoid-missing-enum-constant-in-map
+    - avoid-nested-conditional-expressions
+    - avoid-non-null-assertion
+    - avoid-redundant-async
+    - avoid-throw-in-catch-block
+    - avoid-top-level-members-in-tests
+    - avoid-unnecessary-type-assertions
+    - avoid-unnecessary-type-casts
+    - avoid-unrelated-type-assertions
+    - avoid-unused-parameters
+    - binary-expression-operand-order
+    - double-literal-format
+    - newline-before-return
+    - no-boolean-literal-compare
+    - no-empty-block
+    - no-equal-then-else
+    - no-object-declaration
+    - prefer-async-await
+    - prefer-commenting-analyzer-ignores
+    - prefer-conditional-expressions
+    - prefer-correct-test-file-name
+    - prefer-correct-type-name
+    - prefer-enums-by-name
+    - prefer-first
+    - prefer-immediate-return
+    - prefer-iterable-of
+    - prefer-last
+    - prefer-trailing-comma
+    - avoid-long-functions
+    - avoid-duplicate-named-imports
+    - prefer-return-await
+    - avoid-collapsible-if
+    - avoid-nested-switches
+    - avoid-redundant-else
+    - avoid-self-assignment
+    - avoid-self-compare
+    - avoid-unnecessary-nullable-return-type
+    - avoid-unrelated-type-casts
+    - no-equal-switch-case
+    - no-equal-conditions
+    - prefer-declaring-const-constructor
+    - avoid-equal-expressions
+    - avoid-declaring-call-method
+    - prefer-early-return
+    - avoid-missed-calls
+    - avoid-redundant-pragma-inline
+    - avoid-unnecessary-negations
+    - avoid-unused-generics
+    - avoid-inverted-boolean-checks
+    - function-always-returns-null
+    - prefer-visible-for-testing-on-members
+    - avoid-throw-objects-without-tostring
+    - avoid-unsafe-collection-methods
+    - avoid-one-field-records
+    - move-records-to-typedefs
+    - avoid-bottom-type-in-records
+    - avoid-nested-records
+    - avoid-function-type-in-records
+    - avoid-mixing-named-and-positional-fields
+    - avoid-long-records
+    - match-positional-field-names-on-assignment
+    - avoid-redundant-positional-field-name
+    - avoid-bottom-type-in-patterns
+    - avoid-explicit-pattern-field-name
+    - prefer-wildcard-pattern
+    - no-equal-switch-expression-cases
+    - prefer-simpler-patterns-null-check
+    - avoid-duplicate-patterns
+    - avoid-unnecessary-return
+    - avoid-future-tostring
+    - prefer-test-matchers
+    - prefer-correct-stream-return-type
+    - avoid-nested-futures
+    - avoid-nested-streams-and-futures
+    - avoid-generics-shadowing
+    - avoid-uncaught-future-errors
+    - prefer-parentheses-with-if-null
+    - avoid-keywords-in-wildcard-pattern
+    - avoid-misused-wildcard-pattern
+    - avoid-mutating-parameters
+    - avoid-unnecessary-call
+    - no-equal-nested-conditions
+    - prefer-correct-error-name
+    - map-keys-ordering
+    - avoid-unnecessary-futures
+    - avoid-shadowed-extension-methods
+    - avoid-barrel-files
+    - avoid-double-slash-imports
+    - avoid-unnecessary-conditionals
+    - missing-test-assertion
+    - avoid-map-keys-contains
+    - prefer-correct-json-casts
+    - avoid-async-call-in-sync-function
+    - avoid-duplicate-mixins
+    - avoid-nullable-interpolation
+    - avoid-unused-instances
+    - prefer-correct-for-loop-increment
+    - prefer-public-exception-classes
+    - newline-before-case
+    - avoid-unnecessary-reassignment
+    - avoid-referencing-discarded-variables
+    - avoid-unconditional-break
+    - avoid-weak-cryptographic-algorithms
+    - avoid-identical-exception-handling-blocks
+    - avoid-recursive-calls
+    - move-variable-closer-to-its-usage
+    - avoid-missing-interpolation
+    - avoid-unnecessary-if
+    - avoid-passing-default-values
+    - avoid-wildcard-cases-with-enums
+    - match-getter-setter-field-names
+    - avoid-unnecessary-getter
+    - avoid-accessing-collections-by-constant-index
+    - avoid-extensions-on-records
+    - prefer-null-aware-spread
+    - prefer-unique-test-names
+    - avoid-duplicate-cascades
+    - prefer-specific-cases-first
+    - avoid-duplicate-switch-case-conditions
+    - prefer-explicit-type-arguments
+    - avoid-unnecessary-super
+    - prefer-correct-setter-parameter-name
+    - prefer-prefixed-global-constants
+    - prefer-explicit-function-type
+    - prefer-addition-subtraction-assignments
+    - list-all-equatable-fields
+    - prefer-define-hero-tag
+    - always-remove-listener
+    - avoid-border-all
+    - avoid-returning-widgets
+    - avoid-shrink-wrap-in-lists
+    - avoid-unnecessary-setstate
+    - avoid-expanded-as-spacer
+    - avoid-wrapping-in-padding
+    - check-for-equals-in-render-object-setters
+    - consistent-update-render-object
+    - prefer-const-border-radius
+    - prefer-correct-edge-insets-constructor
+    - prefer-using-list-view
+    - use-setstate-synchronously
+    - avoid-incomplete-copy-with
+    - proper-super-calls
+    - dispose-fields
+    - avoid-empty-setstate
+    - avoid-inherited-widget-in-initstate
+    - avoid-late-context
+    - avoid-state-constructors
+    - avoid-unnecessary-stateful-widgets
+    - avoid-stateless-widget-initialized-fields
+    - avoid-unnecessary-overrides-in-state
+    - prefer-dedicated-media-query-methods
+    - avoid-recursive-widget-calls
+    - prefer-text-rich
+    - prefer-sliver-prefix
