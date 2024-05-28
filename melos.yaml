@@ -1,0 +1,38 @@
+name: dojo
+
+packages:
+  - flutter_app/
+  - theme/
+command:
+  bootstrap:
+    runPubGetInParallel: false
+
+  build_runner:
+    exec: dart run build_runner build --delete-conflicting-outputs
+    description: Run build_runner in every packages
+    packageFilters:
+      dependsOn: 'build_runner'
+      
+  build_runner:watch:
+    exec: dart run build_runner watch --delete-conflicting-outputs
+    description: Run build_runner in every packages
+    packageFilters:
+      dependsOn: 'build_runner'
+
+  analyze:
+    exec: |
+      dart analyze --fatal-infos . && \
+      dart format --set-exit-if-changed lib test  && \
+      dcm analyze lib --fatal-style --ci-key=$DCM_CI_KEY --email=$DCM_LICENSE_EMAIL  && \
+      dcm check-unused-files ./ --ci-key=$DCM_CI_KEY --email=$DCM_LICENSE_EMAIL --exclude="**/*.internal.dart" && \
+      dcm check-unused-l10n ./ --ci-key=$DCM_CI_KEY --email=$DCM_LICENSE_EMAIL && \
+      dcm check-unused-code ./ --ci-key=$DCM_CI_KEY --email=$DCM_LICENSE_EMAIL --exclude="**/*.internal.dart"
+    description: Run analyzer in every packages
+
+    fix:
+      exec: |
+        dcm fix lib && \
+        dart fix . --apply && \
+        dcm format lib && \
+        dart format lib test
+      description: Run fix in every packages
