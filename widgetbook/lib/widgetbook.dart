@@ -2,6 +2,7 @@
 
 import 'package:dojo_widgetbook/widgetbook.directories.g.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bam_theme/cdapp_theme.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -24,8 +25,8 @@ class WidgetbookApp extends StatelessWidget {
         DeviceFrameAddon(devices: devices, initialDevice: Devices.ios.iPhone13),
         MaterialThemeAddon(
           themes: [
-            WidgetbookTheme(name: 'Light', data: ThemeData.light()),
-            WidgetbookTheme(name: 'Dark', data: ThemeData.dark()),
+            WidgetbookTheme(name: 'Light', data: dojo),
+            WidgetbookTheme(name: 'Dark', data: dojoDark),
           ],
         ),
         TextScaleAddon(

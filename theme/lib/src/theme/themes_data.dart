@@ -15,6 +15,11 @@ ThemeData get dojo {
   return _getThemeDataFromColors(colors);
 }
 
+ThemeData get dojoDark {
+  const colors = ThemeColorsData.dark();
+  return _getThemeDataFromColors(colors);
+}
+
 ThemeData _getThemeDataFromColors(ThemeColorsData colors) {
   final fallbackTheme = ThemeData.fallback();
   final textTheme = ThemeTypographyData.fromColors(colors);
