@@ -3,6 +3,7 @@ name: dojo
 packages:
   - flutter_app/
   - theme/
+  - widgetbook/
 command:
   bootstrap:
     runPubGetInParallel: false

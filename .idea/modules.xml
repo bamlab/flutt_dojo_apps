@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/widgetbook/melos_dojo_widgetbook.iml" filepath="$PROJECT_DIR$/widgetbook/melos_dojo_widgetbook.iml" />
       <module fileurl="file://$PROJECT_DIR$/theme/melos_flutter_bam_theme.iml" filepath="$PROJECT_DIR$/theme/melos_flutter_bam_theme.iml" />
       <module fileurl="file://$PROJECT_DIR$/flutter_app/melos_flutter_dojo_apps.iml" filepath="$PROJECT_DIR$/flutter_app/melos_flutter_dojo_apps.iml" />
       <module fileurl="file://$PROJECT_DIR$/melos_dojo.iml" filepath="$PROJECT_DIR$/melos_dojo.iml" />

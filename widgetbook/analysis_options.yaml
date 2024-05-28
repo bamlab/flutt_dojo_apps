@@ -1,0 +1,4 @@
+include: ../analysis_options.yaml
+dart_code_metrics:
+  rules:
+    avoid-returning-widgets: false
