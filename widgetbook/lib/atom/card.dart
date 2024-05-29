@@ -3,7 +3,9 @@ import 'package:flutter_bam_theme/cdapp_theme.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-@widgetbook.UseCase(name: 'Card', type: AppCard)
+const _kpageName = 'Card';
+
+@widgetbook.UseCase(name: _kpageName, type: AppCard)
 Widget evToggle(BuildContext context) {
   final theme = Theme.of(context);
   final childText = context.knobs
@@ -13,7 +15,7 @@ Widget evToggle(BuildContext context) {
 
   return Scaffold(
     appBar: AppBar(
-      title: AppText.titleMedium('Card', color: theme.colors.onSurface),
+      title: AppText.titleMedium(_kpageName, color: theme.colors.onSurface),
     ),
     body: Padding(
       padding: theme.sizes.asInsets.m,
