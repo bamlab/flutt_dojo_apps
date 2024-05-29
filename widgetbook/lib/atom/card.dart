@@ -12,6 +12,14 @@ Widget evToggle(BuildContext context) {
       .string(label: 'child text', initialValue: "Hi, I'm the child");
   final bottomText = context.knobs
       .string(label: 'bottom text', initialValue: "Hi, I'm the bottom");
+  final backgroundColor = context.knobs.color(
+    label: 'background color',
+    initialValue: theme.colors.primaryLight,
+  );
+  final textColor = context.knobs.color(
+    label: 'text color',
+    initialValue: theme.colors.onPrimary,
+  );
 
   return Scaffold(
     appBar: AppBar(
@@ -26,7 +34,7 @@ Widget evToggle(BuildContext context) {
         ),
         child: DecoratedBox(
           decoration: BoxDecoration(
-            color: theme.colors.secondary,
+            color: backgroundColor,
             borderRadius: theme.radius.asBorderRadius.s,
           ),
           child: Center(
@@ -34,7 +42,7 @@ Widget evToggle(BuildContext context) {
               padding: theme.sizes.asInsets.l,
               child: AppText.bodyMedium(
                 childText,
-                color: theme.colors.onSurface,
+                color: textColor,
               ),
             ),
           ),
