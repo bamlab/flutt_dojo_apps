@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bam_theme/cdapp_theme.dart';
+import 'package:flutter_dojo_apps/statistics/widgets/time_graph.dart';
 import 'package:flutter_dojo_apps/statistics/widgets/time_of_task.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
@@ -9,6 +10,7 @@ class StatisticsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // const totalTime = Duration(hours: 40, minutes: 56);
+    final theme = Theme.of(context);
 
     const timeOfTasks = [
       Duration(hours: 17, minutes: 47),
@@ -88,6 +90,25 @@ class StatisticsView extends StatelessWidget {
               ),
             ),
           ),
+          const AppGap.xxxl(
+            isSliver: true,
+          ),
+          SliverPadding(
+            padding: EdgeInsets.symmetric(horizontal: theme.sizes.xl),
+            sliver: const SliverToBoxAdapter(
+              child: AppText.titleLarge('Temps de la semaine'),
+            ),
+          ),
+          const AppGap.m(isSliver: true),
+          SliverPadding(
+            padding: EdgeInsets.symmetric(horizontal: theme.sizes.xl),
+            sliver: const SliverToBoxAdapter(
+              child: TimeGraph(
+                timeOfTasks: timeOfTasks,
+              ),
+            ),
+          ),
+          const AppGap.m(isSliver: true),
         ],
       ),
     );
