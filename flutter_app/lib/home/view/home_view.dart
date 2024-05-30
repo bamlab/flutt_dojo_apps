@@ -1,8 +1,12 @@
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bam_theme/cdapp_theme.dart';
-import 'package:flutter_dojo_apps/home/view/widgets/project_radio_button.dart';
+import 'package:flutter_dojo_apps/home/utils/show_project_selection_bottom_sheet.dart';
+import 'package:flutter_dojo_apps/home/view/widgets/display_selected_project.dart';
+import 'package:flutter_dojo_apps/home/view/widgets/select_project_button.dart';
 
-const _projectList = ['TF1+', 'Decathlon', 'Leroy Merlin', 'Carrefour'];
+const _projectList =
+    IListConst(['TF1+', 'Decathlon', 'Leroy Merlin', 'Carrefour']);
 
 class HomeView extends StatefulWidget {
   const HomeView({
@@ -30,63 +34,16 @@ class _HomeViewState extends State<HomeView> {
 
   String selectedProject = '';
 
-  void selectProject(String project) {
+  void onSelectedProject(String project) {
     setState(() {
       selectedProject = project;
     });
   }
 
-  void openProjectSelectionBottomSheet() {
-    showModalBottomSheet<void>(
-      context: context,
-      clipBehavior: Clip.hardEdge,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(16),
-          topRight: Radius.circular(16),
-        ),
-      ),
-      builder: (context) {
-        return DecoratedBox(
-          decoration: const BoxDecoration(
-            color: Colors.white,
-          ),
-          child: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.all(24),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Text(
-                    'Sélectionner un projet',
-                    style: TextStyle(
-                      color: Color(0xFF241263),
-                      fontFamily: 'ZillaSlab',
-                      fontWeight: FontWeight.w700,
-                      fontSize: 26,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  ..._projectList.map((project) {
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 8),
-                      child: ProjectRadioButton(
-                        project: project,
-                        isSelected: selectedProject == project,
-                        onTap: () => selectProject(project),
-                      ),
-                    );
-                  }),
-                ],
-              ),
-            ),
-          ),
-        );
-      },
-    );
+  void onUnselectProject() {
+    setState(() {
+      selectedProject = '';
+    });
   }
 
   @override
@@ -99,27 +56,19 @@ class _HomeViewState extends State<HomeView> {
             mainAxisAlignment: MainAxisAlignment.center,
             // crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              OutlinedButton(
-                onPressed: openProjectSelectionBottomSheet,
-                style: OutlinedButton.styleFrom(
-                  backgroundColor: Colors.white.withOpacity(0.4),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
+              if (selectedProject.isNotEmpty)
+                DisplaySelectedProject(
+                  project: selectedProject,
+                  onUnselectProject: onUnselectProject,
+                )
+              else
+                SelectProjectButton(
+                  onTap: () => showProjectSelectionBottomSheet(
+                    context: context,
+                    projectList: _projectList,
+                    onSelectedProject: onSelectedProject,
                   ),
-                  padding: const EdgeInsets.all(16),
-                  side: const BorderSide(color: Colors.white, width: 2),
                 ),
-                child: const Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      'Sélectionner un projet',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    Icon(Icons.keyboard_arrow_down, color: Colors.white),
-                  ],
-                ),
-              ),
               Text(
                 _timer.asPrettyString,
                 style: const TextStyle(
