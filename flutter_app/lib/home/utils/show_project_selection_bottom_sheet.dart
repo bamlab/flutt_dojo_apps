@@ -5,7 +5,6 @@ import 'package:flutter_dojo_apps/home/view/widgets/project_selection_bottom_she
 void showProjectSelectionBottomSheet({
   required BuildContext context,
   required IList<String> projectList,
-  required void Function(String) onSelectedProject,
 }) {
   showModalBottomSheet<void>(
     context: context,
@@ -19,7 +18,6 @@ void showProjectSelectionBottomSheet({
     builder: (context) {
       return ProjectSelectionBottomSheet(
         projectList: projectList,
-        onSelectedProject: onSelectedProject,
       );
     },
   );

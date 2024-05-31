@@ -5,12 +5,10 @@ import 'package:flutter_dojo_apps/home/view/widgets/project_selection.dart';
 class ProjectSelectionBottomSheet extends StatelessWidget {
   const ProjectSelectionBottomSheet({
     required this.projectList,
-    required this.onSelectedProject,
     super.key,
   });
 
   final IList<String> projectList;
-  final void Function(String) onSelectedProject;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +37,6 @@ class ProjectSelectionBottomSheet extends StatelessWidget {
               ),
               ProjectSelection(
                 projectList: projectList,
-                onSelectProject: onSelectedProject,
               ),
             ],
           ),

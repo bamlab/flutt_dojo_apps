@@ -4,11 +4,13 @@ import 'package:flutter_bam_theme/cdapp_theme.dart';
 import 'package:flutter_dojo_apps/home/utils/show_project_selection_bottom_sheet.dart';
 import 'package:flutter_dojo_apps/home/view/widgets/display_selected_project.dart';
 import 'package:flutter_dojo_apps/home/view/widgets/select_project_button.dart';
+import 'package:flutter_dojo_apps/shared/data/providers/selected_project_provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 const _projectList =
     IListConst(['TF1+', 'Decathlon', 'Leroy Merlin', 'Carrefour']);
 
-class HomeView extends StatefulWidget {
+class HomeView extends ConsumerStatefulWidget {
   const HomeView({
     required this.title,
     super.key,
@@ -17,28 +19,20 @@ class HomeView extends StatefulWidget {
   final String title;
 
   @override
-  State<HomeView> createState() => _HomeViewState();
+  ConsumerState<HomeView> createState() => _HomeViewState();
 }
 
-class _HomeViewState extends State<HomeView> {
+class _HomeViewState extends ConsumerState<HomeView> {
   final Duration _timer = Duration.zero;
 
-  String selectedProject = '';
-
-  void onSelectedProject(String project) {
-    setState(() {
-      selectedProject = project;
-    });
-  }
-
   void onUnselectProject() {
-    setState(() {
-      selectedProject = '';
-    });
+    ref.read(selectedProjectProvider.notifier).selectedProject = '';
   }
 
   @override
   Widget build(BuildContext context) {
+    final selectedProject = ref.watch(selectedProjectProvider);
+
     return Stack(
       children: [
         Padding(
@@ -56,7 +50,6 @@ class _HomeViewState extends State<HomeView> {
                   onTap: () => showProjectSelectionBottomSheet(
                     context: context,
                     projectList: _projectList,
-                    onSelectedProject: onSelectedProject,
                   ),
                 ),
               Text(
