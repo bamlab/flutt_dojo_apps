@@ -46,7 +46,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
       _timer.cancel();
     } else {
       _stopwatch.start();
-      _timer = Timer.periodic(const Duration(milliseconds: 900), (timer) {
+      _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
         setState(() {});
       });
     }
