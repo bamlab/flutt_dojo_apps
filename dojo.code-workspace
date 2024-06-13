@@ -38,82 +38,27 @@
     "version": "0.2.0",
     "configurations": [
       {
-        "name": "📱 dojo dev debug",
+        "name": "📱 Dojo App debug",
         "request": "launch",
         "type": "dart",
         "cwd": "${workspaceFolder:📱 Dojo App}",
-        "program": "lib/main.dart",
-        "args": ["--flavor", "dev", "--dart-define-from-file=.env.dev"]
+        "program": "lib/main.dart"
       },
       {
-        "name": "📱 Dojo App dev profile",
+        "name": "📱 Dojo App profile",
         "request": "launch",
         "type": "dart",
         "cwd": "${workspaceFolder:📱 Dojo App}",
         "program": "lib/main.dart",
-        "flutterMode": "profile",
-        "args": ["--flavor", "dev", "--dart-define-from-file=.env.dev"]
+        "flutterMode": "profile"
       },
       {
-        "name": "📱 Dojo App dev release",
+        "name": "📱 Dojo App release",
         "request": "launch",
         "type": "dart",
         "cwd": "${workspaceFolder:📱 Dojo App}",
         "program": "lib/main.dart",
-        "flutterMode": "release",
-        "args": ["--flavor", "dev", "--dart-define-from-file=.env.dev"]
-      },
-      {
-        "name": "📱 Dojo App staging debug",
-        "request": "launch",
-        "type": "dart",
-        "cwd": "${workspaceFolder:📱 Dojo App}",
-        "program": "lib/main.dart",
-        "args": ["--flavor", "staging", "--dart-define-from-file=.env.staging"]
-      },
-      {
-        "name": "📱 Dojo App staging profile",
-        "request": "launch",
-        "type": "dart",
-        "cwd": "${workspaceFolder:📱 Dojo App}",
-        "program": "lib/main.dart",
-        "flutterMode": "profile",
-        "args": ["--flavor", "staging", "--dart-define-from-file=.env.staging"]
-      },
-      {
-        "name": "📱 Dojo App staging release",
-        "request": "launch",
-        "type": "dart",
-        "cwd": "${workspaceFolder:📱 Dojo App}",
-        "program": "lib/main.dart",
-        "flutterMode": "release",
-        "args": ["--flavor", "staging", "--dart-define-from-file=.env.staging"]
-      },
-      {
-        "name": "📱 Dojo App prod debug",
-        "request": "launch",
-        "type": "dart",
-        "cwd": "${workspaceFolder:📱 Dojo App}",
-        "program": "lib/main.dart",
-        "args": ["--flavor", "prod", "--dart-define-from-file=.env.prod"]
-      },
-      {
-        "name": "📱 Dojo App prod profile",
-        "request": "launch",
-        "type": "dart",
-        "cwd": "${workspaceFolder:📱 Dojo App}",
-        "program": "lib/main.dart",
-        "flutterMode": "profile",
-        "args": ["--flavor", "prod", "--dart-define-from-file=.env.prod"]
-      },
-      {
-        "name": "📱 Dojo App prod release",
-        "request": "launch",
-        "type": "dart",
-        "cwd": "${workspaceFolder:📱 Dojo App}",
-        "program": "lib/main.dart",
-        "flutterMode": "release",
-        "args": ["--flavor", "prod", "--dart-define-from-file=.env.prod"]
+        "flutterMode": "release"
       },
       {
         "name": "⚛️ Widgetbook",
