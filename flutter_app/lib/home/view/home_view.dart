@@ -1,9 +1,13 @@
+import 'dart:async';
+
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bam_theme/cdapp_theme.dart';
 import 'package:flutter_dojo_apps/home/utils/show_project_selection_bottom_sheet.dart';
 import 'package:flutter_dojo_apps/home/view/widgets/display_selected_project.dart';
+import 'package:flutter_dojo_apps/home/view/widgets/pause_timer_button.dart';
 import 'package:flutter_dojo_apps/home/view/widgets/select_project_button.dart';
+import 'package:flutter_dojo_apps/home/view/widgets/start_timer_button.dart';
 import 'package:flutter_dojo_apps/shared/data/providers/selected_project_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -23,93 +27,105 @@ class HomeView extends ConsumerStatefulWidget {
 }
 
 class _HomeViewState extends ConsumerState<HomeView> {
-  final Duration _timer = Duration.zero;
+  late Stopwatch _stopwatch;
+  late Timer _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _stopwatch = Stopwatch();
+  }
 
   void onUnselectProject() {
     ref.read(selectedProjectProvider.notifier).selectedProject = '';
   }
 
+  void startTimer() {
+    if (_stopwatch.isRunning) {
+      _stopwatch.stop();
+      _timer.cancel();
+    } else {
+      _stopwatch.start();
+      _timer = Timer.periodic(const Duration(milliseconds: 900), (timer) {
+        setState(() {});
+      });
+    }
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     final selectedProject = ref.watch(selectedProjectProvider);
+    final timerButton = _stopwatch.isRunning
+        ? PauseTimerButton(
+            onTap: startTimer,
+          )
+        : StartTimerButton(
+            onTap: startTimer,
+          );
 
-    return Stack(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              if (selectedProject.isNotEmpty)
-                DisplaySelectedProject(
-                  project: selectedProject,
-                  onUnselectProject: onUnselectProject,
-                )
-              else
-                SelectProjectButton(
-                  onTap: () => showProjectSelectionBottomSheet(
-                    context: context,
-                    projectList: _projectList,
-                  ),
-                ),
-              Text(
-                _timer.asPrettyString,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 70,
-                  fontFamily: 'ZillaSlab',
-                  fontWeight: FontWeight.w600,
+    return SingleChildScrollView(
+      physics: const AlwaysScrollableBouncingScrollPhysics(),
+      child: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            if (selectedProject.isNotEmpty)
+              DisplaySelectedProject(
+                project: selectedProject,
+                onUnselectProject: onUnselectProject,
+              )
+            else
+              SelectProjectButton(
+                onTap: () => showProjectSelectionBottomSheet(
+                  context: context,
+                  projectList: _projectList,
                 ),
               ),
-              const SizedBox(
-                height: 16,
+            Text(
+              _stopwatch.elapsed.asPrettyString,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 70,
+                fontFamily: 'ZillaSlab',
+                fontWeight: FontWeight.w600,
               ),
-              ElevatedButton(
-                onPressed: () => {},
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            timerButton,
+            const Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(top: 48, bottom: 16),
+                  child: AppText.titleLarge(
+                    'Mes dernières tâches',
+                    textAlign: TextAlign.start,
                   ),
-                  padding: const EdgeInsets.all(36.5),
-                  backgroundColor: const Color(0xFF241263),
                 ),
-                child: const Icon(
-                  Icons.play_arrow_outlined,
-                  size: 80,
-                  color: Colors.white,
+                DayView(
+                  duration: Duration(minutes: 45, seconds: 30),
+                  title: 'TF1+',
+                  icon: Icons.check_circle,
+                  date: 'Lundi 20/03',
                 ),
-              ),
-              const Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(top: 48, bottom: 16),
-                    child: AppText.titleLarge(
-                      'Mes dernières tâches',
-                      textAlign: TextAlign.start,
-                    ),
-                  ),
-                  DayView(
-                    duration: Duration(minutes: 45, seconds: 30),
-                    title: 'TF1+',
-                    icon: Icons.check_circle,
-                    date: 'Lundi 20/03',
-                  ),
-                  SizedBox(
-                    height: 16,
-                  ),
-                  DayView(
-                    duration: Duration(hours: 1, minutes: 32, seconds: 15),
-                    title: 'Decathlon',
-                    icon: Icons.check_circle,
-                    date: 'Lundi 18/03',
-                  ),
-                ],
-              ),
-            ],
-          ),
+                SizedBox(
+                  height: 16,
+                ),
+                DayView(
+                  duration: Duration(hours: 1, minutes: 32, seconds: 15),
+                  title: 'Decathlon',
+                  icon: Icons.check_circle,
+                  date: 'Lundi 18/03',
+                ),
+              ],
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }
