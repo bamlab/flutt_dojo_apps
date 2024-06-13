@@ -14,14 +14,17 @@ class ProjectRadioButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final radius = BorderRadius.circular(16);
+
     return Material(
       color: Colors.white,
       child: InkWell(
+        borderRadius: radius,
         onTap: onTap,
         child: Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: radius,
             border: Border.all(
               color: const Color(0xFFD3C7FF),
               width: 2,
@@ -32,7 +35,8 @@ class ProjectRadioButton extends StatelessWidget {
             children: [
               Text(project, style: const TextStyle(color: Color(0xFF241263))),
               const Spacer(),
-              Container(
+              AnimatedContainer(
+                duration: kThemeAnimationDuration,
                 padding: const EdgeInsets.all(2),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
@@ -43,7 +47,8 @@ class ProjectRadioButton extends StatelessWidget {
                     width: 2,
                   ),
                 ),
-                child: Container(
+                child: AnimatedContainer(
+                  duration: kThemeAnimationDuration,
                   width: 16,
                   height: 16,
                   decoration: BoxDecoration(

@@ -38,6 +38,7 @@ dev_dependencies:
     git:
       url: https://github.com/bamlab/bam_analysis.git
       ref: 98176cdbaf95a8cd089752076debbe0c08787418
+  build_runner: ^2.4.10
   file: ^7.0.0
   flutter_test:
     sdk: flutter

@@ -1,125 +1,57 @@
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bam_theme/cdapp_theme.dart';
-import 'package:flutter_dojo_apps/home/view/widgets/project_radio_button.dart';
+import 'package:flutter_dojo_apps/home/utils/show_project_selection_bottom_sheet.dart';
+import 'package:flutter_dojo_apps/home/view/widgets/display_selected_project.dart';
+import 'package:flutter_dojo_apps/home/view/widgets/select_project_button.dart';
+import 'package:flutter_dojo_apps/shared/data/providers/selected_project_provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-const _projectList = ['TF1+', 'Decathlon', 'Leroy Merlin', 'Carrefour'];
+const _projectList =
+    IListConst(['TF1+', 'Decathlon', 'Leroy Merlin', 'Carrefour']);
 
-class HomeView extends StatefulWidget {
+class HomeView extends ConsumerStatefulWidget {
   const HomeView({
     required this.title,
     super.key,
   });
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
   final String title;
 
   @override
-  State<HomeView> createState() => _HomeViewState();
+  ConsumerState<HomeView> createState() => _HomeViewState();
 }
 
-class _HomeViewState extends State<HomeView> {
+class _HomeViewState extends ConsumerState<HomeView> {
   final Duration _timer = Duration.zero;
 
-  String selectedProject = '';
-
-  void selectProject(String project) {
-    setState(() {
-      selectedProject = project;
-    });
-  }
-
-  void openProjectSelectionBottomSheet() {
-    showModalBottomSheet<void>(
-      context: context,
-      clipBehavior: Clip.hardEdge,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(16),
-          topRight: Radius.circular(16),
-        ),
-      ),
-      builder: (context) {
-        return DecoratedBox(
-          decoration: const BoxDecoration(
-            color: Colors.white,
-          ),
-          child: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.all(24),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Text(
-                    'Sélectionner un projet',
-                    style: TextStyle(
-                      color: Color(0xFF241263),
-                      fontFamily: 'ZillaSlab',
-                      fontWeight: FontWeight.w700,
-                      fontSize: 26,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  ..._projectList.map((project) {
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 8),
-                      child: ProjectRadioButton(
-                        project: project,
-                        isSelected: selectedProject == project,
-                        onTap: () => selectProject(project),
-                      ),
-                    );
-                  }),
-                ],
-              ),
-            ),
-          ),
-        );
-      },
-    );
+  void onUnselectProject() {
+    ref.read(selectedProjectProvider.notifier).selectedProject = '';
   }
 
   @override
   Widget build(BuildContext context) {
+    final selectedProject = ref.watch(selectedProjectProvider);
+
     return Stack(
       children: [
         Padding(
           padding: const EdgeInsets.all(24),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            // crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              OutlinedButton(
-                onPressed: openProjectSelectionBottomSheet,
-                style: OutlinedButton.styleFrom(
-                  backgroundColor: Colors.white.withOpacity(0.4),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
+              if (selectedProject.isNotEmpty)
+                DisplaySelectedProject(
+                  project: selectedProject,
+                  onUnselectProject: onUnselectProject,
+                )
+              else
+                SelectProjectButton(
+                  onTap: () => showProjectSelectionBottomSheet(
+                    context: context,
+                    projectList: _projectList,
                   ),
-                  padding: const EdgeInsets.all(16),
-                  side: const BorderSide(color: Colors.white, width: 2),
                 ),
-                child: const Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      'Sélectionner un projet',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    Icon(Icons.keyboard_arrow_down, color: Colors.white),
-                  ],
-                ),
-              ),
               Text(
                 _timer.asPrettyString,
                 style: const TextStyle(
@@ -232,23 +164,11 @@ class DayView extends StatelessWidget {
                   title,
                   color: theme.colors.primary,
                   fontWeight: FontWeight.w800,
-                  // style: TextStyle(
-                  //   color: theme.primaryColor,
-                  //   fontSize: 16,
-                  //   fontFamily: "Roboto",
-                  //   fontWeight: FontWeight.w800,
-                  // ),
                 ),
                 const Spacer(),
                 AppText.titleMedium(
                   duration.asPrettyString,
                   color: theme.colors.primary,
-                  // style: TextStyle(
-                  //   color: theme.primaryColor,
-                  //   fontSize: 20,
-                  //   fontFamily: "Roboto",
-                  //   fontWeight: FontWeight.w600,
-                  // ),
                 ),
               ],
             ),
