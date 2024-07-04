@@ -6,6 +6,7 @@ class LightCard extends StatelessWidget {
     required this.child,
     this.borderRadius = const BorderRadius.all(Radius.circular(10)),
     this.border,
+    this.hasBorder = true,
     super.key,
   });
 
@@ -15,24 +16,27 @@ class LightCard extends StatelessWidget {
   /// If null, the default is a white linear gradient.
   final BoxBorder? border;
   final BorderRadiusGeometry borderRadius;
+  final bool hasBorder;
 
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        border: border ??
-            GradientBoxBorder(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Colors.white.withOpacity(0.4),
-                  Colors.white.withOpacity(0),
-                  Colors.white.withOpacity(0),
-                  Colors.white.withOpacity(0.1),
-                ],
-              ),
-            ),
+        border: hasBorder
+            ? border ??
+                GradientBoxBorder(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Colors.white.withOpacity(0.4),
+                      Colors.white.withOpacity(0),
+                      Colors.white.withOpacity(0),
+                      Colors.white.withOpacity(0.1),
+                    ],
+                  ),
+                )
+            : null,
         color: Colors.white.withOpacity(0.2),
         borderRadius: borderRadius,
       ),
