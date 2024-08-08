@@ -230,29 +230,31 @@ class AddTaskButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onPressed,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          color: const Color(0xFFF1EDFF),
-        ),
-        child: const Padding(
-          padding: EdgeInsets.symmetric(vertical: 21),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              AppText.titleMedium(
-                'Ajouter une tâche',
-                color: Color(0xFF241263),
-              ),
-              AppGap.xs(),
-              Icon(
-                size: 24,
-                Icons.add,
-                color: Color(0xFF241263),
-              ),
-            ],
+    final radius = BorderRadius.circular(16);
+    return ClipRRect(
+      borderRadius: radius,
+      child: Material(
+        color: const Color(0xFFF1EDFF),
+        child: InkWell(
+          onTap: onPressed,
+          borderRadius: radius,
+          child: const Padding(
+            padding: EdgeInsets.symmetric(vertical: 21),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                AppText.titleMedium(
+                  'Ajouter une tâche',
+                  color: Color(0xFF241263),
+                ),
+                AppGap.xs(),
+                Icon(
+                  size: 24,
+                  Icons.add,
+                  color: Color(0xFF241263),
+                ),
+              ],
+            ),
           ),
         ),
       ),
