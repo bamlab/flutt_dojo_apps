@@ -17,10 +17,15 @@ class TaskListView extends StatefulWidget {
 
 class _TaskListViewState extends State<TaskListView> {
   TodoState todoState = TodoState.todo;
-  List<TodoObject> todos = [];
+  List<TodoObject> todos = [
+    TodoObject(name: 'Task 1'),
+  ];
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final sizes = theme.sizes;
+
     return Stack(
       children: [
         BackdropFilter(
@@ -70,41 +75,38 @@ class _TaskListViewState extends State<TaskListView> {
                   child: SwipeNoticeBox(),
                 ),
                 const AppGap.xs(),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
-                  child: TodoBox(),
-                ),
-                const AppGap.xs(),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
-                  child: AddTaskButton(),
-                ),
                 Expanded(
-                  child: ListView.builder(
-                    itemCount: todos.length,
-                    itemBuilder: (context, index) => Dismissible(
-                      key: Key(index.toString()),
-                      onDismissed: (_) => setState(() {
-                        // todos[index].setToDone();
-                        todos.removeAt(index);
-                      }),
-                      child: TodoCard(
-                        todo: todos[index],
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: sizes.s),
+                    child: ListView.builder(
+                      itemCount: todos.length,
+                      itemBuilder: (context, index) => Padding(
+                        padding: EdgeInsets.only(bottom: sizes.xs),
+                        child: Dismissible(
+                          key: ValueKey(todos[index]),
+                          onDismissed: (_) => setState(() {
+                            todos.removeAt(index);
+                          }),
+                          child: TodoBox(
+                            name: todos[index].name,
+                          ),
+                        ),
                       ),
                     ),
                   ),
                 ),
-                // Dismissible(
-                //   key: const Key('add'),
-                //   child: ElevatedButton(
-                //     onPressed: () {
-                //       setState(() {
-                //         todos.add(TodoObject(name: 'New task'));
-                //       });
-                //     },
-                //     child: const Text('Ajouter une tâche'),
-                //   ),
-                // ),
+                const AppGap.xs(),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: AddTaskButton(
+                    onPressed: () {
+                      setState(() {
+                        todos.add(TodoObject(name: 'New Task'));
+                      });
+                    },
+                  ),
+                ),
+                const AppGap.xs(),
               ],
             ),
           ),
@@ -175,20 +177,22 @@ class SwipeNoticeBox extends StatelessWidget {
 }
 
 class TodoBox extends StatelessWidget {
-  const TodoBox({super.key});
+  const TodoBox({required this.name, super.key});
+
+  final String name;
 
   @override
   Widget build(BuildContext context) {
-    return const LightCard(
-      borderRadius: BorderRadius.all(Radius.circular(16)),
+    return LightCard(
+      borderRadius: const BorderRadius.all(Radius.circular(16)),
       hasBorder: false,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 21),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 21),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Flexible(child: Text('blablabla')),
-            Icon(
+            Flexible(child: Text(name)),
+            const Icon(
               Icons.keyboard_arrow_down,
             ),
           ],
@@ -199,31 +203,36 @@ class TodoBox extends StatelessWidget {
 }
 
 class AddTaskButton extends StatelessWidget {
-  const AddTaskButton({super.key});
+  const AddTaskButton({required this.onPressed, super.key});
+
+  final void Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        color: const Color(0xFFF1EDFF),
-      ),
-      child: const Padding(
-        padding: EdgeInsets.symmetric(vertical: 21),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            AppText.titleMedium(
-              'Ajouter une tâche',
-              color: Color(0xFF241263),
-            ),
-            AppGap.xs(),
-            Icon(
-              size: 24,
-              Icons.add,
-              color: Color(0xFF241263),
-            ),
-          ],
+    return InkWell(
+      onTap: onPressed,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+          color: const Color(0xFFF1EDFF),
+        ),
+        child: const Padding(
+          padding: EdgeInsets.symmetric(vertical: 21),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              AppText.titleMedium(
+                'Ajouter une tâche',
+                color: Color(0xFF241263),
+              ),
+              AppGap.xs(),
+              Icon(
+                size: 24,
+                Icons.add,
+                color: Color(0xFF241263),
+              ),
+            ],
+          ),
         ),
       ),
     );
