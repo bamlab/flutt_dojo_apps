@@ -84,6 +84,7 @@ class _TaskListViewState extends State<TaskListView> {
                         padding: EdgeInsets.only(bottom: sizes.xs),
                         child: Dismissible(
                           key: ValueKey(todos[index]),
+                          direction: DismissDirection.startToEnd,
                           onDismissed: (_) => setState(() {
                             todos.removeAt(index);
                           }),
