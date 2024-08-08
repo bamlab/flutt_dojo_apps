@@ -1,8 +1,6 @@
 import 'dart:ui';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bam_theme/cdapp_theme.dart';
 import 'package:flutter_dojo_apps/statistics/widgets/light_card.dart';
 import 'package:flutter_dojo_apps/task_list/widgets/task_list_header.dart';
@@ -17,6 +15,7 @@ class TaskListView extends StatefulWidget {
 
 class _TaskListViewState extends State<TaskListView> {
   TodoState todoState = TodoState.todo;
+  final listKey = GlobalKey<AnimatedListState>();
   List<TodoObject> todos = [
     TodoObject(name: 'Task 1'),
   ];
@@ -78,18 +77,36 @@ class _TaskListViewState extends State<TaskListView> {
                 Expanded(
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: sizes.s),
-                    child: ListView.builder(
-                      itemCount: todos.length,
-                      itemBuilder: (context, index) => Padding(
+                    child: AnimatedList(
+                      key: listKey,
+                      initialItemCount: todos.length,
+                      itemBuilder: (context, index, animation) => Padding(
                         padding: EdgeInsets.only(bottom: sizes.xs),
-                        child: Dismissible(
-                          key: ValueKey(todos[index]),
-                          direction: DismissDirection.startToEnd,
-                          onDismissed: (_) => setState(() {
-                            todos.removeAt(index);
-                          }),
-                          child: TodoBox(
-                            name: todos[index].name,
+                        child: SlideTransition(
+                          position: CurvedAnimation(
+                            curve: Curves.easeOut,
+                            parent: animation,
+                          ).drive(
+                            Tween<Offset>(
+                              begin: const Offset(-1, 0),
+                              end: Offset.zero,
+                            ),
+                          ),
+                          child: Dismissible(
+                            key: ValueKey(todos[index]),
+                            direction: DismissDirection.startToEnd,
+                            onDismissed: (_) {
+                              setState(() {
+                                todos.removeAt(index);
+                                listKey.currentState?.removeItem(
+                                  index,
+                                  (context, animation) => const SizedBox(),
+                                );
+                              });
+                            },
+                            child: TodoBox(
+                              name: todos[index].name,
+                            ),
                           ),
                         ),
                       ),
@@ -103,6 +120,9 @@ class _TaskListViewState extends State<TaskListView> {
                     onPressed: () {
                       setState(() {
                         todos.add(TodoObject(name: 'New Task'));
+                        listKey.currentState?.insertItem(
+                          todos.length - 1,
+                        );
                       });
                     },
                   ),
