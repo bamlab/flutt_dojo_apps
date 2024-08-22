@@ -19,6 +19,7 @@ class _TaskListViewState extends State<TaskListView> {
   List<TodoObject> todos = [
     TodoObject(name: 'Task 1'),
   ];
+  final ScrollController _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -79,6 +80,7 @@ class _TaskListViewState extends State<TaskListView> {
                     padding: EdgeInsets.symmetric(horizontal: sizes.s),
                     child: AnimatedList(
                       key: listKey,
+                      controller: _scrollController,
                       initialItemCount: todos.length,
                       itemBuilder: (context, index, animation) => Padding(
                         padding: EdgeInsets.only(bottom: sizes.xs),
@@ -123,6 +125,13 @@ class _TaskListViewState extends State<TaskListView> {
                         listKey.currentState?.insertItem(
                           todos.length - 1,
                         );
+                        WidgetsBinding.instance.addPostFrameCallback((_) {
+                          _scrollController.animateTo(
+                            _scrollController.position.maxScrollExtent,
+                            duration: kThemeAnimationDuration,
+                            curve: Curves.easeOut,
+                          );
+                        });
                       });
                     },
                   ),
