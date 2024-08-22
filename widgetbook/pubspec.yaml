@@ -21,10 +21,10 @@ dependencies:
   widgetbook_annotation: ^3.0.0
 
 dev_dependencies:
-  bam_analysis:
+  theodo_analysis:
     git:
-      url: https://github.com/bamlab/bam_analysis.git
-      ref: 98176cdbaf95a8cd089752076debbe0c08787418
+      url: https://github.com/bamlab/theodo_analysis.git
+      ref: 8ea6cd0f0c4df81edefef940ee7ff61ac5458e52
   build_runner: ^2.4.5
   flutter_lints: ^2.0.0
   flutter_test:

@@ -32,16 +32,16 @@ dependencies:
 
 dev_dependencies:
   adaptive_test: ^0.4.0
-  bam_analysis:
-    git:
-      url: https://github.com/bamlab/bam_analysis.git
-      ref: 98176cdbaf95a8cd089752076debbe0c08787418
   build_runner: ^2.4.10
   ci: ^0.1.0
   custom_lint: ^0.5.3
   flutter_test:
     sdk: flutter
   mocktail: ^0.3.0
+  theodo_analysis:
+    git:
+      url: https://github.com/bamlab/theodo_analysis.git
+      ref: 8ea6cd0f0c4df81edefef940ee7ff61ac5458e52
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

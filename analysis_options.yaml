@@ -1,13 +1,9 @@
-include: package:bam_analysis/analysis_options.yaml
+include: package:theodo_analysis/analysis_options.yaml
 
 analyzer:
   exclude:
     - "example/**"
-    - "build/**"
-    - "**/*.g.dart"
-    - "**/*.freezed.dart"
-    - "**/*gicons.dart"
-    - "**/*.graphql.dart"
+  
 linter:
   rules:
     # Not mandatory since this is not a sdk

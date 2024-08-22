@@ -34,15 +34,15 @@ dependencies:
 
 dev_dependencies:
   adaptive_test: ^0.4.1
-  bam_analysis:
-    git:
-      url: https://github.com/bamlab/bam_analysis.git
-      ref: 98176cdbaf95a8cd089752076debbe0c08787418
   build_runner: ^2.4.10
   file: ^7.0.0
   flutter_test:
     sdk: flutter
   mocktail: ^1.0.1
+  theodo_analysis:
+    git:
+      url: https://github.com/bamlab/theodo_analysis.git
+      ref: 8ea6cd0f0c4df81edefef940ee7ff61ac5458e52
   video_player_platform_interface: ^6.2.1
 
 flutter:
