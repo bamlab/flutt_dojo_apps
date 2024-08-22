@@ -10,7 +10,7 @@ Widget appErrorView(BuildContext context) {
   final theme = Theme.of(context);
   final title = context.knobs.string(label: 'title', initialValue: 'title');
   final color = context.knobs.color(
-    label: 'title',
+    label: title,
     initialValue: theme.colors.error,
   );
   final message = context.knobs.string(
@@ -19,9 +19,7 @@ Widget appErrorView(BuildContext context) {
   );
   final bottomText = context.knobs
       .string(label: 'bottom text', initialValue: "Hi, I'm the bottom");
-  final isRefreshing = context.knobs.boolean(
-    label: 'isRefreshing',
-  );
+  final isRefreshing = context.knobs.boolean(label: 'isRefreshing');
   final showIcon = context.knobs.boolean(
     label: 'showIcon',
     initialValue: true,
@@ -36,13 +34,13 @@ Widget appErrorView(BuildContext context) {
       child: AppErrorView(
         title: title,
         message: message,
+        icon: showIcon ? Icons.error : null,
         bottomWidget: AppText.bodySmall(
           bottomText,
           color: theme.colors.onSurface,
         ),
-        color: color,
-        icon: showIcon ? Icons.error : null,
         isRefreshing: isRefreshing,
+        color: color,
       ),
     ),
   );
