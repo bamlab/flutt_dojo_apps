@@ -6,8 +6,10 @@ import 'package:flutter_bam_theme/cdapp_theme.dart';
 import 'package:flutter_dojo_apps/home/utils/show_project_selection_bottom_sheet.dart';
 import 'package:flutter_dojo_apps/home/view/widgets/display_selected_project.dart';
 import 'package:flutter_dojo_apps/home/view/widgets/pause_timer_button.dart';
+import 'package:flutter_dojo_apps/home/view/widgets/restart_timer_button.dart';
 import 'package:flutter_dojo_apps/home/view/widgets/select_project_button.dart';
 import 'package:flutter_dojo_apps/home/view/widgets/start_timer_button.dart';
+import 'package:flutter_dojo_apps/home/view/widgets/stop_timer_button.dart';
 import 'package:flutter_dojo_apps/shared/data/providers/selected_project_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -26,10 +28,36 @@ class HomeView extends ConsumerStatefulWidget {
   ConsumerState<HomeView> createState() => _HomeViewState();
 }
 
-class _HomeViewState extends ConsumerState<HomeView> {
+class _HomeViewState extends ConsumerState<HomeView>
+    with TickerProviderStateMixin {
   late Stopwatch _stopwatch;
   late Timer _timer;
+  late final AnimationController _controller = AnimationController(
+    duration: const Duration(milliseconds: 500),
+    vsync: this,
+  );
 
+  late final Animation<double> _animation = CurvedAnimation(
+    reverseCurve: Curves.easeOutCubic,
+    parent: _controller,
+    curve: Curves.easeInCubic,
+  );
+
+  late final Animation<AlignmentGeometry> _alignmentAnimation =
+      Tween<AlignmentGeometry>(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+  ).animate(
+    CurvedAnimation(
+      parent: _controller,
+      curve: Curves.decelerate,
+    ),
+  );
+
+  late final Animation<double> _linearAnimation = CurvedAnimation(
+    parent: _controller,
+    curve: Curves.linear,
+  );
   @override
   void initState() {
     super.initState();
@@ -49,6 +77,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
       _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
         setState(() {});
       });
+      _controller.forward();
     }
     setState(() {});
   }
@@ -64,67 +93,107 @@ class _HomeViewState extends ConsumerState<HomeView> {
             onTap: startTimer,
           );
 
-    return SingleChildScrollView(
-      physics: const AlwaysScrollableBouncingScrollPhysics(),
-      child: Padding(
-        padding: const EdgeInsets.all(24),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            if (selectedProject.isNotEmpty)
-              DisplaySelectedProject(
-                project: selectedProject,
-                onUnselectProject: onUnselectProject,
-              )
-            else
-              SelectProjectButton(
-                onTap: () => showProjectSelectionBottomSheet(
-                  context: context,
-                  projectList: _projectList,
-                ),
-              ),
-            Text(
-              _stopwatch.elapsed.asPrettyString,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 70,
-                fontFamily: 'ZillaSlab',
-                fontWeight: FontWeight.w600,
+    return Padding(
+      padding: const EdgeInsets.all(24),
+      child: Column(
+        children: <Widget>[
+          if (selectedProject.isNotEmpty)
+            DisplaySelectedProject(
+              project: selectedProject,
+              onUnselectProject: onUnselectProject,
+            )
+          else
+            SelectProjectButton(
+              onTap: () => showProjectSelectionBottomSheet(
+                context: context,
+                projectList: _projectList,
               ),
             ),
-            const SizedBox(
-              height: 16,
+          Text(
+            _stopwatch.elapsed.asPrettyString,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 70,
+              fontFamily: 'ZillaSlab',
+              fontWeight: FontWeight.w600,
             ),
-            timerButton,
-            const Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(top: 48, bottom: 16),
-                  child: AppText.titleLarge(
-                    'Mes dernières tâches',
-                    textAlign: TextAlign.start,
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          Expanded(
+            child: AnimatedBuilder(
+              animation: _animation,
+              builder: (context, _) => Stack(
+                alignment: _alignmentAnimation.value,
+                children: [
+                  Transform.translate(
+                    offset: Offset(
+                      -_animation.value * 160,
+                      _animation.value * (-137 / 2 + 56 / 2),
+                    ),
+                    child: RestartTimerButton(
+                      onTap: () {
+                        print('restart');
+                        _stopwatch.reset();
+                        setState(() {});
+                      },
+                    ),
                   ),
-                ),
-                DayView(
-                  duration: Duration(minutes: 45, seconds: 30),
-                  title: 'TF1+',
-                  icon: Icons.check_circle,
-                  date: 'Lundi 20/03',
-                ),
-                SizedBox(
-                  height: 16,
-                ),
-                DayView(
-                  duration: Duration(hours: 1, minutes: 32, seconds: 15),
-                  title: 'Decathlon',
-                  icon: Icons.check_circle,
-                  date: 'Lundi 18/03',
-                ),
-              ],
+                  Transform.translate(
+                    offset: Offset(
+                      _animation.value * 160,
+                      _animation.value * (-137 / 2 + 56 / 2),
+                    ),
+                    child: StopTimerButton(
+                      onTap: () {
+                        print('stop');
+                        _stopwatch.reset();
+                        _stopwatch.stop();
+                        _controller.reverse();
+                        setState(() {});
+                      },
+                    ),
+                  ),
+                  timerButton,
+                ],
+              ),
             ),
-          ],
-        ),
+          ),
+          SizeTransition(
+            sizeFactor: ReverseAnimation(_linearAnimation),
+            child: FadeTransition(
+              opacity: ReverseAnimation(_animation),
+              child: const Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(top: 48, bottom: 16),
+                    child: AppText.titleLarge(
+                      'Mes dernières tâches',
+                      textAlign: TextAlign.start,
+                    ),
+                  ),
+                  DayView(
+                    duration: Duration(minutes: 45, seconds: 30),
+                    title: 'TF1+',
+                    icon: Icons.check_circle,
+                    date: 'Lundi 20/03',
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  DayView(
+                    duration: Duration(hours: 1, minutes: 32, seconds: 15),
+                    title: 'Decathlon',
+                    icon: Icons.check_circle,
+                    date: 'Lundi 18/03',
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
