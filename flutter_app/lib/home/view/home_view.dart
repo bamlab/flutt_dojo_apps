@@ -95,105 +95,123 @@ class _HomeViewState extends ConsumerState<HomeView>
 
     return Padding(
       padding: const EdgeInsets.all(24),
-      child: Column(
-        children: <Widget>[
-          if (selectedProject.isNotEmpty)
-            DisplaySelectedProject(
-              project: selectedProject,
-              onUnselectProject: onUnselectProject,
-            )
-          else
-            SelectProjectButton(
-              onTap: () => showProjectSelectionBottomSheet(
-                context: context,
-                projectList: _projectList,
+      child: AnimatedBuilder(
+        animation: _animation,
+        builder: (context, _) => Column(
+          children: <Widget>[
+            if (selectedProject.isNotEmpty)
+              DisplaySelectedProject(
+                project: selectedProject,
+                onUnselectProject: onUnselectProject,
+              )
+            else
+              SelectProjectButton(
+                onTap: () => showProjectSelectionBottomSheet(
+                  context: context,
+                  projectList: _projectList,
+                ),
+              ),
+            Text(
+              _stopwatch.elapsed.asPrettyString,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 70,
+                fontFamily: 'ZillaSlab',
+                fontWeight: FontWeight.w600,
               ),
             ),
-          Text(
-            _stopwatch.elapsed.asPrettyString,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 70,
-              fontFamily: 'ZillaSlab',
-              fontWeight: FontWeight.w600,
+            const SizedBox(
+              height: 16,
             ),
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          Expanded(
-            child: AnimatedBuilder(
-              animation: _animation,
-              builder: (context, _) => Stack(
+            Expanded(
+              child: Stack(
                 alignment: _alignmentAnimation.value,
                 children: [
-                  Transform.translate(
-                    offset: Offset(
-                      -_animation.value * 160,
-                      _animation.value * (-137 / 2 + 56 / 2),
-                    ),
-                    child: RestartTimerButton(
-                      onTap: () {
-                        print('restart');
-                        _stopwatch.reset();
-                        setState(() {});
-                      },
-                    ),
-                  ),
-                  Transform.translate(
-                    offset: Offset(
-                      _animation.value * 160,
-                      _animation.value * (-137 / 2 + 56 / 2),
-                    ),
-                    child: StopTimerButton(
-                      onTap: () {
-                        print('stop');
-                        _stopwatch.reset();
-                        _stopwatch.stop();
-                        _controller.reverse();
-                        setState(() {});
-                      },
+                  Padding(
+                    padding: const EdgeInsets.only(top: 153 / 2 - 72 / 2),
+                    child: Transform.translate(
+                      offset: Offset(
+                        0,
+                        ReverseAnimation(_linearAnimation).value *
+                            (-153 / 2 + 72 / 2),
+                      ),
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints(minHeight: 153),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Transform.translate(
+                              offset: Offset(
+                                -_animation.value * 100,
+                                0,
+                              ),
+                              child: RestartTimerButton(
+                                onTap: () {
+                                  print('restart');
+                                  _stopwatch.reset();
+                                  setState(() {});
+                                },
+                              ),
+                            ),
+                            Transform.translate(
+                              offset: Offset(
+                                _animation.value * 100,
+                                0,
+                              ),
+                              child: StopTimerButton(
+                                onTap: () {
+                                  print('stop');
+                                  _stopwatch.reset();
+                                  _stopwatch.stop();
+                                  _controller.reverse();
+                                  setState(() {});
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                   timerButton,
                 ],
               ),
             ),
-          ),
-          SizeTransition(
-            sizeFactor: ReverseAnimation(_linearAnimation),
-            child: FadeTransition(
-              opacity: ReverseAnimation(_animation),
-              child: const Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(top: 48, bottom: 16),
-                    child: AppText.titleLarge(
-                      'Mes dernières tâches',
-                      textAlign: TextAlign.start,
+            SizeTransition(
+              sizeFactor: ReverseAnimation(_linearAnimation),
+              child: FadeTransition(
+                opacity: ReverseAnimation(_animation),
+                child: const Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(top: 48, bottom: 16),
+                      child: AppText.titleLarge(
+                        'Mes dernières tâches',
+                        textAlign: TextAlign.start,
+                      ),
                     ),
-                  ),
-                  DayView(
-                    duration: Duration(minutes: 45, seconds: 30),
-                    title: 'TF1+',
-                    icon: Icons.check_circle,
-                    date: 'Lundi 20/03',
-                  ),
-                  SizedBox(
-                    height: 16,
-                  ),
-                  DayView(
-                    duration: Duration(hours: 1, minutes: 32, seconds: 15),
-                    title: 'Decathlon',
-                    icon: Icons.check_circle,
-                    date: 'Lundi 18/03',
-                  ),
-                ],
+                    DayView(
+                      duration: Duration(minutes: 45, seconds: 30),
+                      title: 'TF1+',
+                      icon: Icons.check_circle,
+                      date: 'Lundi 20/03',
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    DayView(
+                      duration: Duration(hours: 1, minutes: 32, seconds: 15),
+                      title: 'Decathlon',
+                      icon: Icons.check_circle,
+                      date: 'Lundi 18/03',
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
