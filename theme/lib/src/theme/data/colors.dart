@@ -170,8 +170,6 @@ class ThemeColorsData extends Equatable {
         brightness: brightness,
         primary: primary,
         onPrimary: onPrimary,
-        background: background,
-        onBackground: onBackground,
         error: error,
         onError: onError,
         secondary: secondary,
@@ -237,9 +235,7 @@ class ThemeColorsData extends Equatable {
 class ThemeColorsDataExtension
     extends ThemeExtension<ThemeColorsDataExtension> {
   /// default constructor.
-  const ThemeColorsDataExtension({
-    required this.colors,
-  });
+  const ThemeColorsDataExtension({required this.colors});
 
   /// [ThemeColorsData] which will be accessible through this theme
   /// extension
@@ -247,15 +243,14 @@ class ThemeColorsDataExtension
 
   @override
   ThemeColorsDataExtension copyWith({ThemeColorsData? colors}) {
-    return ThemeColorsDataExtension(
-      colors: colors ?? this.colors,
-    );
+    return ThemeColorsDataExtension(colors: colors ?? this.colors);
   }
 
   @override
   ThemeColorsDataExtension lerp(
     ThemeExtension<ThemeColorsDataExtension>? other,
     double t,
+    // ignore: avoid-long-functions , not possible nor uselful to split this
   ) {
     final scopedOther = other as ThemeColorsDataExtension?;
 
@@ -264,97 +259,104 @@ class ThemeColorsDataExtension
         brightness: t < 0.5
             ? colors.brightness
             : (scopedOther?.colors.brightness ?? colors.brightness),
-        primary: Color.lerp(
+        primary: ColorLerp.safeLerp(
           colors.primary,
           scopedOther?.colors.primary,
           t,
-        )!,
-        primaryLight: Color.lerp(
+        ),
+        primaryLight: ColorLerp.safeLerp(
           colors.primaryLight,
           scopedOther?.colors.primaryLight,
           t,
-        )!,
-        grey50: Color.lerp(
+        ),
+        grey50: ColorLerp.safeLerp(
           colors.grey50,
           scopedOther?.colors.grey50,
           t,
-        )!,
-        grey100: Color.lerp(
+        ),
+        grey100: ColorLerp.safeLerp(
           colors.grey100,
           scopedOther?.colors.grey100,
           t,
-        )!,
-        grey200: Color.lerp(
+        ),
+        grey200: ColorLerp.safeLerp(
           colors.grey200,
           scopedOther?.colors.grey200,
           t,
-        )!,
-        grey300: Color.lerp(
+        ),
+        grey300: ColorLerp.safeLerp(
           colors.grey300,
           scopedOther?.colors.grey300,
           t,
-        )!,
-        onPrimary: Color.lerp(
+        ),
+        onPrimary: ColorLerp.safeLerp(
           colors.onPrimary,
           scopedOther?.colors.onPrimary,
           t,
-        )!,
-        background: Color.lerp(
+        ),
+        background: ColorLerp.safeLerp(
           colors.background,
           scopedOther?.colors.background,
           t,
-        )!,
-        onBackground: Color.lerp(
+        ),
+        onBackground: ColorLerp.safeLerp(
           colors.onBackground,
           scopedOther?.colors.onBackground,
           t,
-        )!,
-        error: Color.lerp(
+        ),
+        error: ColorLerp.safeLerp(
           colors.error,
           scopedOther?.colors.error,
           t,
-        )!,
-        onError: Color.lerp(
+        ),
+        onError: ColorLerp.safeLerp(
           colors.onError,
           scopedOther?.colors.onError,
           t,
-        )!,
-        statusWarning: Color.lerp(
+        ),
+        statusWarning: ColorLerp.safeLerp(
           colors.statusWarning,
           scopedOther?.colors.statusWarning,
           t,
-        )!,
-        statusSuccess: Color.lerp(
+        ),
+        statusSuccess: ColorLerp.safeLerp(
           colors.statusSuccess,
           scopedOther?.colors.statusSuccess,
           t,
-        )!,
-        secondary: Color.lerp(
+        ),
+        secondary: ColorLerp.safeLerp(
           colors.secondary,
           scopedOther?.colors.secondary,
           t,
-        )!,
-        onSecondary: Color.lerp(
+        ),
+        onSecondary: ColorLerp.safeLerp(
           colors.onSecondary,
           scopedOther?.colors.onSecondary,
           t,
-        )!,
-        surface: Color.lerp(
+        ),
+        surface: ColorLerp.safeLerp(
           colors.surface,
           scopedOther?.colors.surface,
           t,
-        )!,
-        onSurface: Color.lerp(
+        ),
+        onSurface: ColorLerp.safeLerp(
           colors.onSurface,
           scopedOther?.colors.onSurface,
           t,
-        )!,
-        disable: Color.lerp(
+        ),
+        disable: ColorLerp.safeLerp(
           colors.disable,
           scopedOther?.colors.disable,
           t,
-        )!,
+        ),
       ),
     );
+  }
+}
+
+extension ColorLerp on Color {
+  static Color safeLerp(Color a, Color? b, double t) {
+    // ignore: avoid-non-null-assertion , lerp is only null if a==b==null
+    return Color.lerp(a, b, t)!;
   }
 }

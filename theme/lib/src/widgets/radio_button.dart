@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bam_theme/cdapp_theme.dart';
+import 'package:flutter_bam_theme/src/theme/themes_data.dart';
+import 'package:flutter_bam_theme/src/widgets/gap.dart';
+import 'package:flutter_bam_theme/src/widgets/text.dart';
 
-class RadioButton<T> extends StatefulWidget {
+class RadioButton<T> extends StatelessWidget {
   const RadioButton({
     required this.description,
     required this.isSelected,
@@ -16,23 +18,19 @@ class RadioButton<T> extends StatefulWidget {
   final T item;
 
   @override
-  State<RadioButton<T>> createState() => _RadioButtonState<T>();
-}
-
-class _RadioButtonState<T> extends State<RadioButton<T>> {
-  @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
     final onSurfaceColor = () {
-      if (!widget.isSelected) {
+      if (!isSelected) {
         return theme.colors.grey200;
       }
+
       return theme.colors.colorsScheme.onSurface;
     }();
 
-    final name = widget.name;
-    final description = widget.description;
+    final name = this.name;
+    final description = this.description;
 
     return Padding(
       padding: theme.sizes.asInsets.m.copyWith(left: theme.sizes.m),
@@ -42,18 +40,12 @@ class _RadioButtonState<T> extends State<RadioButton<T>> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              _Dot(
-                isSelected: widget.isSelected,
-                onSurfaceColor: onSurfaceColor,
-              ),
+              _Dot(isSelected: isSelected, onSurfaceColor: onSurfaceColor),
               const AppGap.xs(),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  if (name != null)
-                    AppText.bodyLarge(
-                      name,
-                    ),
+                  if (name != null) AppText.bodyLarge(name),
                   if (description != null)
                     AppText.bodyMedium(
                       description,
@@ -70,10 +62,7 @@ class _RadioButtonState<T> extends State<RadioButton<T>> {
 }
 
 class _Dot extends StatelessWidget {
-  const _Dot({
-    required this.isSelected,
-    required this.onSurfaceColor,
-  });
+  const _Dot({required this.isSelected, required this.onSurfaceColor});
 
   final bool isSelected;
   final Color onSurfaceColor;

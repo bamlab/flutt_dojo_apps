@@ -105,17 +105,13 @@ class ThemeSizeData extends Equatable {
 }
 
 class ThemeSizeDataExtension extends ThemeExtension<ThemeSizeDataExtension> {
-  const ThemeSizeDataExtension({
-    required this.sizes,
-  });
+  const ThemeSizeDataExtension({required this.sizes});
 
   final ThemeSizeData sizes;
 
   @override
   ThemeSizeDataExtension copyWith({ThemeSizeData? sizes}) {
-    return ThemeSizeDataExtension(
-      sizes: sizes ?? this.sizes,
-    );
+    return ThemeSizeDataExtension(sizes: sizes ?? this.sizes);
   }
 
   @override
@@ -124,6 +120,7 @@ class ThemeSizeDataExtension extends ThemeExtension<ThemeSizeDataExtension> {
     double t,
   ) {
     final scopedOther = other as ThemeSizeDataExtension?;
+
     return ThemeSizeDataExtension(
       sizes: ThemeSizeData(
         xxxs: lerpDouble(sizes.xxxs, scopedOther?.sizes.xxxs ?? 0, t) ?? 0,

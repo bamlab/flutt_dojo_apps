@@ -11,14 +11,11 @@ import 'package:flutter_dojo_apps/home/view/widgets/start_timer_button.dart';
 import 'package:flutter_dojo_apps/shared/data/providers/selected_project_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-const _projectList =
+const _kProjectList =
     IListConst(['TF1+', 'Decathlon', 'Leroy Merlin', 'Carrefour']);
 
 class HomeView extends ConsumerStatefulWidget {
-  const HomeView({
-    required this.title,
-    super.key,
-  });
+  const HomeView({required this.title, super.key});
 
   final String title;
 
@@ -36,33 +33,35 @@ class _HomeViewState extends ConsumerState<HomeView> {
     _stopwatch = Stopwatch();
   }
 
-  void onUnselectProject() {
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
+
+  void _onUnselectProject() {
     ref.read(selectedProjectProvider.notifier).selectedProject = '';
   }
 
-  void startTimer() {
-    if (_stopwatch.isRunning) {
-      _stopwatch.stop();
-      _timer.cancel();
-    } else {
-      _stopwatch.start();
-      _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-        setState(() {});
-      });
-    }
-    setState(() {});
+  void _startTimer() {
+    setState(() {
+      if (_stopwatch.isRunning) {
+        _stopwatch.stop();
+        _timer.cancel();
+      } else {
+        _stopwatch.start();
+        // ignore: no-empty-block , we just want to keep track of the timer
+        _timer = Timer.periodic(const Duration(seconds: 1), (timer) {});
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     final selectedProject = ref.watch(selectedProjectProvider);
     final timerButton = _stopwatch.isRunning
-        ? PauseTimerButton(
-            onTap: startTimer,
-          )
-        : StartTimerButton(
-            onTap: startTimer,
-          );
+        ? PauseTimerButton(onTap: _startTimer)
+        : StartTimerButton(onTap: _startTimer);
 
     return SingleChildScrollView(
       physics: const AlwaysScrollableBouncingScrollPhysics(),
@@ -70,31 +69,31 @@ class _HomeViewState extends ConsumerState<HomeView> {
         padding: const EdgeInsets.all(24),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+          children: [
             if (selectedProject.isNotEmpty)
               DisplaySelectedProject(
                 project: selectedProject,
-                onUnselectProject: onUnselectProject,
+                onUnselectProject: _onUnselectProject,
               )
             else
               SelectProjectButton(
-                onTap: () => showProjectSelectionBottomSheet(
-                  context: context,
-                  projectList: _projectList,
-                ),
+                onTap: () async {
+                  await showProjectSelectionBottomSheet(
+                    context: context,
+                    projectList: _kProjectList,
+                  );
+                },
               ),
             Text(
               _stopwatch.elapsed.asPrettyString,
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 70,
-                fontFamily: 'ZillaSlab',
                 fontWeight: FontWeight.w600,
+                fontFamily: 'ZillaSlab',
               ),
             ),
-            const SizedBox(
-              height: 16,
-            ),
+            const SizedBox(height: 16),
             timerButton,
             const Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -112,9 +111,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                   icon: Icons.check_circle,
                   date: 'Lundi 20/03',
                 ),
-                SizedBox(
-                  height: 16,
-                ),
+                SizedBox(height: 16),
                 DayView(
                   duration: Duration(hours: 1, minutes: 32, seconds: 15),
                   title: 'Decathlon',
@@ -151,31 +148,19 @@ class DayView extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        AppText.bodyMedium(
-          date,
-          color: theme.colors.primary,
-        ),
-        const SizedBox(
-          height: 8,
-        ),
+        AppText.bodyMedium(date, color: theme.colors.primary),
+        const SizedBox(height: 8),
         DecoratedBox(
-          decoration: BoxDecoration(
-            color: const Color(0x33FFFFFF),
-            borderRadius: BorderRadius.circular(16),
+          decoration: const BoxDecoration(
+            color: Color(0x33FFFFFF),
+            borderRadius: BorderRadius.all(Radius.circular(16)),
           ),
           child: Padding(
-            padding:
-                const EdgeInsets.only(top: 12, bottom: 12, left: 16, right: 16),
+            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
             child: Row(
               children: [
-                Icon(
-                  icon,
-                  color: Colors.white,
-                  size: 40,
-                ),
-                const SizedBox(
-                  width: 16,
-                ),
+                Icon(icon, size: 40, color: Colors.white),
+                const SizedBox(width: 16),
                 AppText.bodyMedium(
                   title,
                   color: theme.colors.primary,

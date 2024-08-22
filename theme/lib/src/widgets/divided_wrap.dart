@@ -1,7 +1,6 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/material.dart';
-
-import 'package:flutter_bam_theme/cdapp_theme.dart';
+import 'package:flutter_bam_theme/src/theme/themes_data.dart';
 
 class DividedWrap extends StatelessWidget {
   DividedWrap({
@@ -32,22 +31,16 @@ class DividedWrap extends StatelessWidget {
   final Clip clipBehavior;
   final double dividerHeight;
 
-  List<Widget> getSeparatedChildren(ThemeData theme) {
+  List<Widget> _getSeparatedChildren(ThemeData theme) {
     final childrenIList = IList(children);
 
     final separator = SizedBox(
       height: dividerHeight,
-      child: customSeparator ??
-          VerticalDivider(
-            color: theme.colors.grey50,
-          ),
+      child: customSeparator ?? VerticalDivider(color: theme.colors.grey50),
     );
 
-    final childrenWithDividers = childrenIList
-        .expand(
-          (child) => [child, separator],
-        )
-        .toIList();
+    final childrenWithDividers =
+        childrenIList.expand((child) => [child, separator]).toIList();
 
     return childrenWithDividers.removeLast().toList();
   }
@@ -65,7 +58,8 @@ class DividedWrap extends StatelessWidget {
       textDirection: textDirection,
       verticalDirection: verticalDirection,
       runAlignment: runAlignement,
-      children: getSeparatedChildren(theme),
+      // ignore: avoid-returning-widgets , TODO: Fix this
+      children: _getSeparatedChildren(theme),
     );
   }
 }

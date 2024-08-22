@@ -1,7 +1,10 @@
 // ignore_for_file: always_put_required_named_parameters_first
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bam_theme/cdapp_theme.dart';
+import 'package:flutter_bam_theme/src/theme/themes_data.dart';
+import 'package:flutter_bam_theme/src/widgets/gap.dart';
+import 'package:flutter_bam_theme/src/widgets/tap.dart';
+import 'package:flutter_bam_theme/src/widgets/text.dart';
 
 class InfoTile extends StatelessWidget {
   const InfoTile({
@@ -25,15 +28,9 @@ class InfoTile extends StatelessWidget {
       onTap: onTap,
       child: Row(
         children: [
-          Icon(
-            icon,
-            color: theme.colors.primaryLight,
-          ),
+          Icon(icon, color: theme.colors.primaryLight),
           const AppGap.xxs(),
-          AppText.bodyMedium(
-            name,
-            color: color,
-          ),
+          AppText.bodyMedium(name, color: color),
         ],
       ),
     );

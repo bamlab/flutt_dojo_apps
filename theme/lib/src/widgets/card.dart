@@ -1,8 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-
-import 'package:flutter_bam_theme/cdapp_theme.dart';
+import 'package:flutter_bam_theme/src/theme/themes_data.dart';
+import 'package:flutter_bam_theme/src/widgets/gap.dart';
+import 'package:flutter_bam_theme/src/widgets/tap.dart';
 
 enum DividerType { gap, line, none }
 
@@ -64,10 +65,7 @@ class AppCard extends StatelessWidget {
       (DividerType.line) => Column(
           children: [
             const AppGap.xs(),
-            Divider(
-              thickness: 1,
-              color: theme.colors.grey100,
-            ),
+            Divider(thickness: 1, color: theme.colors.grey100),
             const AppGap.xs(),
           ],
         ),
@@ -80,11 +78,7 @@ class AppCard extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment:
                 crossAxisAlignmentBottom ?? CrossAxisAlignment.start,
-            children: [
-              child,
-              if (divider != null) divider,
-              bottom,
-            ],
+            children: [child, if (divider != null) divider, bottom],
           )
         : child;
 

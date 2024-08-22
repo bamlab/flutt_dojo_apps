@@ -1,7 +1,6 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/material.dart';
-
-import 'package:flutter_bam_theme/cdapp_theme.dart';
+import 'package:flutter_bam_theme/src/theme/themes_data.dart';
 
 class DividedColumn extends StatelessWidget {
   const DividedColumn({
@@ -26,7 +25,7 @@ class DividedColumn extends StatelessWidget {
   final VerticalDirection verticalDirection;
   final TextBaseline? textBaseline;
 
-  List<Widget> getSeparatedChildren(ThemeData theme) {
+  List<Widget> _getSeparatedChildren(ThemeData theme) {
     final childrenIList = IList(children);
 
     final separator = customSeparator ??
@@ -38,11 +37,8 @@ class DividedColumn extends StatelessWidget {
           child: const Divider(),
         );
 
-    final childrenWithDividers = childrenIList
-        .expand(
-          (child) => [child, separator],
-        )
-        .toIList();
+    final childrenWithDividers =
+        childrenIList.expand((child) => [child, separator]).toIList();
 
     return childrenWithDividers.removeLast().toList();
   }
@@ -58,7 +54,8 @@ class DividedColumn extends StatelessWidget {
       textDirection: textDirection,
       verticalDirection: verticalDirection,
       textBaseline: textBaseline,
-      children: getSeparatedChildren(theme),
+      // ignore: avoid-returning-widgets , TODO: Fix this
+      children: _getSeparatedChildren(theme),
     );
   }
 }

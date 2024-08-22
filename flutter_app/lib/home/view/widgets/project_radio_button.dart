@@ -14,20 +14,19 @@ class ProjectRadioButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final radius = BorderRadius.circular(16);
+    const radius = BorderRadius.all(Radius.circular(16));
 
     return Material(
       color: Colors.white,
       child: InkWell(
-        borderRadius: radius,
         onTap: onTap,
+        borderRadius: radius,
         child: Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
             borderRadius: radius,
-            border: Border.all(
-              color: const Color(0xFFD3C7FF),
-              width: 2,
+            border: const Border.fromBorderSide(
+              BorderSide(color: Color(0xFFD3C7FF), width: 2),
             ),
             color: isSelected ? const Color(0xFFD3C7FF) : Colors.transparent,
           ),

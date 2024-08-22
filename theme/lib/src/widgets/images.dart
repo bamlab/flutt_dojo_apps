@@ -1,8 +1,11 @@
+// ignore_for_file: avoid-dynamic
+
 import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bam_theme/cdapp_theme.dart';
+import 'package:flutter_bam_theme/src/theme/themes_data.dart';
+import 'package:flutter_bam_theme/src/widgets/loader.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:progressive_image/progressive_image.dart';
@@ -52,6 +55,7 @@ class InheritedCacheManager extends InheritedWidget {
   /// ```dart
   /// final cacheManager = InheritedCacheManager.of(context);
   /// ```
+  // ignore: prefer-widget-private-members , this is a public API
   static CacheManager of(BuildContext context) {
     final result =
         context.dependOnInheritedWidgetOfExactType<InheritedCacheManager>();
@@ -102,6 +106,7 @@ class InheritedCachedImageOverride extends InheritedWidget {
   /// ```dart
   /// final defaultImage = InheritedCachedImageOverride.of(context);
   /// ```
+  // ignore: prefer-widget-private-members , this is a public API
   static AssetImage? of(BuildContext context) {
     final result = context
         .dependOnInheritedWidgetOfExactType<InheritedCachedImageOverride>();
@@ -180,11 +185,8 @@ class ImageWithFallback extends StatelessWidget {
 
   /// Builder function to create an error widget. This builder is called when
   /// the image failed loading, for example due to a 404 NotFound exception.
-  final Widget Function(
-    BuildContext context,
-    String url,
-    dynamic error,
-  )? errorWidgetBuilder;
+  final Widget Function(BuildContext context, String url, dynamic error)?
+      errorWidgetBuilder;
 
   /// Duration of the fadeIn animation of the loaded image.
   ///
@@ -323,6 +325,7 @@ class ImageWithProgress extends StatelessWidget {
       WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
         onTargetImageLoaded?.call();
       });
+
       return Image.asset(
         defaultAssetImage.assetName,
         height: height,
@@ -382,10 +385,7 @@ class ImageWithProgress extends StatelessWidget {
           thumbnailUrl,
           thumbnailUrlCacheKey,
         ),
-        image: cachedNetworkImageProvider(
-          imageUrl,
-          imageUrlCacheKey,
-        ),
+        image: cachedNetworkImageProvider(imageUrl, imageUrlCacheKey),
         fadeDuration: theme.durations.xxs,
         fit: fit ?? BoxFit.scaleDown,
         width: width ?? double.infinity,
@@ -397,12 +397,7 @@ class ImageWithProgress extends StatelessWidget {
 }
 
 class ImagePlaceHolder extends StatelessWidget {
-  const ImagePlaceHolder({
-    super.key,
-    this.height,
-    this.width,
-    this.child,
-  });
+  const ImagePlaceHolder({super.key, this.height, this.width, this.child});
 
   final double? height;
   final double? width;
@@ -413,10 +408,7 @@ class ImagePlaceHolder extends StatelessWidget {
     final colors = Theme.of(context).colors;
 
     final child = this.child ??
-        Icon(
-          Icons.image_not_supported,
-          color: colors.onBackground,
-        );
+        Icon(Icons.image_not_supported, color: colors.onBackground);
 
     return Container(
       color: colors.grey100,
@@ -429,11 +421,7 @@ class ImagePlaceHolder extends StatelessWidget {
 }
 
 class AppPhotoView extends StatelessWidget {
-  const AppPhotoView({
-    required this.url,
-    super.key,
-    this.heroTag,
-  });
+  const AppPhotoView({required this.url, super.key, this.heroTag});
 
   final String url;
   final String? heroTag;

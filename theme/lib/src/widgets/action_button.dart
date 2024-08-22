@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_bam_theme/cdapp_theme.dart';
 import 'package:flutter_bam_theme/src/theme/data/colors.dart';
+import 'package:flutter_bam_theme/src/theme/themes_data.dart';
+import 'package:flutter_bam_theme/src/widgets/loader.dart';
+import 'package:flutter_bam_theme/src/widgets/tap.dart';
 
 class AppActionButton extends StatelessWidget {
   const AppActionButton({
@@ -36,8 +38,8 @@ class AppActionButton extends StatelessWidget {
   /// Whether the button is in the loading state.
   final bool isLoading;
 
-  static const dimension = kMinInteractiveDimensionCupertino;
-  static const borderWidth = 1;
+  static const _dimension = kMinInteractiveDimensionCupertino;
+  static const _borderWidth = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -54,19 +56,17 @@ class AppActionButton extends StatelessWidget {
         onTapCancel: onTapCancel,
         fit: BoxFit.cover,
         child: SizedBox.square(
-          dimension: dimension,
+          dimension: _dimension,
           child: DecoratedBox(
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               border: Border.all(
                 color: borderColor,
-                width: borderWidth.toDouble(),
+                width: _borderWidth.toDouble(),
               ),
             ),
             child: isLoading
-                ? AppLoader.regular(
-                    color: theme.colors.primary,
-                  )
+                ? AppLoader.regular(color: theme.colors.primary)
                 : Center(child: iconWidget),
           ),
         ),

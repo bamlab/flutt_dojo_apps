@@ -3,19 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dojo_apps/home/view/widgets/project_selection.dart';
 
 class ProjectSelectionBottomSheet extends StatelessWidget {
-  const ProjectSelectionBottomSheet({
-    required this.projectList,
-    super.key,
-  });
+  const ProjectSelectionBottomSheet({required this.projectList, super.key});
 
   final IList<String> projectList;
 
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
-      decoration: const BoxDecoration(
-        color: Colors.white,
-      ),
+      decoration: const BoxDecoration(color: Colors.white),
       child: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(24),
@@ -32,12 +27,8 @@ class ProjectSelectionBottomSheet extends StatelessWidget {
                   fontSize: 26,
                 ),
               ),
-              const SizedBox(
-                height: 16,
-              ),
-              ProjectSelection(
-                projectList: projectList,
-              ),
+              const SizedBox(height: 16),
+              ProjectSelection(projectList: projectList),
             ],
           ),
         ),

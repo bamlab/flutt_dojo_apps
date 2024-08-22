@@ -1,13 +1,14 @@
 import 'dart:async';
 
 import 'package:flutter/widgets.dart';
-import 'package:flutter_bam_theme/cdapp_theme.dart';
+import 'package:flutter_bam_theme/src/widgets/icons.g.dart';
+import 'package:flutter_bam_theme/src/widgets/images.dart';
+import 'package:flutter_bam_theme/src/widgets/loader.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:video_player/video_player.dart';
 
-@visibleForTesting
 class CachedVideoControllerService {
-  CachedVideoControllerService(this._cacheManager);
+  const CachedVideoControllerService(this._cacheManager);
   final BaseCacheManager _cacheManager;
 
   Future<VideoPlayerController> getControllerForVideo(
@@ -23,6 +24,7 @@ class CachedVideoControllerService {
       );
     }
     unawaited(_cacheManager.downloadFile(videoUrl));
+
     return VideoPlayerController.networkUrl(
       Uri.parse(videoUrl),
       videoPlayerOptions: videoPlayerOptions,
@@ -55,19 +57,26 @@ class ThemeVideo extends StatefulWidget {
 }
 
 class _ThemeVideoState extends State<ThemeVideo> {
-  CacheManager? cacheManager;
+  CacheManager? _cacheManager;
   VideoPlayerController? _controller;
-  bool hasError = false;
+  bool _hasError = false;
 
   @override
-  void didChangeDependencies() {
+  Future<void> didChangeDependencies() async {
     super.didChangeDependencies();
     final newCacheManager = InheritedCacheManager.of(context);
-    if (cacheManager != newCacheManager) {
-      cacheManager = newCacheManager;
-      _controller?.dispose();
-      _initializeVideoController(newCacheManager);
+    if (_cacheManager != newCacheManager) {
+      _cacheManager = newCacheManager;
+      await _controller?.dispose();
+      await _initializeVideoController(newCacheManager);
     }
+  }
+
+  @override
+  Future<void> dispose() async {
+    await _cacheManager?.dispose();
+    await _controller?.dispose();
+    super.dispose();
   }
 
   Future<void> _initializeVideoController(CacheManager cacheManager) async {
@@ -81,26 +90,23 @@ class _ThemeVideoState extends State<ThemeVideo> {
       await controller.setVolume(0);
       await controller.setLooping(true);
       await controller.play();
-      setState(() {
-        _controller = controller;
-      });
-    } catch (e) {
-      setState(() {
-        hasError = true;
-      });
-      return;
+      if (context.mounted) {
+        setState(() {
+          _controller = controller;
+        });
+      }
+    } catch (_) {
+      if (context.mounted) {
+        setState(() {
+          _hasError = true;
+        });
+      }
     }
   }
 
   @override
-  void dispose() {
-    _controller?.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    if (hasError) {
+    if (_hasError) {
       return widget.errorBuilder?.call(context) ??
           const Center(child: Icon(ThemeIcons.triangleexclamation_regular));
     }

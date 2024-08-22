@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bam_theme/cdapp_theme.dart';
+import 'package:flutter_bam_theme/src/theme/extensions.dart';
+import 'package:flutter_bam_theme/src/theme/themes_data.dart';
+import 'package:flutter_bam_theme/src/widgets/icons.g.dart';
+import 'package:flutter_bam_theme/src/widgets/tap.dart';
+import 'package:flutter_bam_theme/src/widgets/text.dart';
 
 class IntPicker extends StatefulWidget {
   const IntPicker({
@@ -19,23 +23,23 @@ class IntPicker extends StatefulWidget {
 }
 
 class _IntPickerState extends State<IntPicker> {
-  late int value = widget.initialValue;
+  late int _value = widget.initialValue;
 
-  void increaseValue() {
+  void _increaseValue() {
     setState(() {
-      value++;
+      _value += 1;
     });
-    widget.onValueChanged(value);
+    widget.onValueChanged(_value);
   }
 
-  void decreaseValue() {
-    if (value == 0) {
+  void _decreaseValue() {
+    if (_value == 0) {
       return;
     }
     setState(() {
-      value--;
+      _value -= 1;
     });
-    widget.onValueChanged(value);
+    widget.onValueChanged(_value);
   }
 
   @override
@@ -48,11 +52,11 @@ class _IntPickerState extends State<IntPicker> {
       duration: theme.durations.xs,
       switchInCurve: Curves.easeInOut,
       switchOutCurve: Curves.easeInOut,
-      child: value == 0
+      child: _value == 0
           ? _IntButton(
               buttonType: _IntButtonType.addition,
               borderRadiusType: _IntButtonBorderRadiusType.both,
-              onTap: increaseValue,
+              onTap: _increaseValue,
               size: size,
             )
           : Row(
@@ -61,23 +65,21 @@ class _IntPickerState extends State<IntPicker> {
                 _IntButton(
                   buttonType: _IntButtonType.substraction,
                   borderRadiusType: _IntButtonBorderRadiusType.left,
-                  onTap: decreaseValue,
+                  onTap: _decreaseValue,
                   size: size,
                 ),
                 Container(
                   decoration: BoxDecoration(
-                    border: Border.all(
-                      color: theme.colorScheme.primary,
-                    ),
+                    border: Border.all(color: theme.colorScheme.primary),
                   ),
                   height: size,
                   width: size,
-                  child: Center(child: AppText.labelLarge(value.toString())),
+                  child: Center(child: AppText.labelLarge(_value.toString())),
                 ),
                 _IntButton(
                   buttonType: _IntButtonType.addition,
                   borderRadiusType: _IntButtonBorderRadiusType.right,
-                  onTap: increaseValue,
+                  onTap: _increaseValue,
                   size: size,
                 ),
               ],
@@ -92,14 +94,11 @@ enum _IntButtonBorderRadiusType {
   both;
 
   T map<T>({required T left, required T right, required T both}) {
-    switch (this) {
-      case _IntButtonBorderRadiusType.left:
-        return left;
-      case _IntButtonBorderRadiusType.right:
-        return right;
-      case _IntButtonBorderRadiusType.both:
-        return both;
-    }
+    return switch (this) {
+      _IntButtonBorderRadiusType.left => left,
+      _IntButtonBorderRadiusType.right => right,
+      _IntButtonBorderRadiusType.both => both,
+    };
   }
 }
 
@@ -108,12 +107,10 @@ enum _IntButtonType {
   addition;
 
   T map<T>({required T soustraction, required T addition}) {
-    switch (this) {
-      case _IntButtonType.substraction:
-        return soustraction;
-      case _IntButtonType.addition:
-        return addition;
-    }
+    return switch (this) {
+      _IntButtonType.substraction => soustraction,
+      _IntButtonType.addition => addition,
+    };
   }
 }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bam_theme/cdapp_theme.dart';
+import 'package:flutter_bam_theme/src/theme/themes_data.dart';
+import 'package:flutter_bam_theme/src/widgets/tap.dart';
 
 class AppSelectableCard extends StatelessWidget {
   const AppSelectableCard({
@@ -11,7 +12,7 @@ class AppSelectableCard extends StatelessWidget {
     this.disabledBorderColor,
     super.key,
   }) : assert(
-          !(isSelected && isDisabled),
+          !isSelected || !isDisabled,
           'A card cannot be selected and disabled',
         );
 
@@ -44,6 +45,7 @@ class AppSelectableCard extends StatelessWidget {
       if (isDisabled) {
         return disabledSurfaceColor ?? theme.colors.grey50;
       }
+
       return theme.colors.colorsScheme.surface;
     }();
 
@@ -51,6 +53,7 @@ class AppSelectableCard extends StatelessWidget {
       if (isDisabled || !isSelected) {
         return theme.colors.grey200;
       }
+
       return theme.colors.colorsScheme.onSurface;
     }();
 
@@ -61,6 +64,7 @@ class AppSelectableCard extends StatelessWidget {
       if (!isSelected) {
         return theme.colors.grey200;
       }
+
       return theme.colors.colorsScheme.onSurface;
     }();
 
@@ -74,10 +78,7 @@ class AppSelectableCard extends StatelessWidget {
       child: AnimatedContainer(
         decoration: BoxDecoration(
           color: surfaceColor,
-          border: Border.all(
-            width: theme.sizes.xxxs,
-            color: borderColor,
-          ),
+          border: Border.all(width: theme.sizes.xxxs, color: borderColor),
           borderRadius: borderRadius,
         ),
         duration: animationDuration,

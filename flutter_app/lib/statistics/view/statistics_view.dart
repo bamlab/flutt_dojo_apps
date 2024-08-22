@@ -44,11 +44,7 @@ class StatisticsView extends StatelessWidget {
               ),
             ),
           ),
-          const SliverToBoxAdapter(
-            child: SizedBox(
-              height: 20,
-            ),
-          ),
+          const SliverToBoxAdapter(child: SizedBox(height: 20)),
           SliverPadding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             sliver: SliverToBoxAdapter(
@@ -62,36 +58,49 @@ class StatisticsView extends StatelessWidget {
                     StaggeredGridTile.count(
                       crossAxisCellCount: 3,
                       mainAxisCellCount: 2,
-                      child: TimeOfTaskWidget(timeOfTask: timeOfTasks[0]),
+                      child: TimeOfTaskWidget(
+                        timeOfTask:
+                            timeOfTasks.elementAtOrNull(0) ?? Duration.zero,
+                      ),
                     ),
                     StaggeredGridTile.count(
                       crossAxisCellCount: 1,
                       mainAxisCellCount: 2,
-                      child: TimeOfTaskWidget(timeOfTask: timeOfTasks[1]),
+                      child: TimeOfTaskWidget(
+                        timeOfTask:
+                            timeOfTasks.elementAtOrNull(1) ?? Duration.zero,
+                      ),
                     ),
                     StaggeredGridTile.count(
                       crossAxisCellCount: 2,
                       mainAxisCellCount: 1,
-                      child: TimeOfTaskWidget(timeOfTask: timeOfTasks[2]),
+                      child: TimeOfTaskWidget(
+                        timeOfTask:
+                            timeOfTasks.elementAtOrNull(2) ?? Duration.zero,
+                      ),
                     ),
                     StaggeredGridTile.count(
                       crossAxisCellCount: 1,
                       mainAxisCellCount: 1,
-                      child: TimeOfTaskWidget(timeOfTask: timeOfTasks[3]),
+                      child: TimeOfTaskWidget(
+                        timeOfTask:
+                            timeOfTasks.elementAtOrNull(3) ?? Duration.zero,
+                      ),
                     ),
                     StaggeredGridTile.count(
                       crossAxisCellCount: 1,
                       mainAxisCellCount: 1,
-                      child: TimeOfTaskWidget(timeOfTask: timeOfTasks[4]),
+                      child: TimeOfTaskWidget(
+                        timeOfTask:
+                            timeOfTasks.elementAtOrNull(4) ?? Duration.zero,
+                      ),
                     ),
                   ],
                 ),
               ),
             ),
           ),
-          const AppGap.xxxl(
-            isSliver: true,
-          ),
+          const AppGap.xxxl(isSliver: true),
           SliverPadding(
             padding: EdgeInsets.symmetric(horizontal: theme.sizes.xl),
             sliver: const SliverToBoxAdapter(
@@ -102,9 +111,7 @@ class StatisticsView extends StatelessWidget {
           SliverPadding(
             padding: EdgeInsets.symmetric(horizontal: theme.sizes.xl),
             sliver: const SliverToBoxAdapter(
-              child: TimeGraph(
-                timeOfTasks: timeOfTasks,
-              ),
+              child: TimeGraph(timeOfTasks: timeOfTasks),
             ),
           ),
           const AppGap.m(isSliver: true),

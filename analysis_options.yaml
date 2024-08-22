@@ -32,9 +32,12 @@ dart_code_metrics:
     - avoid-inferrable-type-arguments
     - no-equal-arguments: false
     - prefer-correct-handler-name: false
-    - arguments-ordering:
-        alphabetize: false
-        last:
-          - child
-          - children
+    - arguments-ordering: false
+    - member-ordering: false
+    - avoid-collection-mutating-methods: false
+    - prefer-correct-callback-field-name: false
+    - match-getter-setter-field-names: false
+    - prefer-typedefs-for-callbacks: false
+    - prefer-prefixed-global-constants: false
+    - prefer-correct-setter-parameter-name: false
 

@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_bam_theme/cdapp_theme.dart';
 import 'package:flutter_bam_theme/src/theme/data/colors.dart';
+import 'package:flutter_bam_theme/src/theme/themes_data.dart';
 
 class AppTap extends StatelessWidget {
   const AppTap({
@@ -78,10 +78,7 @@ class AppTap extends StatelessWidget {
         : tapContent;
 
     if (fit != null) {
-      tap = FittedBox(
-        fit: fit,
-        child: tap,
-      );
+      tap = FittedBox(fit: fit, child: tap);
     }
 
     return tap;

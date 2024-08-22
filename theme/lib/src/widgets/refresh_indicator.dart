@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:capped_progress_indicator/capped_progress_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bam_theme/cdapp_theme.dart';
+import 'package:flutter_bam_theme/src/theme/themes_data.dart';
 
 /// The duration of the animation to show the refresh indicator.
 /// Similar to the RefreshIndicator widget.
@@ -115,23 +115,23 @@ class AppRefreshIndicatorState extends State<AppRefreshIndicator> {
   bool get _showing => _completer != null;
 
   /// Show the indicator without calling the given refresh callback.
-  void _show() {
+  Future<void> _show() async {
     assert(!_showing, 'Show called, but already showing!');
     // Notify the [RefreshIndicator] callback that the real callback given to
     // this widget by the user should not be called; this is just cosmetic.
     _onlyShow = true;
     // Show the [RefreshIndicator].
-    _refreshIndicatorKey.currentState!.show(atTop: widget.atTop);
+    await _refreshIndicatorKey.currentState?.show(atTop: widget.atTop);
   }
 
   /// Hide the indicator.
   void _hide() {
     assert(_showing, 'Hide called, but not showing!');
     assert(
-      !_completer!.isCompleted,
+      !(_completer?.isCompleted ?? false),
       'The completer should never exist in a completed state!',
     );
-    _completer!.complete();
+    _completer?.complete();
     _completer = null;
   }
 
@@ -139,11 +139,11 @@ class AppRefreshIndicatorState extends State<AppRefreshIndicator> {
   void initState() {
     super.initState();
     // If the indicator should be shown initially, show it.
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (widget.isRefreshing && !_showing) {
-        _show();
+        await _show();
       } else if (!widget.isRefreshing && _showing) {
-        _hide(); // coverage:ignore-line
+        _hide();
       }
     });
   }
@@ -155,6 +155,7 @@ class AppRefreshIndicatorState extends State<AppRefreshIndicator> {
       // The indicator may have been shown already, if it was shown
       // interactively. If it hasn't, show it now.
       if (!_showing) {
+        // ignore: avoid-async-call-in-sync-function , we are in didUpdateWidget
         _show();
       }
     } else {
@@ -242,10 +243,7 @@ class AppLinearProgressIndicator extends StatelessWidget {
               minHeight: minHeight,
               backgroundColor: foregroundColor.withOpacity(0.05),
             )
-          : SizedBox(
-              height: minHeight,
-              width: double.infinity,
-            ),
+          : SizedBox(height: minHeight, width: double.infinity),
     );
   }
 }
@@ -261,10 +259,7 @@ class SliverRefreshControl extends StatelessWidget {
   ///
   /// The [onRefresh] argument will be called when pulled far enough to trigger
   /// a refresh. It also trigger a HapticFeedback.
-  const SliverRefreshControl({
-    required this.onRefresh,
-    super.key,
-  });
+  const SliverRefreshControl({required this.onRefresh, super.key});
 
   final VoidCallback onRefresh;
 

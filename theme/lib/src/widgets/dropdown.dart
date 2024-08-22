@@ -1,5 +1,13 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bam_theme/cdapp_theme.dart';
+import 'package:flutter_bam_theme/src/theme/extensions.dart';
+import 'package:flutter_bam_theme/src/theme/themes_data.dart';
+import 'package:flutter_bam_theme/src/widgets/gap.dart';
+import 'package:flutter_bam_theme/src/widgets/icons.g.dart';
+import 'package:flutter_bam_theme/src/widgets/modal.dart';
+import 'package:flutter_bam_theme/src/widgets/radio_button.dart';
+import 'package:flutter_bam_theme/src/widgets/tap.dart';
+import 'package:flutter_bam_theme/src/widgets/text.dart';
 
 class Dropdown<T> extends StatefulWidget {
   const Dropdown({
@@ -22,12 +30,12 @@ class Dropdown<T> extends StatefulWidget {
 }
 
 class _DropdownState<T> extends State<Dropdown<T>> {
-  late T selectedItem;
+  late T _selectedItem;
 
   @override
   void initState() {
-    selectedItem = widget.initialItem;
     super.initState();
+    _selectedItem = widget.initialItem;
   }
 
   @override
@@ -36,16 +44,17 @@ class _DropdownState<T> extends State<Dropdown<T>> {
     final whenTapped = widget.whenTapped;
 
     final selectedRadioButton = widget.radioButtons
-        .firstWhere((radioButton) => radioButton.item == selectedItem);
-    final name = selectedRadioButton.name;
+        .firstWhereOrNull((radioButton) => radioButton.item == _selectedItem);
+    final name = selectedRadioButton?.name;
+
     return Row(
       children: [
         AppTap(
-          onTap: () {
+          onTap: () async {
             if (whenTapped != null) {
               whenTapped();
             }
-            showAppModal(
+            await showAppModal(
               routeName: 'dropdown_modal',
               context: context,
               child: _DropdownMenu<T>(
@@ -62,10 +71,7 @@ class _DropdownState<T> extends State<Dropdown<T>> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 if (name != null)
-                  AppText.bodyMedium(
-                    name,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  AppText.bodyMedium(name, fontWeight: FontWeight.w600),
                 const AppGap.xs(),
                 const Icon(ThemeIcons.chevrondown_solid),
               ],
@@ -78,7 +84,7 @@ class _DropdownState<T> extends State<Dropdown<T>> {
 
   void _onTap(T newItem) {
     setState(() {
-      selectedItem = newItem;
+      _selectedItem = newItem;
     });
     widget.onItemSelected(newItem);
   }
@@ -107,9 +113,7 @@ class _DropdownMenu<T> extends StatelessWidget {
               onTap(radioButton.item);
             },
           ),
-        const AppGap.xxl(
-          hasAdaptiveBottom: true,
-        ),
+        const AppGap.xxl(hasAdaptiveBottom: true),
       ],
     );
   }

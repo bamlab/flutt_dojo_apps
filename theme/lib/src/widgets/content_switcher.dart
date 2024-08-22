@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bam_theme/cdapp_theme.dart';
+import 'package:flutter_bam_theme/src/theme/themes_data.dart';
 
 class ContentSwitcher<T> extends StatefulWidget {
   const ContentSwitcher({
@@ -20,7 +20,7 @@ class ContentSwitcher<T> extends StatefulWidget {
 }
 
 class _ContentSwitcherState<T> extends State<ContentSwitcher<T>> {
-  late T currentContent = widget.initialContent;
+  late T _currentContent = widget.initialContent;
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +32,9 @@ class _ContentSwitcherState<T> extends State<ContentSwitcher<T>> {
         duration: theme.durations.xxs,
         child: widget.contentBuilder(
           context,
-          currentContent,
+          _currentContent,
           (newContent) => setState(() {
-            currentContent = newContent;
+            _currentContent = newContent;
           }),
         ),
       ),

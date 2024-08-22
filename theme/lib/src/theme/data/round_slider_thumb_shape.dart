@@ -38,13 +38,13 @@ class AppRoundSliderThumbShape extends RoundSliderThumbShape {
       end: sliderTheme.thumbColor,
     );
 
-    final color = colorTween.evaluate(enableAnimation)!;
+    final color = colorTween.evaluate(enableAnimation);
     final radius = radiusTween.evaluate(enableAnimation);
 
     canvas.drawCircle(
       center,
       radius,
-      Paint()..color = color,
+      Paint()..color = color ?? Colors.transparent,
     );
 
     canvas.drawCircle(

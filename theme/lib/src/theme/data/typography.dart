@@ -1,3 +1,5 @@
+// ignore_for_file: avoid-non-null-assertion
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bam_theme/src/theme/data/colors.dart';
 import 'package:flutter_bam_theme/src/utils/named.dart';

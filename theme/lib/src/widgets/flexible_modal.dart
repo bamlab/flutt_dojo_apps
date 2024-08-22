@@ -2,7 +2,11 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bam_theme/cdapp_theme.dart';
+import 'package:flutter_bam_theme/src/theme/themes_data.dart';
+import 'package:flutter_bam_theme/src/widgets/action_button.dart';
+import 'package:flutter_bam_theme/src/widgets/gap.dart';
+import 'package:flutter_bam_theme/src/widgets/icons.g.dart';
+import 'package:flutter_bam_theme/src/widgets/modal.dart';
 
 const kModalInitialHeightFraction = 0.42;
 
@@ -27,7 +31,7 @@ class AppFlexibleModal extends StatelessWidget {
     final theme = Theme.of(context);
 
     final safeAreaTopPadding =
-        MediaQuery.of(Scaffold.of(context).context).viewPadding.top;
+        MediaQuery.viewPaddingOf(Scaffold.of(context).context).top;
 
     final isFullScreen = scrollExtent > 0.7;
 
@@ -70,6 +74,7 @@ class AppFlexibleModal extends StatelessWidget {
     // Using will pop scope instead of dispose to fire the map padding
     // animation while the modal is closing.
     // Otherwise, the animation is fired when the modal is already closed.
+
     return DecoratedBox(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.vertical(top: modalRadius),
@@ -88,11 +93,7 @@ class AppFlexibleModal extends StatelessWidget {
                   opacity: isFullScreen ? 0 : 1,
                   duration: theme.durations.xxs,
                   child: const Column(
-                    children: [
-                      AppGap.m(),
-                      TopModalBar(),
-                      AppGap.m(),
-                    ],
+                    children: [AppGap.m(), TopModalBar(), AppGap.m()],
                   ),
                 ),
                 Padding(
@@ -117,13 +118,8 @@ class AppFlexibleModal extends StatelessWidget {
               ],
             ),
           ),
-          SliverToBoxAdapter(
-            child: child,
-          ),
-          const AppGap.xxl(
-            hasAdaptiveBottom: true,
-            isSliver: true,
-          ),
+          SliverToBoxAdapter(child: child),
+          const AppGap.xxl(hasAdaptiveBottom: true, isSliver: true),
         ],
       ),
     );

@@ -1,6 +1,7 @@
+// ignore_for_file: avoid-non-null-assertion
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bam_theme/cdapp_theme.dart';
 import 'package:flutter_bam_theme/src/theme/data/box_shadow.dart';
 import 'package:flutter_bam_theme/src/theme/data/breakpoints.dart';
 import 'package:flutter_bam_theme/src/theme/data/colors.dart';
@@ -8,18 +9,23 @@ import 'package:flutter_bam_theme/src/theme/data/cupertino_navigation_bar_theme.
 import 'package:flutter_bam_theme/src/theme/data/durations.dart';
 import 'package:flutter_bam_theme/src/theme/data/radius.dart';
 import 'package:flutter_bam_theme/src/theme/data/sizes.dart';
+import 'package:flutter_bam_theme/src/theme/data/typography.dart';
+import 'package:flutter_bam_theme/src/theme/extensions.dart';
 
 /// CDApp custom [ThemeData]. `ThemeMode.valIsere` version.
 ThemeData get dojo {
   const colors = ThemeColorsData.light();
+
   return _getThemeDataFromColors(colors);
 }
 
 ThemeData get dojoDark {
   const colors = ThemeColorsData.dark();
+
   return _getThemeDataFromColors(colors);
 }
 
+// ignore: avoid-long-functions , prefer concentrate all theme data here
 ThemeData _getThemeDataFromColors(ThemeColorsData colors) {
   final fallbackTheme = ThemeData.fallback();
   final textTheme = ThemeTypographyData.fromColors(colors);
@@ -41,14 +47,11 @@ ThemeData _getThemeDataFromColors(ThemeColorsData colors) {
       // The height of the Material app bar to match the height of the
       // Cupertino navigation bar.
       toolbarHeight: kMinInteractiveDimensionCupertino,
-      titleTextStyle: textTheme.headlineSmall!.copyWith(
+      titleTextStyle: textTheme.headlineSmall?.copyWith(
         color: colors.onPrimary,
       ),
     ),
-    iconTheme: IconThemeData(
-      color: colors.text,
-      size: sizesTheme.l,
-    ),
+    iconTheme: IconThemeData(color: colors.text, size: sizesTheme.l),
     dividerTheme: fallbackTheme.dividerTheme.copyWith(
       space: 1,
       thickness: 1,
@@ -64,18 +67,15 @@ ThemeData _getThemeDataFromColors(ThemeColorsData colors) {
     tabBarTheme: TabBarTheme(
       indicator: BoxDecoration(
         border: Border(
-          bottom: BorderSide(
-            color: colors.primary,
-            width: sizesTheme.xxxs,
-          ),
+          bottom: BorderSide(color: colors.primary, width: sizesTheme.xxxs),
         ),
       ),
       indicatorSize: TabBarIndicatorSize.label,
       labelPadding: sizesTheme.asInsets.m.horizontalOnly,
-      labelStyle: textTheme.bodyMedium!.copyWith(height: 1),
+      labelStyle: textTheme.bodyMedium?.copyWith(height: 1),
       labelColor: colors.primary,
       unselectedLabelColor: colors.primaryLight,
-      unselectedLabelStyle: textTheme.bodyMedium!.copyWith(height: 1),
+      unselectedLabelStyle: textTheme.bodyMedium?.copyWith(height: 1),
     ),
     cupertinoOverrideTheme: CupertinoThemeData(
       barBackgroundColor: colors.background,
@@ -120,41 +120,26 @@ ThemeData _getThemeDataFromColors(ThemeColorsData colors) {
       iconColor: colors.colorsScheme.onSurface,
     ),
     inputDecorationTheme: fallbackTheme.inputDecorationTheme.copyWith(
-      errorStyle: textTheme.bodyMedium!.copyWith(color: colors.onError),
+      errorStyle: textTheme.bodyMedium?.copyWith(color: colors.onError),
       errorMaxLines: 1,
       enabledBorder: OutlineInputBorder(
-        borderSide: BorderSide(
-          color: colors.grey100,
-          width: 2,
-        ),
+        borderSide: BorderSide(color: colors.grey100, width: 2),
         gapPadding: sizesTheme.xs,
       ),
       border: OutlineInputBorder(
-        borderSide: BorderSide(
-          color: colors.grey100,
-          width: 2,
-        ),
+        borderSide: BorderSide(color: colors.grey100, width: 2),
         gapPadding: sizesTheme.xs,
       ),
       focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(
-          color: colors.primary,
-          width: 2,
-        ),
+        borderSide: BorderSide(color: colors.primary, width: 2),
         gapPadding: sizesTheme.xs,
       ),
       errorBorder: OutlineInputBorder(
-        borderSide: BorderSide(
-          color: colors.onError,
-          width: 2,
-        ),
+        borderSide: BorderSide(color: colors.onError, width: 2),
         gapPadding: sizesTheme.xs,
       ),
       focusedErrorBorder: OutlineInputBorder(
-        borderSide: BorderSide(
-          color: colors.onError,
-          width: 2,
-        ),
+        borderSide: BorderSide(color: colors.onError, width: 2),
         gapPadding: sizesTheme.xs,
       ),
       contentPadding: EdgeInsets.symmetric(
@@ -261,6 +246,7 @@ extension ScreenDimensionsAwareness on ThemeState {
   bool get isLargeScreen {
     final mediaQuery = MediaQuery.of(context);
     final theme = Theme.of(context);
+
     return mediaQuery.size.width >= theme.breakpoints.horizontalBreakpoint;
   }
 }

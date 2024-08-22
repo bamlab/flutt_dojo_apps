@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 /// Breakpoints data for the CDAppTheme
 class ThemeBreakpointsData {
   /// Default constructor
-  ThemeBreakpointsData({
+  const ThemeBreakpointsData({
     required this.verticalBreakpoint,
     required this.horizontalBreakpoint,
   });
@@ -22,9 +22,7 @@ class ThemeBreakpointsData {
 
 class ThemeBreakpointsDataExtension
     extends ThemeExtension<ThemeBreakpointsDataExtension> {
-  const ThemeBreakpointsDataExtension({
-    required this.breakpoints,
-  });
+  const ThemeBreakpointsDataExtension({required this.breakpoints});
 
   final ThemeBreakpointsData breakpoints;
 
@@ -41,6 +39,7 @@ class ThemeBreakpointsDataExtension
     double t,
   ) {
     final scopedOther = other as ThemeBreakpointsDataExtension?;
+
     return ThemeBreakpointsDataExtension(
       breakpoints: ThemeBreakpointsData(
         horizontalBreakpoint: t < 0.5

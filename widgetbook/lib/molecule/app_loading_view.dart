@@ -19,9 +19,7 @@ Widget appLoadingView(BuildContext context) {
     ),
     body: Padding(
       padding: theme.sizes.asInsets.m,
-      child: AppLoadingView(
-        color: color,
-      ),
+      child: AppLoadingView(color: color),
     ),
   );
 }

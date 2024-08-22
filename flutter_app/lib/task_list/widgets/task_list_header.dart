@@ -16,7 +16,8 @@ class TaskListHeader extends StatelessWidget {
         separatorBuilder: (context, index) => const SizedBox(width: 8),
         itemCount: projects.length,
         itemBuilder: (context, index) {
-          return CompanyLogo(imageProvider: projects[index]);
+          // ignore: avoid-non-null-assertion , TODO: Fix this
+          return CompanyLogo(imageProvider: projects.elementAtOrNull(index)!);
         },
       ),
     );

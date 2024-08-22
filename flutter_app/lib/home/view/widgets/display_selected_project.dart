@@ -17,27 +17,27 @@ class DisplaySelectedProject extends StatelessWidget {
     final sizes = theme.sizes;
 
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: sizes.l, vertical: sizes.s),
-      decoration: BoxDecoration(
+      padding: EdgeInsets.symmetric(vertical: sizes.s, horizontal: sizes.l),
+      decoration: const BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.all(Radius.circular(16)),
       ),
       child: Row(
-        mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
         children: [
           Text(
             project,
-            style: theme.textTheme.labelLarge!
-                .copyWith(color: theme.colors.primary),
+            style: theme.textTheme.labelLarge
+                ?.copyWith(color: theme.colors.primary),
           ),
           SizedBox(width: sizes.xs),
           InkWell(
             onTap: onUnselectProject,
             child: Icon(
               Icons.cancel_outlined,
-              color: theme.colors.primary,
               size: sizes.xl,
+              color: theme.colors.primary,
             ),
           ),
         ],

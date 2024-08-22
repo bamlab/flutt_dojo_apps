@@ -9,8 +9,6 @@ class AppLoadingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: AppLoader.big(color: color),
-    );
+    return Center(child: AppLoader.big(color: color));
   }
 }

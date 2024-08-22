@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-
-import 'package:flutter_bam_theme/cdapp_theme.dart';
+import 'package:flutter_bam_theme/src/theme/themes_data.dart';
+import 'package:flutter_bam_theme/src/widgets/gap.dart';
+import 'package:flutter_bam_theme/src/widgets/text.dart';
 
 class _Dot extends StatelessWidget {
-  const _Dot({
-    required this.color,
-  });
+  const _Dot({required this.color});
 
   final Color color;
 
@@ -14,13 +13,8 @@ class _Dot extends StatelessWidget {
     final theme = Theme.of(context);
 
     return DecoratedBox(
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: color,
-      ),
-      child: SizedBox.square(
-        dimension: theme.sizes.xs,
-      ),
+      decoration: BoxDecoration(shape: BoxShape.circle, color: color),
+      child: SizedBox.square(dimension: theme.sizes.xs),
     );
   }
 }

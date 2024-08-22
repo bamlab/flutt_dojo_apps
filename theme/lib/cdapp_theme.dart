@@ -1,3 +1,4 @@
+export 'const/regex.dart';
 export 'const/scroll_physics.dart';
 export 'const/theme_assets.g.dart';
 export 'src/theme/data/typography.dart';

@@ -1,7 +1,11 @@
+// ignore_for_file: avoid-long-files
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'package:flutter_bam_theme/cdapp_theme.dart';
+import 'package:flutter_bam_theme/src/theme/themes_data.dart';
+import 'package:flutter_bam_theme/src/widgets/gap.dart';
+import 'package:flutter_bam_theme/src/widgets/loader.dart';
+import 'package:flutter_bam_theme/src/widgets/text.dart';
 
 enum ButtonType {
   primary,
@@ -39,7 +43,7 @@ class AppButton extends StatelessWidget {
     this.alignment = MainAxisAlignment.center,
     this.backgroundColor,
   }) : assert(
-          !(icon != null && assetImage != null),
+          icon == null || assetImage == null,
           'You should only give an icon or an image',
         );
 
@@ -63,7 +67,7 @@ class AppButton extends StatelessWidget {
   })  : buttonType = ButtonType.primary,
         backgroundColor = null,
         assert(
-          !(icon != null && assetImage != null),
+          icon == null || assetImage == null,
           'You should only give an icon or an image',
         );
 
@@ -87,7 +91,7 @@ class AppButton extends StatelessWidget {
     this.backgroundColor,
   })  : buttonType = ButtonType.primaryCustomColor,
         assert(
-          !(icon != null && assetImage != null),
+          icon == null || assetImage == null,
           'You should only give an icon or an image',
         );
 
@@ -111,7 +115,7 @@ class AppButton extends StatelessWidget {
   })  : buttonType = ButtonType.secondary,
         backgroundColor = null,
         assert(
-          !(icon != null && assetImage != null),
+          icon == null || assetImage == null,
           'You should only give an icon or an image',
         );
 
@@ -135,7 +139,7 @@ class AppButton extends StatelessWidget {
   })  : buttonType = ButtonType.tertiary,
         backgroundColor = null,
         assert(
-          !(icon != null && assetImage != null),
+          icon == null || assetImage == null,
           'You should only give an icon or an image',
         );
 
@@ -159,7 +163,7 @@ class AppButton extends StatelessWidget {
   })  : buttonType = ButtonType.danger,
         backgroundColor = null,
         assert(
-          !(icon != null && assetImage != null),
+          icon == null || assetImage == null,
           'You should only give an icon or an image',
         );
 
@@ -183,7 +187,7 @@ class AppButton extends StatelessWidget {
   })  : buttonType = ButtonType.primaryLight,
         backgroundColor = null,
         assert(
-          !(icon != null && assetImage != null),
+          icon == null || assetImage == null,
           'You should only give an icon or an image',
         );
 
@@ -234,6 +238,7 @@ class AppButton extends StatelessWidget {
       if (iconPosition == IconPosition.left) {
         return TextDirection.ltr;
       }
+
       return TextDirection.rtl;
     }();
 
@@ -244,21 +249,14 @@ class AppButton extends StatelessWidget {
       horizontal: isSmall ? theme.sizes.m : theme.sizes.xl,
     );
 
-    final backgroundColor = () {
-      switch (buttonType) {
-        case ButtonType.primary:
-          return theme.colors.primary;
-        case ButtonType.primaryCustomColor:
-          return this.backgroundColor ?? theme.colors.primary;
-        case ButtonType.secondary:
-          return theme.colors.background;
-        case ButtonType.tertiary:
-        case ButtonType.danger:
-          return theme.colors.transparent;
-        case ButtonType.primaryLight:
-          return theme.colors.onPrimary;
-      }
-    }();
+    final backgroundColor = switch (buttonType) {
+      ButtonType.primary => theme.colors.primary,
+      ButtonType.primaryCustomColor =>
+        this.backgroundColor ?? theme.colors.primary,
+      ButtonType.secondary => theme.colors.background,
+      ButtonType.tertiary || ButtonType.danger => theme.colors.transparent,
+      ButtonType.primaryLight => theme.colors.onPrimary,
+    };
 
     final disabledBackgroundColor = () {
       switch (buttonType) {
@@ -266,19 +264,26 @@ class AppButton extends StatelessWidget {
           if (isLoading) {
             return backgroundColor;
           }
+
           return theme.colors.grey50;
+
         case ButtonType.primary:
           if (isLoading) {
             return theme.colors.primaryLight;
           }
+
           return theme.colors.grey50;
+
         case ButtonType.primaryLight:
           return theme.colors.grey50;
+
         case ButtonType.secondary:
           if (isLoading) {
             return theme.colors.transparent;
           }
+
           return theme.colors.grey50;
+
         case ButtonType.tertiary:
         case ButtonType.danger:
           return theme.colors.transparent;
@@ -290,92 +295,67 @@ class AppButton extends StatelessWidget {
         case ButtonType.primary:
         case ButtonType.primaryCustomColor:
           return theme.colors.onPrimary;
+
         case ButtonType.secondary:
         case ButtonType.tertiary:
           return color ?? theme.colors.primary;
+
         case ButtonType.danger:
           return theme.colors.onError;
+
         case ButtonType.primaryLight:
           return theme.colors.primary;
       }
     }();
 
-    final disabledForegroundColor = () {
-      switch (buttonType) {
-        case ButtonType.primary:
-        case ButtonType.primaryCustomColor:
-          return theme.colors.grey300;
-        case ButtonType.secondary:
-          if (isLoading) {
-            return theme.colors.primary;
-          }
-          return theme.colors.grey300;
-        case ButtonType.tertiary:
-          return theme.colors.grey300;
-        case ButtonType.danger:
-          return theme.colors.onError;
-        case ButtonType.primaryLight:
-          return theme.colors.grey300;
-      }
-    }();
+    final disabledForegroundColor = switch (buttonType) {
+      ButtonType.primary ||
+      ButtonType.primaryCustomColor ||
+      ButtonType.tertiary ||
+      ButtonType.primaryLight =>
+        theme.colors.grey300,
+      ButtonType.secondary =>
+        isLoading ? theme.colors.primary : theme.colors.grey300,
+      ButtonType.danger => theme.colors.onError,
+    };
 
     final buttonRadius = this.buttonRadius ?? theme.radius.asBorderRadius.xs;
 
-    final style = () {
-      switch (buttonType) {
-        case ButtonType.primary:
-        case ButtonType.primaryCustomColor:
-          return ElevatedButton.styleFrom(
-            minimumSize: isSmall ? kSmallButtonMinimumSize : kButtonMinimumSize,
-            backgroundColor: backgroundColor,
-            elevation: 0,
-            disabledBackgroundColor: disabledBackgroundColor,
-            padding: padding,
-            shape: RoundedRectangleBorder(
-              borderRadius: buttonRadius,
-            ),
-          );
-        case ButtonType.primaryLight:
-          return ElevatedButton.styleFrom(
-            minimumSize: isSmall ? kSmallButtonMinimumSize : kButtonMinimumSize,
-            backgroundColor: backgroundColor,
-            elevation: 0,
-            disabledBackgroundColor: disabledBackgroundColor,
-            padding: padding,
-            shape: RoundedRectangleBorder(
-              borderRadius: buttonRadius,
-            ),
-          );
-        case ButtonType.secondary:
-          return OutlinedButton.styleFrom(
-            minimumSize: isSmall ? kSmallButtonMinimumSize : kButtonMinimumSize,
-            backgroundColor: backgroundColor,
-            disabledBackgroundColor: disabledBackgroundColor,
-            foregroundColor: theme.colors.secondary,
-            elevation: 0,
-            padding: padding,
-            side: BorderSide(
-              color: isDisabled ? disabledForegroundColor : foregroundColor,
-            ),
-            shape: RoundedRectangleBorder(
-              borderRadius: buttonRadius,
-            ),
-          );
-        case ButtonType.danger:
-        case ButtonType.tertiary:
-          return TextButton.styleFrom(
-            minimumSize: isSmall ? kSmallButtonMinimumSize : kButtonMinimumSize,
-            backgroundColor: backgroundColor,
-            disabledForegroundColor: disabledForegroundColor,
-            elevation: 0,
-            padding: padding,
-            shape: RoundedRectangleBorder(
-              borderRadius: buttonRadius,
-            ),
-          );
-      }
-    }();
+    final style = switch (buttonType) {
+      ButtonType.primary ||
+      ButtonType.primaryCustomColor ||
+      ButtonType.primaryLight =>
+        ElevatedButton.styleFrom(
+          minimumSize: isSmall ? kSmallButtonMinimumSize : kButtonMinimumSize,
+          backgroundColor: backgroundColor,
+          elevation: 0,
+          disabledBackgroundColor: disabledBackgroundColor,
+          padding: padding,
+          shape: RoundedRectangleBorder(borderRadius: buttonRadius),
+        ),
+      ButtonType.secondary => OutlinedButton.styleFrom(
+          minimumSize: isSmall ? kSmallButtonMinimumSize : kButtonMinimumSize,
+          backgroundColor: backgroundColor,
+          disabledBackgroundColor: disabledBackgroundColor,
+          foregroundColor: theme.colors.secondary,
+          elevation: 0,
+          padding: padding,
+          side: BorderSide(
+            color: isDisabled ? disabledForegroundColor : foregroundColor,
+          ),
+          shape: RoundedRectangleBorder(borderRadius: buttonRadius),
+        ),
+      ButtonType.danger || ButtonType.tertiary => TextButton.styleFrom(
+          minimumSize: isSmall ? kSmallButtonMinimumSize : kButtonMinimumSize,
+          backgroundColor: backgroundColor,
+          disabledForegroundColor: disabledForegroundColor,
+          elevation: 0,
+          padding: padding,
+          shape: RoundedRectangleBorder(borderRadius: buttonRadius),
+        ),
+    };
 
+    final assetImage = this.assetImage;
     final buttonSymbol = () {
       if (icon != null) {
         return Icon(
@@ -388,12 +368,13 @@ class AppButton extends StatelessWidget {
         return Opacity(
           opacity: isDisabled ? 0.5 : 1,
           child: Image(
-            image: assetImage!,
+            image: assetImage,
             height: theme.iconTheme.size,
             width: theme.iconTheme.size,
           ),
         );
       }
+
       return null;
     }();
 
@@ -423,7 +404,7 @@ class AppButton extends StatelessWidget {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: alignment,
-                children: <Widget>[
+                children: [
                   if (buttonSymbol != null) buttonSymbol,
                   if (buttonSymbol != null && label != null)
                     iconLabelGap ?? const AppGap.xs(),
@@ -501,12 +482,11 @@ class _FullWidthWrapper extends StatelessWidget {
         mainAxisAlignment: alignment,
         children: [
           if (alignment == MainAxisAlignment.start) const AppGap.m(),
-          Flexible(
-            child: child,
-          ),
+          Flexible(child: child),
         ],
       );
     }
+
     return child;
   }
 }

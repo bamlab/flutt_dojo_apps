@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-
-import 'package:flutter_bam_theme/cdapp_theme.dart';
+import 'package:flutter_bam_theme/src/theme/themes_data.dart';
+import 'package:flutter_bam_theme/src/widgets/gap.dart';
+import 'package:flutter_bam_theme/src/widgets/icons.g.dart';
+import 'package:flutter_bam_theme/src/widgets/loader.dart';
+import 'package:flutter_bam_theme/src/widgets/text.dart';
 
 enum SnackBarType {
   error,
@@ -11,16 +14,12 @@ enum SnackBarType {
 
 /// The color of the background of the snackbar.
 Color _getBackgroundColor(BuildContext context, SnackBarType type) {
-  switch (type) {
-    case SnackBarType.error:
-      return Theme.of(context).colors.onError;
-    case SnackBarType.success:
-      return Theme.of(context).colors.statusSuccess;
-    case SnackBarType.warning:
-      return Theme.of(context).colors.statusWarning;
-    case SnackBarType.info:
-      return Theme.of(context).colors.grey50;
-  }
+  return switch (type) {
+    SnackBarType.error => Theme.of(context).colors.onError,
+    SnackBarType.success => Theme.of(context).colors.statusSuccess,
+    SnackBarType.warning => Theme.of(context).colors.statusWarning,
+    SnackBarType.info => Theme.of(context).colors.grey50,
+  };
 }
 
 /// Show a Snackbar
@@ -152,31 +151,23 @@ class SnackBarBody extends StatelessWidget {
   final VoidCallback? onTap;
 
   /// The color of the elements of the snackbar.
-  Color getOnBackgroundColor(BuildContext context) {
-    switch (type) {
-      case SnackBarType.error:
-        return Theme.of(context).colors.onError;
-      case SnackBarType.success:
-        return Theme.of(context).colors.statusSuccess;
-      case SnackBarType.warning:
-        return Theme.of(context).colors.statusWarning;
-      case SnackBarType.info:
-        return Theme.of(context).colors.primary;
-    }
+  Color _getOnBackgroundColor(BuildContext context) {
+    return switch (type) {
+      SnackBarType.error => Theme.of(context).colors.onError,
+      SnackBarType.success => Theme.of(context).colors.statusSuccess,
+      SnackBarType.warning => Theme.of(context).colors.statusWarning,
+      SnackBarType.info => Theme.of(context).colors.primary,
+    };
   }
 
   /// The icon shown before the title and message.
   IconData get prefixIconByType {
-    switch (type) {
-      case SnackBarType.error:
-        return ThemeIcons.triangleexclamation_regular;
-      case SnackBarType.success:
-        return ThemeIcons.check_regular;
-      case SnackBarType.warning:
-        return ThemeIcons.circleexclamation_regular;
-      case SnackBarType.info:
-        return ThemeIcons.circleinfo_regular;
-    }
+    return switch (type) {
+      SnackBarType.error => ThemeIcons.triangleexclamation_regular,
+      SnackBarType.success => ThemeIcons.check_regular,
+      SnackBarType.warning => ThemeIcons.circleexclamation_regular,
+      SnackBarType.info => ThemeIcons.circleinfo_regular,
+    };
   }
 
   @override
@@ -192,34 +183,29 @@ class SnackBarBody extends StatelessWidget {
           if (title != null) ...[
             AppText.bodyLarge(
               title,
-              color: getOnBackgroundColor(context),
+              color: _getOnBackgroundColor(context),
               fontWeight: FontWeight.w600,
             ),
             const AppGap.xs(),
           ],
-          AppText.bodyMedium(
-            message,
-            color: getOnBackgroundColor(context),
-          ),
+          AppText.bodyMedium(message, color: _getOnBackgroundColor(context)),
         ],
       ),
     );
 
     return TextButton(
       onPressed: onTap,
-      style: ButtonStyle(
-        padding: MaterialStateProperty.all(EdgeInsets.zero),
-      ),
+      style: ButtonStyle(padding: WidgetStateProperty.all(EdgeInsets.zero)),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (isLoading)
-            AppLoader.regular(color: getOnBackgroundColor(context))
+            AppLoader.regular(color: _getOnBackgroundColor(context))
           else
             Icon(
               prefixIcon ?? prefixIconByType,
               size: theme.sizes.xl,
-              color: getOnBackgroundColor(context),
+              color: _getOnBackgroundColor(context),
             ),
           const AppGap.xs(),
           content,

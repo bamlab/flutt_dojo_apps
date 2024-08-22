@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bam_theme/cdapp_theme.dart';
+import 'package:flutter_bam_theme/src/theme/extensions.dart';
+import 'package:flutter_bam_theme/src/theme/themes_data.dart';
+import 'package:flutter_bam_theme/src/widgets/gap.dart';
+import 'package:flutter_bam_theme/src/widgets/text.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
-class EmptySliverView extends StatelessWidget {
-  const EmptySliverView({
+class SliverEmptyView extends StatelessWidget {
+  const SliverEmptyView({
     required this.title,
     required this.subtitle,
     this.icon,
@@ -43,10 +46,7 @@ class EmptySliverView extends StatelessWidget {
           const AppGap.xxs(isSliver: true),
           Padding(
             padding: theme.sizes.asInsets.s.horizontalOnly,
-            child: AppText.titleSmall(
-              title,
-              textAlign: TextAlign.center,
-            ),
+            child: AppText.titleSmall(title, textAlign: TextAlign.center),
           ),
           Padding(
             padding: theme.sizes.asInsets.xs,

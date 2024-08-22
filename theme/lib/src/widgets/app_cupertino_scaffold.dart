@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bam_theme/cdapp_theme.dart';
+import 'package:flutter_bam_theme/src/theme/themes_data.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 // Add a [CupertinoScaffold] to be able to use
@@ -21,10 +21,7 @@ class AppCupertinoScaffold extends StatelessWidget {
       // adds an [IconTheme] with a fixed size, we need to override the
       // [IconTheme] with the correct one.
       // https://github.com/jamesblasco/modal_bottom_sheet/issues/346
-      body: IconTheme(
-        data: iconTheme,
-        child: child,
-      ),
+      body: IconTheme(data: iconTheme, child: child),
     );
   }
 }

@@ -1,5 +1,8 @@
+// ignore_for_file: avoid-long-files
+
 import 'package:flutter/material.dart';
-import 'package:flutter_bam_theme/cdapp_theme.dart';
+import 'package:flutter_bam_theme/src/theme/data/typography.dart';
+import 'package:flutter_bam_theme/src/theme/themes_data.dart';
 
 /// Enum of all styles
 enum StyleEnum {
@@ -401,54 +404,39 @@ class AppText extends StatelessWidget {
   /// Returns the style corresponding to the given [enumStyle]
   ///
   /// The is useful to get the style in TextSpan for example
+  // ignore: prefer-widget-private-members , this is a static method
   static TextStyle? styleOf(BuildContext context, StyleEnum enumStyle) {
     final theme = Theme.of(context);
-    switch (enumStyle) {
-      case StyleEnum.displaySmall:
-        return theme.textTheme.displaySmall;
-      case StyleEnum.displayMedium:
-        return theme.textTheme.displayMedium;
-      case StyleEnum.displayLarge:
-        return theme.textTheme.displayLarge;
-      case StyleEnum.headlineLarge:
-        return theme.textTheme.headlineLarge;
-      case StyleEnum.headlineMedium:
-        return theme.textTheme.headlineMedium;
-      case StyleEnum.headlineSmall:
-        return theme.textTheme.headlineSmall;
-      case StyleEnum.titleLarge:
-        return theme.textTheme.titleLarge;
-      case StyleEnum.titleMedium:
-        return theme.textTheme.titleMedium;
-      case StyleEnum.titleSmall:
-        return theme.textTheme.titleSmall;
-      case StyleEnum.bodyLarge:
-        return theme.textTheme.bodyLarge;
-      case StyleEnum.bodyMedium:
-        return theme.textTheme.bodyMedium;
-      case StyleEnum.bodyMediumSemiBold:
-        return theme.textTheme.bodyMedium
-            ?.copyWith(fontWeight: FontWeight.w600);
-      case StyleEnum.bodySmall:
-        return theme.textTheme.bodySmall;
-      case StyleEnum.bodySmallSemiBold:
-        return theme.textTheme.bodySmall?.copyWith(
+
+    return switch (enumStyle) {
+      StyleEnum.displaySmall => theme.textTheme.displaySmall,
+      StyleEnum.displayMedium => theme.textTheme.displayMedium,
+      StyleEnum.displayLarge => theme.textTheme.displayLarge,
+      StyleEnum.headlineLarge => theme.textTheme.headlineLarge,
+      StyleEnum.headlineMedium => theme.textTheme.headlineMedium,
+      StyleEnum.headlineSmall => theme.textTheme.headlineSmall,
+      StyleEnum.titleLarge => theme.textTheme.titleLarge,
+      StyleEnum.titleMedium => theme.textTheme.titleMedium,
+      StyleEnum.titleSmall => theme.textTheme.titleSmall,
+      StyleEnum.bodyLarge => theme.textTheme.bodyLarge,
+      StyleEnum.bodyMedium => theme.textTheme.bodyMedium,
+      StyleEnum.bodyMediumSemiBold =>
+        theme.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600),
+      StyleEnum.bodySmall => theme.textTheme.bodySmall,
+      StyleEnum.bodySmallSemiBold => theme.textTheme.bodySmall?.copyWith(
           fontWeight: FontWeight.w600,
           letterSpacing: 0,
-        );
-      case StyleEnum.labelLarge:
-        return theme.textTheme.labelLarge;
-      case StyleEnum.packTitle:
-        return theme.textTheme.packTitle.copyWith(color: theme.colors.text);
-      case StyleEnum.packTitleMedium:
-        return theme.textTheme.packTitleMedium.copyWith(
+        ),
+      StyleEnum.labelLarge => theme.textTheme.labelLarge,
+      StyleEnum.packTitle =>
+        theme.textTheme.packTitle.copyWith(color: theme.colors.text),
+      StyleEnum.packTitleMedium => theme.textTheme.packTitleMedium.copyWith(
           color: theme.colors.text,
-        );
-      case StyleEnum.titleMediumCaps:
-        return theme.textTheme.titleMediumCaps.copyWith(
+        ),
+      StyleEnum.titleMediumCaps => theme.textTheme.titleMediumCaps.copyWith(
           color: theme.colors.text,
-        );
-    }
+        ),
+    };
   }
 
   @override
@@ -462,10 +450,56 @@ class AppText extends StatelessWidget {
 
     final maybeUpperCasedData = isUpperCase ? data.toUpperCase() : data;
 
-    return isSelectable
-        ? SelectableText(
+    if (isSelectable) {
+      return SelectableText(
+        maybeUpperCasedData,
+        textAlign: textAlign,
+        textScaler: textScaler,
+        textHeightBehavior: const TextHeightBehavior(
+          // This is for the text to be centered vertically even when an
+          // height is set.
+          leadingDistribution: TextLeadingDistribution.even,
+        ),
+        maxLines: maxLines,
+        style: style?.copyWith(
+          color: color,
+          fontWeight: fontWeight,
+          fontStyle: fontStyle,
+          decoration: textDecoration,
+          overflow: overflow,
+        ),
+      );
+    }
+
+    return animationDuration != null
+        ? AnimatedDefaultTextStyle(
+            duration: animationDuration,
+            // ignore: avoid-non-null-assertion, TODO: Fix this
+            style: style!.copyWith(
+              color: color,
+              fontWeight: fontWeight,
+              fontStyle: fontStyle,
+              decoration: textDecoration,
+            ),
+            child: Text(
+              maybeUpperCasedData,
+              textAlign: textAlign,
+              softWrap: softWrap,
+              overflow: overflow,
+              textScaler: textScaler,
+              textHeightBehavior: const TextHeightBehavior(
+                // This is for the text to be centered vertically even when
+                // an height is set.
+                leadingDistribution: TextLeadingDistribution.even,
+              ),
+              maxLines: maxLines,
+            ),
+          )
+        : Text(
             maybeUpperCasedData,
             textAlign: textAlign,
+            softWrap: softWrap,
+            overflow: overflow,
             textScaler: textScaler,
             textHeightBehavior: const TextHeightBehavior(
               // This is for the text to be centered vertically even when an
@@ -473,55 +507,13 @@ class AppText extends StatelessWidget {
               leadingDistribution: TextLeadingDistribution.even,
             ),
             maxLines: maxLines,
+            // ignore: avoid-non-null-assertion, TODO: Fix this
             style: style!.copyWith(
               color: color,
               fontWeight: fontWeight,
               fontStyle: fontStyle,
               decoration: textDecoration,
-              overflow: overflow,
             ),
-          )
-        : animationDuration != null
-            ? AnimatedDefaultTextStyle(
-                duration: animationDuration,
-                style: style!.copyWith(
-                  color: color,
-                  fontWeight: fontWeight,
-                  fontStyle: fontStyle,
-                  decoration: textDecoration,
-                ),
-                child: Text(
-                  maybeUpperCasedData,
-                  textAlign: textAlign,
-                  softWrap: softWrap,
-                  overflow: overflow,
-                  textScaler: textScaler,
-                  textHeightBehavior: const TextHeightBehavior(
-                    // This is for the text to be centered vertically even when
-                    // an height is set.
-                    leadingDistribution: TextLeadingDistribution.even,
-                  ),
-                  maxLines: maxLines,
-                ),
-              )
-            : Text(
-                maybeUpperCasedData,
-                textAlign: textAlign,
-                softWrap: softWrap,
-                overflow: overflow,
-                textScaler: textScaler,
-                textHeightBehavior: const TextHeightBehavior(
-                  // This is for the text to be centered vertically even when an
-                  // height is set.
-                  leadingDistribution: TextLeadingDistribution.even,
-                ),
-                maxLines: maxLines,
-                style: style!.copyWith(
-                  color: color,
-                  fontWeight: fontWeight,
-                  fontStyle: fontStyle,
-                  decoration: textDecoration,
-                ),
-              );
+          );
   }
 }

@@ -12,5 +12,5 @@ class Named<T> extends Equatable {
 }
 
 extension NamedExtension<T> on T {
-  Named<T> named(String name) => Named<T>(name, this);
+  Named<T> named(String name) => Named(name, this);
 }

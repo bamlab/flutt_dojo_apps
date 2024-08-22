@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bam_theme/cdapp_theme.dart';
+import 'package:flutter_bam_theme/src/theme/extensions.dart';
+import 'package:flutter_bam_theme/src/theme/themes_data.dart';
+import 'package:flutter_bam_theme/src/widgets/gap.dart';
+import 'package:flutter_bam_theme/src/widgets/selectable_card.dart';
+import 'package:flutter_bam_theme/src/widgets/selectable_dot.dart';
+import 'package:flutter_bam_theme/src/widgets/text.dart';
 
 enum AppSelectableTileType {
   small,
@@ -16,7 +21,7 @@ class AppSelectableTile extends StatelessWidget {
     this.trailing,
     this.type = AppSelectableTileType.regular,
   }) : assert(
-          !(isSelected && isDisabled),
+          !isSelected || !isDisabled,
           'A card cannot be selected and disabled',
         );
 
@@ -71,12 +76,15 @@ class AppSelectableTile extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     AppSelectableDot(
+                      // ignore: avoid-mutating-parameters, TODO: Fix this
                       animationDuration: animationDuration = theme.durations.xs,
                       isSelected: isSelected,
+                      // ignore: avoid-mutating-parameters, TODO: Fix this
                       borderColor: onSurfaceColor = () {
                         if (isDisabled || !isSelected) {
                           return theme.colors.grey200;
                         }
+
                         return theme.colors.colorsScheme.onSurface;
                       }(),
                     ),
@@ -94,10 +102,7 @@ class AppSelectableTile extends StatelessWidget {
                 ),
               ),
             ),
-            if (trailing != null) ...[
-              const AppGap.xs(),
-              trailing,
-            ],
+            if (trailing != null) ...[const AppGap.xs(), trailing],
           ],
         ),
       ),

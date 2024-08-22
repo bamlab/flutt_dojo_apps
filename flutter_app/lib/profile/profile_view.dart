@@ -22,9 +22,7 @@ class ProfileView extends StatelessWidget {
                       Text('test'),
                       SizedBox(
                         height: 200,
-                        child: ColoredBox(
-                          color: Colors.red,
-                        ),
+                        child: ColoredBox(color: Colors.red),
                       ),
                     ],
                   ),

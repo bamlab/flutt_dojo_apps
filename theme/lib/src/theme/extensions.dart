@@ -5,29 +5,13 @@ extension EdgeInsetsX on EdgeInsets {
 
   EdgeInsets get horizontalOnly => copyWith(top: 0, bottom: 0);
 
-  EdgeInsets get leftOnly => copyWith(
-        right: 0,
-        top: 0,
-        bottom: 0,
-      );
+  EdgeInsets get leftOnly => copyWith(right: 0, top: 0, bottom: 0);
 
-  EdgeInsets get topOnly => copyWith(
-        left: 0,
-        right: 0,
-        bottom: 0,
-      );
+  EdgeInsets get topOnly => copyWith(left: 0, right: 0, bottom: 0);
 
-  EdgeInsets get bottomOnly => copyWith(
-        left: 0,
-        right: 0,
-        top: 0,
-      );
+  EdgeInsets get bottomOnly => copyWith(left: 0, right: 0, top: 0);
 
-  EdgeInsets get rightOnly => copyWith(
-        top: 0,
-        left: 0,
-        bottom: 0,
-      );
+  EdgeInsets get rightOnly => copyWith(top: 0, left: 0, bottom: 0);
 }
 
 extension BorderRadiusX on BorderRadius {

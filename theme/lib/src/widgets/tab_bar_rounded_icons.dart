@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-
-import 'package:flutter_bam_theme/cdapp_theme.dart';
+import 'package:flutter_bam_theme/src/theme/themes_data.dart';
+import 'package:flutter_bam_theme/src/widgets/gap.dart';
 
 class AppTabBarRoundedIcons extends StatelessWidget {
-  const AppTabBarRoundedIcons({
-    required this.icons,
-    super.key,
-  });
+  const AppTabBarRoundedIcons({required this.icons, super.key});
 
   static const _tabBarHeight = 48.0;
 
@@ -20,7 +17,7 @@ class AppTabBarRoundedIcons extends StatelessWidget {
         ((icons.length - 1) *
             (theme.tabBarTheme.labelPadding?.horizontal ?? 0));
 
-    final shouldOverflow = tabsWidth > MediaQuery.of(context).size.width;
+    final shouldOverflow = tabsWidth > MediaQuery.sizeOf(context).width;
 
     return Stack(
       children: [
@@ -43,31 +40,29 @@ class AppTabBarRoundedIcons extends StatelessWidget {
           labelColor: theme.colors.onPrimary,
           unselectedLabelColor: theme.colors.primary,
           isScrollable: shouldOverflow,
-          tabs: icons.map(
-            (icon) {
-              return Tab(
-                height: _tabBarHeight,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Flexible(
-                      flex: shouldOverflow ? 0 : 1,
-                      child: Column(
-                        children: [
-                          _IconMarker(
-                            icon: icon,
-                            labelColor: theme.colors.primary,
-                            unselectedLabelColor: theme.colors.onPrimary,
-                          ),
-                          const AppGap.xs(),
-                        ],
-                      ),
+          tabs: icons.map((icon) {
+            return Tab(
+              height: _tabBarHeight,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Flexible(
+                    flex: shouldOverflow ? 0 : 1,
+                    child: Column(
+                      children: [
+                        _IconMarker(
+                          icon: icon,
+                          labelColor: theme.colors.primary,
+                          unselectedLabelColor: theme.colors.onPrimary,
+                        ),
+                        const AppGap.xs(),
+                      ],
                     ),
-                  ],
-                ),
-              );
-            },
-          ).toList(),
+                  ),
+                ],
+              ),
+            );
+          }).toList(),
         ),
       ],
     );
@@ -107,10 +102,7 @@ class _IconMarker extends StatelessWidget {
             decoration: BoxDecoration(
               color: boxDecorationColor,
               shape: BoxShape.circle,
-              border: Border.all(
-                color: currentColor,
-                width: _borderWidth,
-              ),
+              border: Border.all(color: currentColor, width: _borderWidth),
             ),
           ),
         ),

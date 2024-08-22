@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CompanyLogo extends StatelessWidget {
-  const CompanyLogo({
-    required this.imageProvider,
-    super.key,
-  });
+  const CompanyLogo({required this.imageProvider, super.key});
 
   final ImageProvider imageProvider;
 
@@ -15,11 +12,8 @@ class CompanyLogo extends StatelessWidget {
       height: 48,
       child: DecoratedBox(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(500),
-          image: DecorationImage(
-            image: imageProvider,
-            fit: BoxFit.cover,
-          ),
+          borderRadius: const BorderRadius.all(Radius.circular(500)),
+          image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
         ),
       ),
     );

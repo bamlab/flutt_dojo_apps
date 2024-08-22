@@ -1,8 +1,6 @@
 import 'dart:ui';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bam_theme/cdapp_theme.dart';
 import 'package:flutter_dojo_apps/statistics/widgets/light_card.dart';
 import 'package:flutter_dojo_apps/task_list/widgets/task_list_header.dart';
@@ -16,8 +14,8 @@ class TaskListView extends StatefulWidget {
 }
 
 class _TaskListViewState extends State<TaskListView> {
-  TodoState todoState = TodoState.todo;
-  List<TodoObject> todos = [];
+  TodoState _todoState = TodoState.todo;
+  final List<TodoObject> _todos = [];
 
   @override
   Widget build(BuildContext context) {
@@ -50,16 +48,15 @@ class _TaskListViewState extends State<TaskListView> {
                     AssetImage('assets/logo.png'),
                   ],
                 ),
-                const SizedBox(
-                  height: 24,
-                ),
+                const SizedBox(height: 24),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: TaskListSwitcher(
-                    selectedState: todoState,
+                    selectedState: _todoState,
                     onSelectedState: (selectedState) {
                       setState(() {
-                        todoState = selectedState.first;
+                        _todoState =
+                            selectedState.firstOrNull ?? TodoState.todo;
                       });
                     },
                   ),
@@ -81,30 +78,20 @@ class _TaskListViewState extends State<TaskListView> {
                 ),
                 Expanded(
                   child: ListView.builder(
-                    itemCount: todos.length,
+                    itemCount: _todos.length,
                     itemBuilder: (context, index) => Dismissible(
                       key: Key(index.toString()),
                       onDismissed: (_) => setState(() {
                         // todos[index].setToDone();
-                        todos.removeAt(index);
+                        _todos.removeAt(index);
                       }),
                       child: TodoCard(
-                        todo: todos[index],
+                        todo: _todos.elementAtOrNull(index) ??
+                            TodoObject(name: 'fallback'),
                       ),
                     ),
                   ),
                 ),
-                // Dismissible(
-                //   key: const Key('add'),
-                //   child: ElevatedButton(
-                //     onPressed: () {
-                //       setState(() {
-                //         todos.add(TodoObject(name: 'New task'));
-                //       });
-                //     },
-                //     child: const Text('Ajouter une tâche'),
-                //   ),
-                // ),
               ],
             ),
           ),
@@ -122,15 +109,17 @@ class TodoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       tileColor: Colors.white,
-      title: Text(todo.name),
+      title: Text(todo._name),
       trailing: const Icon(Icons.keyboard_arrow_down),
     );
   }
 }
 
 class TodoObject {
-  TodoObject({required this.name}) : done = false;
-  final String name;
+  TodoObject({required String name})
+      : _name = name,
+        done = false;
+  final String _name;
   bool done;
 
   void setToDone() {
@@ -146,20 +135,14 @@ class SwipeNoticeBox extends StatelessWidget {
     return const DecoratedBox(
       decoration: BoxDecoration(
         color: Color(0xFFFFBA9D),
-        borderRadius: BorderRadius.all(
-          Radius.circular(8),
-        ),
+        borderRadius: BorderRadius.all(Radius.circular(8)),
       ),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
-              Icons.info_outline,
-              size: 24,
-              color: Color(0xFF660D55),
-            ),
+            Icon(Icons.info_outline, size: 24, color: Color(0xFF660D55)),
             AppGap.xs(),
             Flexible(
               child: Text(
@@ -188,9 +171,7 @@ class TodoBox extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Flexible(child: Text('blablabla')),
-            Icon(
-              Icons.keyboard_arrow_down,
-            ),
+            Icon(Icons.keyboard_arrow_down),
           ],
         ),
       ),
@@ -203,12 +184,12 @@ class AddTaskButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DecoratedBox(
+    return const DecoratedBox(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        color: const Color(0xFFF1EDFF),
+        borderRadius: BorderRadius.all(Radius.circular(16)),
+        color: Color(0xFFF1EDFF),
       ),
-      child: const Padding(
+      child: Padding(
         padding: EdgeInsets.symmetric(vertical: 21),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -218,11 +199,7 @@ class AddTaskButton extends StatelessWidget {
               color: Color(0xFF241263),
             ),
             AppGap.xs(),
-            Icon(
-              size: 24,
-              Icons.add,
-              color: Color(0xFF241263),
-            ),
+            Icon(size: 24, Icons.add, color: Color(0xFF241263)),
           ],
         ),
       ),

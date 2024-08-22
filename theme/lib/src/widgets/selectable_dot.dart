@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bam_theme/cdapp_theme.dart';
+import 'package:flutter_bam_theme/src/theme/themes_data.dart';
 
 class AppSelectableDot extends StatelessWidget {
   const AppSelectableDot({

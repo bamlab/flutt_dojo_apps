@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SelectProjectButton extends StatelessWidget {
-  const SelectProjectButton({
-    required this.onTap,
-    super.key,
-  });
+  const SelectProjectButton({required this.onTap, super.key});
 
   final VoidCallback onTap;
 
@@ -14,8 +11,8 @@ class SelectProjectButton extends StatelessWidget {
       onPressed: onTap,
       style: OutlinedButton.styleFrom(
         backgroundColor: Colors.white.withOpacity(0.4),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(16)),
         ),
         padding: const EdgeInsets.all(16),
         side: const BorderSide(color: Colors.white, width: 2),

@@ -69,17 +69,13 @@ class ThemeBorderRadiusData {
 /// Leveraging Flutter 3's [ThemeExtension] system
 class ThemeRadiusDataExtension
     extends ThemeExtension<ThemeRadiusDataExtension> {
-  const ThemeRadiusDataExtension({
-    required this.radius,
-  });
+  const ThemeRadiusDataExtension({required this.radius});
 
   final ThemeRadiusData radius;
 
   @override
   ThemeRadiusDataExtension copyWith({ThemeRadiusData? radius}) {
-    return ThemeRadiusDataExtension(
-      radius: radius ?? this.radius,
-    );
+    return ThemeRadiusDataExtension(radius: radius ?? this.radius);
   }
 
   @override
@@ -88,6 +84,7 @@ class ThemeRadiusDataExtension
     double t,
   ) {
     final scopedOther = other as ThemeRadiusDataExtension?;
+
     return ThemeRadiusDataExtension(
       radius: ThemeRadiusData(
         xs: Radius.lerp(radius.xs, scopedOther?.radius.xs, t) ?? Radius.zero,

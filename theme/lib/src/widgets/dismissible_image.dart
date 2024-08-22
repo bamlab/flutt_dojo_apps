@@ -1,6 +1,10 @@
 import 'package:dismissible_page/dismissible_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bam_theme/cdapp_theme.dart';
+import 'package:flutter_bam_theme/src/theme/themes_data.dart';
+import 'package:flutter_bam_theme/src/widgets/app_bar.dart';
+import 'package:flutter_bam_theme/src/widgets/divided_row.dart';
+import 'package:flutter_bam_theme/src/widgets/gap.dart';
+import 'package:flutter_bam_theme/src/widgets/images.dart';
 
 class AppDismissibleImage extends StatefulWidget {
   const AppDismissibleImage({
@@ -19,7 +23,7 @@ class AppDismissibleImage extends StatefulWidget {
 }
 
 class _AppDismissibleImageState extends State<AppDismissibleImage> {
-  bool isAppBarDisplayed = true;
+  bool _isAppBarDisplayed = true;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +34,7 @@ class _AppDismissibleImageState extends State<AppDismissibleImage> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: theme.colors.transparent,
-      appBar: isAppBarDisplayed
+      appBar: _isAppBarDisplayed
           ? AppBar(
               backgroundColor: theme.colors.transparent,
               automaticallyImplyLeading: false,
@@ -55,8 +59,8 @@ class _AppDismissibleImageState extends State<AppDismissibleImage> {
         onDismissed: Navigator.of(context).pop,
         child: AppPhotoView(url: widget.url, heroTag: widget.heroTag),
         // coverage:ignore-start
-        onDragStart: () => setState(() => isAppBarDisplayed = false),
-        onDragEnd: () => setState(() => isAppBarDisplayed = true),
+        onDragStart: () => setState(() => _isAppBarDisplayed = false),
+        onDragEnd: () => setState(() => _isAppBarDisplayed = true),
         // coverage:ignore-end
       ),
     );

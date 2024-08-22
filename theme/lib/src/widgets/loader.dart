@@ -10,20 +10,12 @@ enum AppLoaderSize {
 }
 
 class AppLoader extends StatelessWidget {
-  const AppLoader.small({
-    super.key,
-    this.color,
-  }) : size = AppLoaderSize.small;
+  const AppLoader.small({super.key, this.color}) : size = AppLoaderSize.small;
 
-  const AppLoader.regular({
-    super.key,
-    this.color,
-  }) : size = AppLoaderSize.regular;
+  const AppLoader.regular({super.key, this.color})
+      : size = AppLoaderSize.regular;
 
-  const AppLoader.big({
-    super.key,
-    this.color,
-  }) : size = AppLoaderSize.big;
+  const AppLoader.big({super.key, this.color}) : size = AppLoaderSize.big;
 
   final AppLoaderSize size;
   final Color? color;
@@ -33,25 +25,16 @@ class AppLoader extends StatelessWidget {
     final theme = Theme.of(context);
     final color = this.color ?? theme.colors.secondary;
 
-    final dimension = () {
-      switch (size) {
-        case AppLoaderSize.small:
-          return theme.sizes.s;
-        case AppLoaderSize.regular:
-          return theme.sizes.xl;
-        case AppLoaderSize.big:
-          return theme.sizes.xxxl;
-      }
-    }();
+    final dimension = switch (size) {
+      AppLoaderSize.small => theme.sizes.s,
+      AppLoaderSize.regular => theme.sizes.xl,
+      AppLoaderSize.big => theme.sizes.xxxl,
+    };
 
     return SizedBox(
       height: dimension,
-      width: 2 * dimension,
-      child: SpinKitRing(
-        color: color,
-        lineWidth: 2,
-        size: dimension,
-      ),
+      width: dimension * 2,
+      child: SpinKitRing(color: color, lineWidth: 2, size: dimension),
     );
   }
 }

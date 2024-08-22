@@ -11,13 +11,10 @@ extension WithSeparatorBuilder on SliverChildBuilderDelegate {
     return SliverChildBuilderDelegate(
       (context, index) {
         final itemIndex = index ~/ 2;
-        final Widget? widget;
-        if (index.isEven) {
-          widget = builder(context, itemIndex);
-        } else {
-          widget = separatorBuilder(context, itemIndex);
-        }
-        return widget;
+
+        return index.isEven
+            ? builder(context, itemIndex)
+            : separatorBuilder(context, itemIndex);
       },
       findChildIndexCallback: findChildIndexCallback,
       childCount:

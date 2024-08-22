@@ -16,11 +16,8 @@ enum CdaGapSize {
   xxxl,
 }
 
-class _GapWrapper extends StatelessWidget {
-  const _GapWrapper(
-    this.mainAxisExtent, {
-    required this.isSliver,
-  });
+class _SliverGapWrapper extends StatelessWidget {
+  const _SliverGapWrapper(this.mainAxisExtent, {required this.isSliver});
 
   final bool isSliver;
   final double mainAxisExtent;
@@ -30,17 +27,17 @@ class _GapWrapper extends StatelessWidget {
     if (isSliver) {
       return SliverGap(mainAxisExtent);
     }
+
     return Gap(mainAxisExtent);
   }
 }
 
+// ignore: prefer-sliver-prefix , not necessarelly a sliver
 class AppGap extends StatelessWidget {
   /// adaptiveBottom Gap
   /// Used to add a bottom padding from the device's safe area.
-  const AppGap.adaptiveBottom({
-    super.key,
-    this.isSliver = false,
-  })  : size = CdaGapSize.adaptiveBottom,
+  const AppGap.adaptiveBottom({super.key, this.isSliver = false})
+      : size = CdaGapSize.adaptiveBottom,
         hasAdaptiveBottom = true;
 
   /// xxxs Gap
@@ -136,41 +133,37 @@ class AppGap extends StatelessWidget {
     final theme = Theme.of(context);
 
     final bottomSafeArea =
-        hasAdaptiveBottom ? MediaQuery.of(context).padding.bottom : 0;
+        hasAdaptiveBottom ? MediaQuery.paddingOf(context).bottom : 0;
 
-    switch (size) {
-      case CdaGapSize.adaptiveBottom:
-        return _GapWrapper(0.0 + bottomSafeArea, isSliver: isSliver);
-      case CdaGapSize.xxxs:
-        return _GapWrapper(
+    return switch (size) {
+      CdaGapSize.adaptiveBottom =>
+        _SliverGapWrapper(bottomSafeArea + 0.0, isSliver: isSliver),
+      CdaGapSize.xxxs => _SliverGapWrapper(
           theme.sizes.xxxs + bottomSafeArea,
           isSliver: isSliver,
-        );
-      case CdaGapSize.xxs:
-        return _GapWrapper(
+        ),
+      CdaGapSize.xxs => _SliverGapWrapper(
           theme.sizes.xxs + bottomSafeArea,
           isSliver: isSliver,
-        );
-      case CdaGapSize.xs:
-        return _GapWrapper(theme.sizes.xs + bottomSafeArea, isSliver: isSliver);
-      case CdaGapSize.s:
-        return _GapWrapper(theme.sizes.s + bottomSafeArea, isSliver: isSliver);
-      case CdaGapSize.m:
-        return _GapWrapper(theme.sizes.m + bottomSafeArea, isSliver: isSliver);
-      case CdaGapSize.l:
-        return _GapWrapper(theme.sizes.l + bottomSafeArea, isSliver: isSliver);
-      case CdaGapSize.xl:
-        return _GapWrapper(theme.sizes.xl + bottomSafeArea, isSliver: isSliver);
-      case CdaGapSize.xxl:
-        return _GapWrapper(
+        ),
+      CdaGapSize.xs =>
+        _SliverGapWrapper(theme.sizes.xs + bottomSafeArea, isSliver: isSliver),
+      CdaGapSize.s =>
+        _SliverGapWrapper(theme.sizes.s + bottomSafeArea, isSliver: isSliver),
+      CdaGapSize.m =>
+        _SliverGapWrapper(theme.sizes.m + bottomSafeArea, isSliver: isSliver),
+      CdaGapSize.l =>
+        _SliverGapWrapper(theme.sizes.l + bottomSafeArea, isSliver: isSliver),
+      CdaGapSize.xl =>
+        _SliverGapWrapper(theme.sizes.xl + bottomSafeArea, isSliver: isSliver),
+      CdaGapSize.xxl => _SliverGapWrapper(
           theme.sizes.xxl + bottomSafeArea,
           isSliver: isSliver,
-        );
-      case CdaGapSize.xxxl:
-        return _GapWrapper(
+        ),
+      CdaGapSize.xxxl => _SliverGapWrapper(
           theme.sizes.xxxl + bottomSafeArea,
           isSliver: isSliver,
-        );
-    }
+        ),
+    };
   }
 }

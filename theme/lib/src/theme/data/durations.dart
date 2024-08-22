@@ -54,9 +54,7 @@ class ThemeDurationsData extends Equatable {
 
 class ThemeDurationsDataExtension
     extends ThemeExtension<ThemeDurationsDataExtension> {
-  const ThemeDurationsDataExtension({
-    required this.durations,
-  });
+  const ThemeDurationsDataExtension({required this.durations});
 
   final ThemeDurationsData durations;
 

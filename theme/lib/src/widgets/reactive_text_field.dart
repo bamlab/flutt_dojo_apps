@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bam_theme/cdapp_theme.dart';
+// ignore: avoid-importing-entrypoint-exports , (louisg) I don't understand how to fix this
 import 'package:flutter_bam_theme/const/regex.dart';
+import 'package:flutter_bam_theme/src/theme/themes_data.dart';
+import 'package:flutter_bam_theme/src/widgets/gap.dart';
+import 'package:flutter_bam_theme/src/widgets/text.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 class AppReactiveTextField<T> extends StatefulWidget {
@@ -120,8 +123,9 @@ class AppReactiveTextField<T> extends StatefulWidget {
       _AppReactiveTextFieldState<T>();
 }
 
+// ignore: prefer-sliver-prefix , not necessarely a sliver
 class _AppReactiveTextFieldState<T> extends State<AppReactiveTextField<T>> {
-  void toggleTextField() {
+  void _toggleTextField() {
     if (widget.enabled) {
       widget.formControl.markAsEnabled();
     } else {
@@ -132,14 +136,14 @@ class _AppReactiveTextFieldState<T> extends State<AppReactiveTextField<T>> {
   @override
   void initState() {
     super.initState();
-    toggleTextField();
+    _toggleTextField();
   }
 
   @override
   void didUpdateWidget(covariant AppReactiveTextField<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.enabled != widget.enabled) {
-      toggleTextField();
+      _toggleTextField();
     }
   }
 
@@ -183,7 +187,7 @@ class _AppReactiveTextFieldState<T> extends State<AppReactiveTextField<T>> {
           keyboardType: widget.keyboardType,
           autofillHints: widget.autofillHints,
           inputFormatters: [
-            ...widget.inputFormatters ?? [],
+            ...?widget.inputFormatters,
             if (widget.restrictEmojis)
               FilteringTextInputFormatter.deny(kEmojiRegex),
           ],

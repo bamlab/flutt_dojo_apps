@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bam_theme/cdapp_theme.dart';
+import 'package:flutter_bam_theme/src/theme/themes_data.dart';
+import 'package:flutter_bam_theme/src/widgets/conditionnal_wrapper.dart';
+import 'package:flutter_bam_theme/src/widgets/gap.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 Future<void> showAppModal({
@@ -20,7 +22,8 @@ Future<void> showAppModal({
   Duration? duration,
 }) {
   final theme = Theme.of(context);
-  return showMaterialModalBottomSheet<void>(
+
+  return showMaterialModalBottomSheet(
     context: context,
     backgroundColor: theme.colors.transparent,
     useRootNavigator: true,
@@ -46,7 +49,8 @@ Future<T?> showAppModalWithResult<T>({
   Duration? duration,
 }) {
   final theme = Theme.of(context);
-  return showMaterialModalBottomSheet<T>(
+
+  return showMaterialModalBottomSheet(
     context: context,
     backgroundColor: theme.colors.transparent,
     useRootNavigator: true,
@@ -79,7 +83,7 @@ class AppModal extends StatelessWidget {
     final mediaQuery = MediaQuery.of(context);
 
     return ConstrainedBox(
-      constraints: BoxConstraints(maxHeight: mediaQuery.size.height * 0.90),
+      constraints: BoxConstraints(maxHeight: mediaQuery.size.height * 0.9),
       child: ClipRRect(
         borderRadius: BorderRadius.only(
           topLeft: theme.radius.m,

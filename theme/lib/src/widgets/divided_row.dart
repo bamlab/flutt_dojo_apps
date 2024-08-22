@@ -1,7 +1,6 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/material.dart';
-
-import 'package:flutter_bam_theme/cdapp_theme.dart';
+import 'package:flutter_bam_theme/src/theme/themes_data.dart';
 
 class DividedRow extends StatelessWidget {
   DividedRow({
@@ -26,7 +25,7 @@ class DividedRow extends StatelessWidget {
   final VerticalDirection verticalDirection;
   final TextBaseline? textBaseline;
 
-  List<Widget> getSeparatedChildren(ThemeData theme) {
+  List<Widget> _getSeparatedChildren(ThemeData theme) {
     final childrenIList = IList(children);
 
     final separator = customSeparator ??
@@ -35,16 +34,11 @@ class DividedRow extends StatelessWidget {
             horizontal: theme.sizes.xs,
             vertical: theme.sizes.xxs,
           ),
-          child: VerticalDivider(
-            color: theme.colors.grey50,
-          ),
+          child: VerticalDivider(color: theme.colors.grey50),
         );
 
-    final childrenWithDividers = childrenIList
-        .expand(
-          (child) => [child, separator],
-        )
-        .toIList();
+    final childrenWithDividers =
+        childrenIList.expand((child) => [child, separator]).toIList();
 
     return childrenWithDividers.removeLast().toList();
   }
@@ -60,7 +54,8 @@ class DividedRow extends StatelessWidget {
       textDirection: textDirection,
       verticalDirection: verticalDirection,
       textBaseline: textBaseline,
-      children: getSeparatedChildren(theme),
+      // ignore: avoid-returning-widgets , TODO: Fix this
+      children: _getSeparatedChildren(theme),
     );
   }
 }

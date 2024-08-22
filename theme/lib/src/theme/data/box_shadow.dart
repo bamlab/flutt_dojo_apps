@@ -39,9 +39,7 @@ class ThemeBoxShadowData extends Equatable {
 
 class ThemeBoxShadowDataExtension
     extends ThemeExtension<ThemeBoxShadowDataExtension> {
-  const ThemeBoxShadowDataExtension({
-    required this.shadows,
-  });
+  const ThemeBoxShadowDataExtension({required this.shadows});
 
   final ThemeBoxShadowData shadows;
 

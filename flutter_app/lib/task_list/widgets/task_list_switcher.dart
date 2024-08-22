@@ -41,15 +41,16 @@ class TaskListSwitcher extends StatelessWidget {
         showSelectedIcon: false,
         onSelectionChanged: onSelectedState,
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.resolveWith(
-            (states) => states.contains(MaterialState.selected)
+          backgroundColor: WidgetStateProperty.resolveWith(
+            // ignore: prefer-switch-with-enums , not in a contain
+            (states) => states.contains(WidgetState.selected)
                 ? const Color(0xFF241263)
                 : Colors.transparent,
           ),
-          side: const MaterialStatePropertyAll(
+          side: const WidgetStatePropertyAll(
             BorderSide(color: Color.fromARGB(40, 255, 255, 255)),
           ),
-          shape: const MaterialStatePropertyAll(
+          shape: const WidgetStatePropertyAll(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(16)),
             ),

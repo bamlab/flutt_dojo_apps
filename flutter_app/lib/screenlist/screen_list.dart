@@ -18,26 +18,26 @@ class ScreenList extends StatefulWidget {
 class _ScreenList2State extends State<ScreenList>
     with TickerProviderStateMixin {
   int _selectedIndex = 0;
-  late final animationController = AnimationController(
+  late final _animationController = AnimationController(
     duration: const Duration(milliseconds: 2000),
     vsync: this,
   );
 
   late Tween<double> _tween = Tween(begin: 0, end: 0);
-  void changeTab(int index) {
+  void _changeTab(int index) {
     setState(() {
       _tween = Tween(
-        begin: _tween.evaluate(animationController),
+        begin: _tween.evaluate(_animationController),
         end: index.toDouble(),
       );
       _selectedIndex = index;
     });
-    animationController.animateTo(index / 3);
+    _animationController.animateTo(index / 3);
   }
 
   @override
   void dispose() {
-    animationController.dispose();
+    _animationController.dispose();
     super.dispose();
   }
 
@@ -65,10 +65,7 @@ class _ScreenList2State extends State<ScreenList>
               : theme.colors.onSurface,
         ),
         icon: Icon(icon, color: theme.colors.onSurface),
-        activeIcon: Icon(
-          icon,
-          color: theme.colors.surface,
-        ),
+        activeIcon: Icon(icon, color: theme.colors.surface),
         selectedColor: theme.colors.primary,
         unselectedColor: theme.colors.primary,
       );
@@ -121,9 +118,9 @@ class _ScreenList2State extends State<ScreenList>
               ),
               child: SalomonBottomBar(
                 selectedColorOpacity: 1,
-                onTap: changeTab,
+                onTap: _changeTab,
                 currentIndex: _selectedIndex,
-                items: <SalomonBottomBarItem>[
+                items: [
                   salomonBarItem(
                     icon: Icons.home_outlined,
                     title: 'Accueil',

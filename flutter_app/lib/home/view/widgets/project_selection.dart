@@ -5,14 +5,11 @@ import 'package:flutter_dojo_apps/shared/data/providers/selected_project_provide
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ProjectSelection extends ConsumerWidget {
-  const ProjectSelection({
-    required this.projectList,
-    super.key,
-  });
+  const ProjectSelection({required this.projectList, super.key});
 
   final IList<String> projectList;
 
-  void selectProject(String project, WidgetRef ref) {
+  void _selectProject(String project, WidgetRef ref) {
     ref.read(selectedProjectProvider.notifier).selectedProject = project;
   }
 
@@ -30,7 +27,7 @@ class ProjectSelection extends ConsumerWidget {
             child: ProjectRadioButton(
               project: project,
               isSelected: selectedProject == project,
-              onTap: () => selectProject(project, ref),
+              onTap: () => _selectProject(project, ref),
             ),
           ),
       ],

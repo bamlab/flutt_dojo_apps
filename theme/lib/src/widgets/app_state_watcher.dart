@@ -17,7 +17,6 @@ class AppStateWatcher extends StatefulWidget {
   State<AppStateWatcher> createState() => AppStateWatcherState();
 }
 
-@visibleForTesting
 class AppStateWatcherState extends State<AppStateWatcher>
     with
         // We do not want to override all WidgetsBindingObserver methods.
@@ -31,12 +30,12 @@ class AppStateWatcherState extends State<AppStateWatcher>
         // See: https://dart-lang.github.io/linter/lints/prefer_mixin.html
         // ignore: prefer_mixin
         WidgetsBindingObserver {
-  AppLifecycleState? appState;
+  AppLifecycleState? _appState;
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    widget.handleAppState(appState, state);
-    appState = state;
+    widget.handleAppState(_appState, state);
+    _appState = state;
   }
 
   @override

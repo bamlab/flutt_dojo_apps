@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-
-import 'package:flutter_bam_theme/cdapp_theme.dart';
+import 'package:flutter_bam_theme/src/theme/themes_data.dart';
+import 'package:flutter_bam_theme/src/widgets/gap.dart';
 
 class AppTabBarContent extends Equatable {
   const AppTabBarContent({
@@ -20,6 +20,7 @@ class AppTabBarContent extends Equatable {
   List<Object?> get props => [title, icon, onTap];
 }
 
+// ignore: prefer-sliver-prefix , not necessarely a sliver widget
 class AppTabBar extends StatelessWidget {
   const AppTabBar({
     required this.tabs,
@@ -32,6 +33,7 @@ class AppTabBar extends StatelessWidget {
   final bool isSliver;
   final bool isScrollable;
 
+  // ignore: prefer-widget-private-members, this is a static method
   static double getSize(BuildContext context) => Theme.of(context).sizes.xxxl;
 
   @override
@@ -56,7 +58,7 @@ class AppTabBar extends StatelessWidget {
           ),
         ),
         TabBar(
-          onTap: (index) => tabs[index].onTap(),
+          onTap: (index) => tabs.elementAtOrNull(index)?.onTap(),
           isScrollable: isScrollable,
           tabAlignment: isScrollable ? TabAlignment.start : TabAlignment.fill,
           tabs: tabs
@@ -102,7 +104,7 @@ class AppTabBar extends StatelessWidget {
 }
 
 class SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
-  SliverAppBarDelegate({
+  const SliverAppBarDelegate({
     required this.minHeight,
     required this.maxHeight,
     required this.child,

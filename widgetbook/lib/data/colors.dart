@@ -30,22 +30,10 @@ Widget colors(BuildContext context) {
                 name: 'primaryLight',
                 color: colors.primaryLight,
               ),
-              _colorItem(
-                name: 'grey300',
-                color: colors.grey300,
-              ),
-              _colorItem(
-                name: 'grey200',
-                color: colors.grey200,
-              ),
-              _colorItem(
-                name: 'grey100',
-                color: colors.grey100,
-              ),
-              _colorItem(
-                name: 'grey50',
-                color: colors.grey50,
-              ),
+              _colorItem(name: 'grey300', color: colors.grey300),
+              _colorItem(name: 'grey200', color: colors.grey200),
+              _colorItem(name: 'grey100', color: colors.grey100),
+              _colorItem(name: 'grey50', color: colors.grey50),
               _colorItem(
                 // background and onBackground
                 name: 'background',
@@ -60,14 +48,8 @@ Widget colors(BuildContext context) {
                 onColorName: 'onError',
                 onColor: colors.onError,
               ),
-              _colorItem(
-                name: 'statusWarning',
-                color: colors.statusWarning,
-              ),
-              _colorItem(
-                name: 'statusSuccess',
-                color: colors.statusSuccess,
-              ),
+              _colorItem(name: 'statusWarning', color: colors.statusWarning),
+              _colorItem(name: 'statusSuccess', color: colors.statusSuccess),
               _colorItem(
                 // secondary and onSecondary
                 name: 'secondary',
@@ -82,10 +64,7 @@ Widget colors(BuildContext context) {
                 onColorName: 'onSurface',
                 onColor: colors.onSurface,
               ),
-              _colorItem(
-                name: 'disable',
-                color: colors.disable,
-              ),
+              _colorItem(name: 'disable', color: colors.disable),
             ],
           ),
         ],

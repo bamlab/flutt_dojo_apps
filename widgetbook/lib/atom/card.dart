@@ -28,10 +28,7 @@ Widget evToggle(BuildContext context) {
     body: Padding(
       padding: theme.sizes.asInsets.m,
       child: AppCard(
-        bottom: AppText.bodySmall(
-          bottomText,
-          color: theme.colors.onSurface,
-        ),
+        bottom: AppText.bodySmall(bottomText, color: theme.colors.onSurface),
         child: DecoratedBox(
           decoration: BoxDecoration(
             color: backgroundColor,
@@ -40,10 +37,7 @@ Widget evToggle(BuildContext context) {
           child: Center(
             child: Padding(
               padding: theme.sizes.asInsets.l,
-              child: AppText.bodyMedium(
-                childText,
-                color: textColor,
-              ),
+              child: AppText.bodyMedium(childText, color: textColor),
             ),
           ),
         ),

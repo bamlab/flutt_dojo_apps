@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_bam_theme/cdapp_theme.dart';
 import 'package:flutter_bam_theme/src/theme/data/cupertino_navigation_bar_theme.dart';
+import 'package:flutter_bam_theme/src/theme/themes_data.dart';
+import 'package:flutter_bam_theme/src/utils/helpers.dart';
+import 'package:flutter_bam_theme/src/widgets/action_button.dart';
+import 'package:flutter_bam_theme/src/widgets/icons.g.dart';
 
 const kNavBarLargeTitleHeightExtension = 52;
 
@@ -12,7 +15,7 @@ double getSliverThemeAppBarMaxHeight(BuildContext context) {
 }
 
 double getSliverThemeAppBarMinHeight(BuildContext context) {
-  return kMinInteractiveDimensionCupertino + MediaQuery.of(context).padding.top;
+  return kMinInteractiveDimensionCupertino + MediaQuery.paddingOf(context).top;
 }
 
 /// A [CupertinoSliverNavigationBar] with a [backgroundColor]
@@ -151,55 +154,89 @@ class ThemeAppBar extends StatelessWidget {
         ? const DefaultAppLeading()
         : null;
 
+    final middle = this.middle;
+
+    if (isSliver) {
+      final titleWidget = this.titleWidget;
+
+      return CupertinoSliverNavigationBar(
+        heroTag: 'theme_app_bar',
+        alwaysShowMiddle: alwaysShowMiddle,
+        // The [CupertinoSliverNavigationBar] uses the
+        // [CupertinoTextThemeData]'s [navTitleTextStyle] and
+        // [CupertinoTextThemeData] to set the style of
+        // the [largeTitle] text.
+        largeTitle: titleWidget != null
+            ? _AppBarTitle(
+                title: title,
+                isSelectable: isSelectable,
+                onTap: onTap,
+                fallbackWidget: titleWidget,
+              )
+            : null,
+        leading: leading ?? defaultThemeLeading,
+        automaticallyImplyLeading: automaticallyImplyLeading,
+        previousPageTitle: previousPageTitle,
+        middle: middle,
+        trailing: trailing,
+        backgroundColor: backgroundColor,
+        brightness: brightness,
+        padding: padding ?? theme.cupertinoNavigationBarTheme.padding,
+        border: border ?? theme.cupertinoNavigationBarTheme.border,
+        transitionBetweenRoutes: transitionBetweenRoutes,
+        stretch: stretch,
+      );
+    }
+
+    return CupertinoNavigationBar(
+      heroTag: 'theme_app_bar',
+      leading: leading ?? defaultThemeLeading,
+      automaticallyImplyLeading: automaticallyImplyLeading,
+      previousPageTitle: previousPageTitle,
+      middle: middle != null
+          ? _AppBarTitle(
+              fallbackWidget: middle,
+              isSelectable: isSelectable,
+              title: title,
+            )
+          : null,
+      trailing: trailing,
+      backgroundColor: backgroundColor,
+      border: border ?? theme.cupertinoNavigationBarTheme.border,
+      brightness: brightness,
+      padding: padding ?? theme.cupertinoNavigationBarTheme.padding,
+      transitionBetweenRoutes: transitionBetweenRoutes,
+    );
+  }
+}
+
+class _AppBarTitle extends StatelessWidget {
+  const _AppBarTitle({
+    required this.isSelectable,
+    required this.fallbackWidget,
+    this.title,
+    this.onTap,
+  });
+
+  final String? title;
+  final VoidCallback? onTap;
+  final bool isSelectable;
+  final Widget fallbackWidget;
+
+  @override
+  Widget build(BuildContext context) {
     final title = this.title;
 
-    return isSliver
-        ? CupertinoSliverNavigationBar(
-            alwaysShowMiddle: alwaysShowMiddle,
-            // The [CupertinoSliverNavigationBar] uses the
-            // [CupertinoTextThemeData]'s [navTitleTextStyle] and
-            // [CupertinoTextThemeData] to set the style of
-            // the [largeTitle] text.
-            largeTitle: title != null
-                ? GestureDetector(
-                    onTap: onTap,
-                    child: isSelectable
-                        ? SelectableText(
-                            title.toUpperCase(),
-                          )
-                        : Text(
-                            title.toUpperCase(),
-                          ),
-                  )
-                : titleWidget,
-            leading: leading ?? defaultThemeLeading,
-            automaticallyImplyLeading: automaticallyImplyLeading,
-            previousPageTitle: previousPageTitle,
-            middle: middle,
-            trailing: trailing,
-            backgroundColor: backgroundColor,
-            brightness: brightness,
-            padding: padding ?? theme.cupertinoNavigationBarTheme.padding,
-            border: border ?? theme.cupertinoNavigationBarTheme.border,
-            transitionBetweenRoutes: transitionBetweenRoutes,
-            stretch: stretch,
-          )
-        : CupertinoNavigationBar(
-            leading: leading ?? defaultThemeLeading,
-            automaticallyImplyLeading: automaticallyImplyLeading,
-            previousPageTitle: previousPageTitle,
-            middle: title != null
-                ? isSelectable
-                    ? SelectableText(title.toUpperCase())
-                    : Text(title.toUpperCase())
-                : middle,
-            trailing: trailing,
-            backgroundColor: backgroundColor,
-            border: border ?? theme.cupertinoNavigationBarTheme.border,
-            brightness: brightness,
-            padding: padding ?? theme.cupertinoNavigationBarTheme.padding,
-            transitionBetweenRoutes: transitionBetweenRoutes,
-          );
+    if (title != null) {
+      return GestureDetector(
+        onTap: onTap,
+        child: isSelectable
+            ? SelectableText(title.toUpperCase())
+            : Text(title.toUpperCase()),
+      );
+    }
+
+    return fallbackWidget;
   }
 }
 
@@ -217,9 +254,9 @@ class DefaultAppLeading extends StatelessWidget {
         size: theme.sizes.xl,
       ),
       backgroundColor: theme.colors.background,
-      onTap: () {
+      onTap: () async {
         ScaffoldMessenger.of(context).hideCurrentSnackBar();
-        Navigator.of(context).maybePop();
+        await Navigator.of(context).maybePop();
       },
     );
   }

@@ -3,13 +3,7 @@ import 'package:flutter_bam_theme/cdapp_theme.dart';
 import 'package:flutter_dojo_apps/statistics/widgets/light_card.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 
-const days = [
-  'Lun.',
-  'Mar.',
-  'Mer.',
-  'Jeu.',
-  'Ven.',
-];
+const days = ['Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.'];
 
 class TimeGraph extends StatelessWidget {
   const TimeGraph({required this.timeOfTasks, super.key});
@@ -49,10 +43,7 @@ class TimeGraph extends StatelessWidget {
               children: days
                   .map(
                     (day) => Center(
-                      child: AppText.titleSmall(
-                        day,
-                        color: Colors.white,
-                      ),
+                      child: AppText.titleSmall(day, color: Colors.white),
                     ),
                   )
                   .toList(),
@@ -82,10 +73,7 @@ class _TimeOfTaskBar extends StatelessWidget {
       child: Column(
         children: [
           const Spacer(),
-          AppText.titleLarge(
-            '${timeOfTask.inHours}h',
-            color: Colors.white,
-          ),
+          AppText.titleLarge('${timeOfTask.inHours}h', color: Colors.white),
           const AppGap.s(),
           _ChartBar(
             height:
@@ -111,21 +99,14 @@ class _ChartBar extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [
-            Colors.white,
-            Colors.white,
-            Colors.white.withOpacity(0),
-          ],
+          colors: [Colors.white, Colors.white, Colors.white.withOpacity(0)],
         ),
       ),
       borderRadius: const BorderRadius.only(
         topLeft: Radius.circular(4),
         topRight: Radius.circular(4),
       ),
-      child: SizedBox(
-        height: height,
-        width: theme.sizes.xl,
-      ),
+      child: SizedBox(height: height, width: theme.sizes.xl),
     );
   }
 }

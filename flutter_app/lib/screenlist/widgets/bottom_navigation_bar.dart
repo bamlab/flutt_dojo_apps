@@ -86,7 +86,7 @@ class CustomNavigationItems extends StatelessWidget {
           vertical: theme.sizes.xs,
         ),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(100),
+          borderRadius: const BorderRadius.all(Radius.circular(100)),
           color: isSelected ? theme.colors.primary : Colors.transparent,
         ),
         child: Row(
