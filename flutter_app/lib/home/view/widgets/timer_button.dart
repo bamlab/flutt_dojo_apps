@@ -5,12 +5,14 @@ class TimerButton extends StatelessWidget {
     required this.onTap,
     required this.backgroundColor,
     required this.icon,
+    this.padding,
     super.key,
   });
 
   final VoidCallback onTap;
   final Color backgroundColor;
   final Icon icon;
+  final EdgeInsets? padding;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class TimerButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
         ),
-        padding: const EdgeInsets.all(36.5),
+        padding: padding ?? const EdgeInsets.all(36.5),
         backgroundColor: backgroundColor,
       ),
       child: icon,
