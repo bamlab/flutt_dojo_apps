@@ -11,6 +11,7 @@ environment:
 
 dependencies:
   animated_clipper: ^0.2.0+2
+  animated_toggle_switch: ^0.8.3
   cached_network_image: ^3.2.3
   cupertino_icons: ^1.0.2
   equatable: ^2.0.5
