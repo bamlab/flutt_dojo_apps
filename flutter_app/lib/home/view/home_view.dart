@@ -33,7 +33,7 @@ class _HomeViewState extends ConsumerState<HomeView>
   late Stopwatch _stopwatch;
   late Timer _timer;
   late final AnimationController _controller = AnimationController(
-    duration: const Duration(milliseconds: 500),
+    duration: const Duration(milliseconds: 700),
     vsync: this,
   );
 
@@ -51,6 +51,17 @@ class _HomeViewState extends ConsumerState<HomeView>
     CurvedAnimation(
       parent: _controller,
       curve: Curves.decelerate,
+    ),
+  );
+  late final Animation<AlignmentGeometry> _alignmentAnimation2 =
+      Tween<AlignmentGeometry>(
+    begin: Alignment.topCenter,
+    end: Alignment.center,
+  ).animate(
+    CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeInSine,
+      reverseCurve: Curves.easeInOutSine,
     ),
   );
 
@@ -94,7 +105,7 @@ class _HomeViewState extends ConsumerState<HomeView>
           );
 
     return Padding(
-      padding: const EdgeInsets.all(24),
+      padding: const EdgeInsets.symmetric(horizontal: 24),
       child: AnimatedBuilder(
         animation: _animation,
         builder: (context, _) => Column(
@@ -111,15 +122,6 @@ class _HomeViewState extends ConsumerState<HomeView>
                   projectList: _projectList,
                 ),
               ),
-            Text(
-              _stopwatch.elapsed.asPrettyString,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 70,
-                fontFamily: 'ZillaSlab',
-                fontWeight: FontWeight.w600,
-              ),
-            ),
             const SizedBox(
               height: 16,
             ),
@@ -127,86 +129,100 @@ class _HomeViewState extends ConsumerState<HomeView>
               child: Stack(
                 alignment: _alignmentAnimation.value,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 153 / 2 - 72 / 2),
-                    child: Transform.translate(
-                      offset: Offset(
-                        0,
-                        ReverseAnimation(_linearAnimation).value *
-                            (-153 / 2 + 72 / 2),
-                      ),
-                      child: ConstrainedBox(
-                        constraints: const BoxConstraints(minHeight: 153),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Transform.translate(
-                              offset: Offset(
-                                -_animation.value * 100,
-                                0,
-                              ),
-                              child: RestartTimerButton(
-                                onTap: () {
-                                  print('restart');
-                                  _stopwatch.reset();
-                                  setState(() {});
-                                },
-                              ),
-                            ),
-                            Transform.translate(
-                              offset: Offset(
-                                _animation.value * 100,
-                                0,
-                              ),
-                              child: StopTimerButton(
-                                onTap: () {
-                                  print('stop');
-                                  _stopwatch.reset();
-                                  _stopwatch.stop();
-                                  _controller.reverse();
-                                  setState(() {});
-                                },
-                              ),
-                            ),
-                          ],
-                        ),
+                  AlignTransition(
+                    alignment: _alignmentAnimation2,
+                    child: Text(
+                      _stopwatch.elapsed.asPrettyString,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 70,
+                        fontFamily: 'ZillaSlab',
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),
-                  timerButton,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 100),
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        ConstrainedBox(
+                          constraints: const BoxConstraints(minHeight: 153),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Transform.translate(
+                                offset: Offset(
+                                  -_animation.value * 100,
+                                  0,
+                                ),
+                                child: RestartTimerButton(
+                                  onTap: () {
+                                    _stopwatch.reset();
+                                    setState(() {});
+                                  },
+                                ),
+                              ),
+                              Transform.translate(
+                                offset: Offset(
+                                  _animation.value * 100,
+                                  0,
+                                ),
+                                child: StopTimerButton(
+                                  onTap: () {
+                                    print('stop');
+                                    _stopwatch.reset();
+                                    _stopwatch.stop();
+                                    _controller.reverse();
+                                    setState(() {});
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        timerButton,
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
+            const AppGap.l(),
             SizeTransition(
               sizeFactor: ReverseAnimation(_linearAnimation),
               child: FadeTransition(
                 opacity: ReverseAnimation(_animation),
-                child: const Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(top: 48, bottom: 16),
-                      child: AppText.titleLarge(
-                        'Mes dernières tâches',
-                        textAlign: TextAlign.start,
+                child: const SingleChildScrollView(
+                  physics: AlwaysScrollableScrollPhysics(),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(top: 48, bottom: 16),
+                        child: AppText.titleLarge(
+                          'Mes dernières tâches',
+                          textAlign: TextAlign.start,
+                        ),
                       ),
-                    ),
-                    DayView(
-                      duration: Duration(minutes: 45, seconds: 30),
-                      title: 'TF1+',
-                      icon: Icons.check_circle,
-                      date: 'Lundi 20/03',
-                    ),
-                    SizedBox(
-                      height: 16,
-                    ),
-                    DayView(
-                      duration: Duration(hours: 1, minutes: 32, seconds: 15),
-                      title: 'Decathlon',
-                      icon: Icons.check_circle,
-                      date: 'Lundi 18/03',
-                    ),
-                  ],
+                      DayView(
+                        duration: Duration(minutes: 45, seconds: 30),
+                        title: 'TF1+',
+                        icon: Icons.check_circle,
+                        date: 'Lundi 20/03',
+                      ),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      DayView(
+                        duration: Duration(hours: 1, minutes: 32, seconds: 15),
+                        title: 'Decathlon',
+                        icon: Icons.check_circle,
+                        date: 'Lundi 18/03',
+                      ),
+                      AppGap.xl(),
+                    ],
+                  ),
                 ),
               ),
             ),
