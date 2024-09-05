@@ -138,12 +138,6 @@ class _ScreenList2State extends State<ScreenList>
         ),
         body: Stack(
           children: [
-            Image.asset(
-              'assets/Background.png',
-              fit: BoxFit.cover,
-              height: double.infinity,
-              width: double.infinity,
-            ),
             SafeArea(child: page),
           ],
         ),
